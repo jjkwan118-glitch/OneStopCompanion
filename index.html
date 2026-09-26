@@ -144,6 +144,19 @@
   .games-view .jigsaw-piece.filled-piece{cursor:pointer;border:none;}
   .games-view .jigsaw-level-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px;}
   .games-view .jigsaw-level-btns .seg-btn{width:100%;}
+  .games-view .spot-stage{position:relative;width:100%;max-width:260px;aspect-ratio:1/1;margin:14px auto;border-radius:50%;border:3px dashed var(--g-border);background:#F8FAFC;overflow:hidden;}
+  .games-view.high-contrast .spot-stage{background:#fff;border-color:#000;border-width:3px;}
+  .games-view .spot-center-flash{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:44px;opacity:0;transition:opacity .05s linear;}
+  .games-view .spot-center-flash.show{opacity:1;}
+  .games-view.text-large .spot-center-flash{font-size:52px;}
+  .games-view.text-xlarge .spot-center-flash{font-size:60px;}
+  .games-view .spot-dot{position:absolute;width:16%;height:16%;border-radius:50%;background:var(--g-accent);opacity:0;transform:translate(-50%,-50%);transition:opacity .05s linear;}
+  .games-view .spot-dot.show{opacity:1;}
+  .games-view.high-contrast .spot-dot{background:#000;}
+  .games-view .spot-dir-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:260px;margin:0 auto;}
+  .games-view .spot-dir-grid .answer-card{min-height:52px;font-size:22px;padding:10px;}
+  .games-view.text-large .spot-dir-grid .answer-card{font-size:25px;}
+  .games-view.text-xlarge .spot-dir-grid .answer-card{font-size:28px;}
   .achieve-badge{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--g-border,#BFDBFE);border-radius:14px;padding:12px 14px;}
   .achieve-badge .a-icon{font-size:26px;}
   .achieve-badge .a-text{font-size:15px;font-weight:700;color:var(--g-ink,#1F2A44);}
@@ -164,89 +177,6 @@
   .lang-actions{display:flex;gap:8px;flex-wrap:wrap;}
   .lang-actions .btn-solid{flex:1;min-width:100px;margin-top:0;}
 </style>
-
-<style id="everyday-compass-enhancement">
-:root{
-  --ink:#17335F;
-  --page-bg:#EAF8F6;
-  --phone-bg:#FFFDF8;
-  --header-bg:#15B96A;
-  --accent:#0E9B91;
-  --sos:#F04452;
-  --border:#F3D6A3;
-  --gray:#665F57;
-  --light-gray:#8D857B;
-  --label:#E05A24;
-  --ec-blue:#2775E6;
-  --ec-purple:#7C4DDB;
-  --ec-pink:#E94B87;
-  --ec-orange:#F59A23;
-  --ec-green:#18B86B;
-  --ec-teal:#0E9B91;
-  --ec-shadow:0 10px 25px rgba(25,71,103,.11);
-}
-body{
-  background:
-    radial-gradient(circle at 12% 4%,rgba(39,117,230,.13),transparent 24%),
-    radial-gradient(circle at 90% 10%,rgba(24,184,107,.15),transparent 24%),
-    #DDF4F1;
-}
-.phone{
-  background:linear-gradient(180deg,#FFFDF8 0%,#FFF9EE 100%);
-  box-shadow:0 0 40px rgba(20,69,90,.16);
-}
-header{
-  background:linear-gradient(120deg,#17B96B 0%,#0EA88E 55%,#2775E6 115%);
-  padding:28px 22px 22px;
-  box-shadow:0 7px 20px rgba(15,118,110,.18);
-}
-header h1{font-size:24px;letter-spacing:-.02em}
-header p{font-size:14px;font-weight:600}
-.icon-btn{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.32);box-shadow:0 4px 12px rgba(0,0,0,.08)}
-main{gap:16px}
-.sos-btn{background:linear-gradient(135deg,#F04452,#D92F48);box-shadow:0 8px 18px rgba(217,47,72,.23);border:1px solid rgba(255,255,255,.5)}
-.call-btn{background:linear-gradient(135deg,#0E9B91,#087F7A);box-shadow:0 8px 18px rgba(14,155,145,.20)}
-.col-heading{font-size:15px;letter-spacing:.045em}
-.tile-mini{
-  border:1px solid rgba(223,191,142,.72);
-  border-radius:18px;
-  padding:15px 9px;
-  box-shadow:var(--ec-shadow);
-  transition:transform .16s ease,box-shadow .16s ease;
-}
-.tile-mini:hover{transform:translateY(-2px);box-shadow:0 13px 27px rgba(25,71,103,.15)}
-.tile-mini .badge-mini{width:48px;height:48px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}
-.tile-mini .title-mini{font-size:14px;color:#17335F}
-.tile-mini .sub-mini{font-size:11px;color:#756B60}
-.card,.fare-row,.games-view .game-tile,.games-view .access-row{
-  border-width:1px;
-  border-radius:18px;
-  box-shadow:var(--ec-shadow);
-}
-.back-header{
-  background:linear-gradient(120deg,#17B96B,#0EA88E 55%,#2775E6 115%);
-  box-shadow:0 6px 18px rgba(15,118,110,.16);
-}
-.btn-solid{background:linear-gradient(135deg,#0E9B91,#087F7A);box-shadow:0 6px 14px rgba(14,155,145,.18)}
-.apt-seg-btn.active,.games-view .seg-btn.active{background:linear-gradient(135deg,#2775E6,#6254D9);border-color:transparent}
-.confirm-banner.show{border:1px solid #A7E3D8}
-#view-home .columns{gap:14px}
-#view-home .col:first-child .tile-mini:nth-of-type(2){border-top:4px solid #F59A23}
-#view-home .col:first-child .tile-mini:nth-of-type(3){border-top:4px solid #E94B87}
-#view-home .col:first-child .tile-mini:nth-of-type(4){border-top:4px solid #2775E6}
-#view-home .col:first-child .tile-mini:nth-of-type(5){border-top:4px solid #7C4DDB}
-#view-home .col:first-child .tile-mini:nth-of-type(6){border-top:4px solid #F2B33D}
-#view-home .col:first-child .tile-mini:nth-of-type(7){border-top:4px solid #18B86B}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(1){border-top:4px solid #84B82E}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(2){border-top:4px solid #4F55D8}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(3){border-top:4px solid #7C4DDB}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(4){border-top:4px solid #E94B87}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(5){border-top:4px solid #2775E6}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(6){border-top:4px solid #F04452}
-#view-home .col:nth-child(2) .tile-mini:nth-of-type(7){border-top:4px solid #5968E8}
-@media(max-width:380px){main{padding-left:14px;padding-right:14px}.columns{gap:9px}.tile-mini{padding:13px 6px}}
-</style>
-
 </head>
 <body>
 <div class="phone">
@@ -340,9 +270,9 @@ main{gap:16px}
               <span class="badge-mini" style="background:#F3E8FF;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7E22CE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg>
               </span>
-              <span class="title-mini">Other Appointments</span>
+              <span class="title-mini">Non Health Appointments</span>
             </a>
-            <span class="sub-mini">Non-HealthHub bookings</span>
+            <span class="sub-mini">Track other bookings</span>
             <a href="#" onclick="showView('apptlist');return false;" style="font-size:11px;font-weight:700;color:#7E22CE;text-decoration:underline;">View appointments</a>
           </div>
 
@@ -516,6 +446,11 @@ main{gap:16px}
         <span class="info"><span class="g-name">Quick Tap</span><span class="g-desc">Tap as soon as you see GO</span></span>
         <button class="g-start" type="button" onclick="launchGame('tap')">▶ Start</button>
       </div>
+      <div class="game-tile">
+        <span class="icon-circle">🎯</span>
+        <span class="info"><span class="g-name">Spot &amp; React</span><span class="g-desc">Spot the picture and the side flash</span></span>
+        <button class="g-start" type="button" onclick="launchGame('spot')">▶ Start</button>
+      </div>
 
       <a href="#" onclick="showView('gamesprogress');return false;" style="display:block;text-align:center;font-size:16px;font-weight:700;color:var(--accent);text-decoration:underline;margin-top:6px;">📊 My Progress &amp; Achievements</a>
 
@@ -621,6 +556,10 @@ main{gap:16px}
       <div class="card">
         <span style="font-size:15px;font-weight:700;">⚡ Quick Tap</span>
         <span style="font-size:13px;color:var(--gray);" id="progTapText">Not played yet</span>
+      </div>
+      <div class="card">
+        <span style="font-size:15px;font-weight:700;">🎯 Spot &amp; React</span>
+        <span style="font-size:13px;color:var(--gray);" id="progSpotText">Not played yet</span>
       </div>
 
       <p class="col-heading" style="margin-top:6px;">Achievements</p>
@@ -4290,14 +4229,14 @@ main{gap:16px}
   var GAME_SETTINGS_KEY = 'sgSeniorsGameSettings';
   var GAME_PROGRESS_KEY = 'sgSeniorsGameProgress';
   var DEFAULT_GAME_SETTINGS = { textSize: 'normal', highContrast: false, reduceMotion: false, spokenGuidance: false, speechSpeed: 'normal', responseTime: 'standard', selectedLevel: null };
-  var GAME_LIST = ['memory', 'word', 'tap'];
-  var GAME_NAMES = { memory: 'Memory Match', word: 'Word Recall', tap: 'Quick Tap' };
+  var GAME_LIST = ['memory', 'word', 'tap', 'spot'];
+  var GAME_NAMES = { memory: 'Memory Match', word: 'Word Recall', tap: 'Quick Tap', spot: 'Spot & React' };
   var LEVEL_ORDER = ['easy', 'medium', 'hard', 'advanced'];
   var LEVEL_CONFIGS = {
-    easy:     { memoryPairs: 4,  wordCount: 3, tapRounds: 3, memoryTimeLimitMs: 90000, wordTimeLimitMs: 15000, tapReactionThresholdMs: 700 },
-    medium:   { memoryPairs: 6,  wordCount: 5, tapRounds: 4, memoryTimeLimitMs: 75000, wordTimeLimitMs: 20000, tapReactionThresholdMs: 600 },
-    hard:     { memoryPairs: 8,  wordCount: 7, tapRounds: 5, memoryTimeLimitMs: 60000, wordTimeLimitMs: 25000, tapReactionThresholdMs: 500 },
-    advanced: { memoryPairs: 10, wordCount: 8, tapRounds: 6, memoryTimeLimitMs: 50000, wordTimeLimitMs: 30000, tapReactionThresholdMs: 450 }
+    easy:     { memoryPairs: 4,  wordCount: 3, tapRounds: 3, memoryTimeLimitMs: 90000, wordTimeLimitMs: 15000, tapReactionThresholdMs: 700, spotRounds: 5, spotStartMs: 900, spotThresholdMs: 600 },
+    medium:   { memoryPairs: 6,  wordCount: 5, tapRounds: 4, memoryTimeLimitMs: 75000, wordTimeLimitMs: 20000, tapReactionThresholdMs: 600, spotRounds: 6, spotStartMs: 650, spotThresholdMs: 450 },
+    hard:     { memoryPairs: 8,  wordCount: 7, tapRounds: 5, memoryTimeLimitMs: 60000, wordTimeLimitMs: 25000, tapReactionThresholdMs: 500, spotRounds: 7, spotStartMs: 450, spotThresholdMs: 320 },
+    advanced: { memoryPairs: 10, wordCount: 8, tapRounds: 6, memoryTimeLimitMs: 50000, wordTimeLimitMs: 30000, tapReactionThresholdMs: 450, spotRounds: 8, spotStartMs: 320, spotThresholdMs: 220 }
   };
   function getLevelLabel(level){ return level.charAt(0).toUpperCase() + level.slice(1); }
   var ACHIEVEMENT_DEFS = [
@@ -4322,7 +4261,7 @@ main{gap:16px}
       if (raw) return JSON.parse(raw);
     } catch(e) {}
     return { lastActiveDate: '', streak: 0, totalActivities: 0, todayDate: '', todayCompleted: [], autoLevel: 'easy', levelStreak: 0, games: {
-      memory: { played: 0, personalBest: null }, word: { played: 0, personalBest: 0 }, tap: { played: 0, personalBestMs: null }
+      memory: { played: 0, personalBest: null }, word: { played: 0, personalBest: 0 }, tap: { played: 0, personalBestMs: null }, spot: { played: 0, personalBest: 0 }
     }, achievements: [] };
   }
   function saveGameProgress(p){ try { localStorage.setItem(GAME_PROGRESS_KEY, JSON.stringify(p)); } catch(e) {} }
@@ -4333,6 +4272,7 @@ main{gap:16px}
     if (typeof p.autoLevel !== 'string') p.autoLevel = 'easy';
     if (typeof p.levelStreak !== 'number') p.levelStreak = 0;
     if (p.games.memory.personalBest === 0) p.games.memory.personalBest = null;
+    if (!p.games.spot) p.games.spot = { played: 0, personalBest: 0 };
     return p;
   }
 
@@ -4483,6 +4423,9 @@ main{gap:16px}
     document.getElementById('progTapText').textContent = p.games.tap.played > 0
       ? ('Played ' + p.games.tap.played + ' time' + (p.games.tap.played === 1 ? '' : 's') + ' · Personal best: ' + (p.games.tap.personalBestMs != null ? p.games.tap.personalBestMs + ' ms' : '—'))
       : 'Not played yet';
+    document.getElementById('progSpotText').textContent = p.games.spot.played > 0
+      ? ('Played ' + p.games.spot.played + ' time' + (p.games.spot.played === 1 ? '' : 's') + ' · Personal best: ' + p.games.spot.personalBest + ' rounds correct')
+      : 'Not played yet';
     var list = document.getElementById('achievementsList');
     if (list){
       list.innerHTML = ACHIEVEMENT_DEFS.map(function(a){
@@ -4534,6 +4477,7 @@ main{gap:16px}
     if (gameId === 'memory') startMemoryGame();
     if (gameId === 'word') startWordGame();
     if (gameId === 'tap') startTapGame();
+    if (gameId === 'spot') startSpotGame();
   }
 
   function exitGameToHub(){
@@ -4762,6 +4706,155 @@ main{gap:16px}
     var levelResult = applyLevelProgression(p, isPerfectFast);
     saveGameProgress(p);
     renderResultsScreen('tap', avg != null ? ('Your average reaction time was ' + avg + ' ms.') : 'Activity complete.', null, p.games.tap.personalBestMs != null ? (p.games.tap.personalBestMs + ' ms') : '—', levelResult.leveledUp ? ('🎉 Great work — moving up to ' + getLevelLabel(levelResult.newLevel) + '!') : null);
+  }
+
+  /* ---- Spot & React ---- */
+  var spotState = null;
+  var SPOT_DIR_LABELS = ['↑','↗','→','↘','↓','↙','←','↖']; // clockwise from top, matches showSpotFlash() angle math
+  var SPOT_OBJECT_SETS = [
+    { a: { emoji: '🚗', label: 'Car' },      b: { emoji: '🚌', label: 'Bus' } },
+    { a: { emoji: '🍎', label: 'Apple' },    b: { emoji: '🍌', label: 'Banana' } },
+    { a: { emoji: '🐱', label: 'Cat' },      b: { emoji: '🐶', label: 'Dog' } },
+    { a: { emoji: '☀️', label: 'Sun' },      b: { emoji: '🌧️', label: 'Rain' } },
+    { a: { emoji: '⭐', label: 'Star' },     b: { emoji: '❤️', label: 'Heart' } },
+    { a: { emoji: '☕', label: 'Cup' },      b: { emoji: '🔑', label: 'Key' } },
+    { a: { emoji: '🌸', label: 'Flower' },   b: { emoji: '🍃', label: 'Leaf' } },
+    { a: { emoji: '⚽', label: 'Ball' },     b: { emoji: '🎈', label: 'Balloon' } },
+    { a: { emoji: '🐟', label: 'Fish' },     b: { emoji: '🐦', label: 'Bird' } },
+    { a: { emoji: '🎵', label: 'Note' },     b: { emoji: '🔔', label: 'Bell' } }
+  ];
+  function startSpotGame(){
+    var level = getEffectiveLevel();
+    var cfg = LEVEL_CONFIGS[level];
+    var extra = (loadGameSettings().responseTime === 'more') ? 200 : 0;
+    spotState = { level: level, round: 0, totalRounds: cfg.spotRounds, flashMs: cfg.spotStartMs + extra, correctRounds: 0, setIndex: null, itemKey: null, dir: null, centerCorrect: false, dirCorrect: false };
+    speak('Spot and React. Watch the middle and the edge of the circle at the same time.');
+    renderSpotRound();
+  }
+  function renderSpotRound(){
+    var st = spotState;
+    if (st.round >= st.totalRounds){ finishSpotGame(); return; }
+    var area = document.getElementById('gamePlayArea');
+    area.innerHTML =
+      '<p class="italic-note">' + getLevelLabel(st.level) + ' · Round ' + (st.round + 1) + ' of ' + st.totalRounds + '</p>' +
+      '<div class="game-instruction-card">Watch the middle of the circle — a picture and a side dot will flash together.</div>' +
+      '<div class="countdown-big" id="spotCountdown">Ready?</div>' +
+      '<div class="spot-stage" id="spotStage">' +
+        '<div class="spot-center-flash" id="spotCenterFlash"></div>' +
+        '<div class="spot-dot" id="spotDot"></div>' +
+      '</div>' +
+      '<button class="btn-solid" type="button" style="background:var(--gray);" onclick="exitGameToHub()">⏸ Pause &amp; Save</button>';
+    applyGameStyling();
+    var seq = ['3', '2', '1'];
+    var i = 0;
+    var cd = document.getElementById('spotCountdown');
+    var iv = setInterval(function(){
+      if (i < seq.length){ cd.textContent = seq[i]; i++; }
+      else { clearInterval(iv); cd.textContent = ''; showSpotFlash(); }
+    }, 650);
+  }
+  function showSpotFlash(){
+    var st = spotState;
+    var setIndex = Math.floor(Math.random() * SPOT_OBJECT_SETS.length);
+    var itemKey = Math.random() < 0.5 ? 'a' : 'b';
+    var dir = Math.floor(Math.random() * 8);
+    st.setIndex = setIndex; st.itemKey = itemKey; st.dir = dir;
+    var cf = document.getElementById('spotCenterFlash');
+    var dot = document.getElementById('spotDot');
+    if (!cf || !dot) return;
+    cf.textContent = SPOT_OBJECT_SETS[setIndex][itemKey].emoji;
+    var angle = (dir / 8) * 2 * Math.PI - Math.PI / 2;
+    var top = 50 + 42 * Math.sin(angle);
+    var left = 50 + 42 * Math.cos(angle);
+    dot.style.top = top + '%';
+    dot.style.left = left + '%';
+    cf.classList.add('show');
+    dot.classList.add('show');
+    setTimeout(function(){
+      cf.classList.remove('show');
+      dot.classList.remove('show');
+      renderSpotAnswer();
+    }, st.flashMs);
+  }
+  function renderSpotAnswer(){
+    var st = spotState;
+    st.centerAnswered = false; st.dirAnswered = false; st.centerCorrect = false; st.dirCorrect = false;
+    var pair = SPOT_OBJECT_SETS[st.setIndex];
+    var keys = Math.random() < 0.5 ? ['a', 'b'] : ['b', 'a'];
+    var dirButtons = '';
+    var order = [7, 0, 1, 6, -1, 2, 5, 4, 3];
+    order.forEach(function(d){
+      if (d === -1){ dirButtons += '<div class="answer-card" style="visibility:hidden;"></div>'; }
+      else { dirButtons += '<button type="button" class="answer-card" data-dir="' + d + '" onclick="answerSpotDir(' + d + ')">' + SPOT_DIR_LABELS[d] + '</button>'; }
+    });
+    var area = document.getElementById('gamePlayArea');
+    area.innerHTML =
+      '<p class="italic-note">' + getLevelLabel(st.level) + ' · Round ' + (st.round + 1) + ' of ' + st.totalRounds + '</p>' +
+      '<div class="game-instruction-card">Which one did you see?</div>' +
+      '<div class="answer-grid" id="spotVehicleGrid">' +
+        keys.map(function(k){ return '<button type="button" class="answer-card" data-val="' + k + '" onclick="answerSpotVehicle(\'' + k + '\')">' + pair[k].emoji + ' ' + pair[k].label + '</button>'; }).join('') +
+      '</div>' +
+      '<div id="spotDirSection" style="display:none;">' +
+        '<div class="game-instruction-card" style="margin-top:10px;">Now, where was the dot?</div>' +
+        '<div class="spot-dir-grid" id="spotDirGrid">' + dirButtons + '</div>' +
+      '</div>';
+    applyGameStyling();
+    speak('Which one did you see?');
+  }
+  function answerSpotVehicle(choice){
+    var st = spotState;
+    if (st.centerAnswered) return;
+    st.centerAnswered = true;
+    st.centerCorrect = (choice === st.itemKey);
+    var buttons = document.querySelectorAll('#spotVehicleGrid .answer-card');
+    buttons.forEach(function(b){
+      b.disabled = true;
+      if (b.dataset.val === st.itemKey) b.classList.add('correct');
+      else if (b.dataset.val === choice) b.classList.add('wrong');
+    });
+    var dirSection = document.getElementById('spotDirSection');
+    if (dirSection) dirSection.style.display = 'block';
+    speak('Now, where was the dot?');
+  }
+  function answerSpotDir(d){
+    var st = spotState;
+    if (!st.centerAnswered || st.dirAnswered) return;
+    st.dirAnswered = true;
+    st.dirCorrect = (d === st.dir);
+    var buttons = document.querySelectorAll('#spotDirGrid .answer-card[data-dir]');
+    buttons.forEach(function(b){
+      b.disabled = true;
+      var bd = parseInt(b.dataset.dir, 10);
+      if (bd === st.dir) b.classList.add('correct');
+      else if (bd === d) b.classList.add('wrong');
+    });
+    speak((st.centerCorrect && st.dirCorrect) ? 'Correct!' : 'Not quite.');
+    setTimeout(function(){ finishSpotRound(); }, 1000);
+  }
+  function finishSpotRound(){
+    var st = spotState;
+    var cfg = LEVEL_CONFIGS[st.level];
+    var extra = (loadGameSettings().responseTime === 'more') ? 200 : 0;
+    if (st.centerCorrect && st.dirCorrect){
+      st.correctRounds++;
+      st.flashMs = Math.max(150, st.flashMs - 50);
+    } else {
+      st.flashMs = Math.min(cfg.spotStartMs + extra, st.flashMs + 100);
+    }
+    st.round++;
+    renderSpotRound();
+  }
+  function finishSpotGame(){
+    var st = spotState;
+    var cfg = LEVEL_CONFIGS[st.level];
+    var isPerfectFast = (st.correctRounds === st.totalRounds) && (st.flashMs <= cfg.spotThresholdMs);
+    var p = ensureTodayFresh(loadGameProgress());
+    if (st.correctRounds > (p.games.spot.personalBest || 0)) p.games.spot.personalBest = st.correctRounds;
+    p.games.spot.played = (p.games.spot.played || 0) + 1;
+    recordActivityCompletion(p, 'spot');
+    var levelResult = applyLevelProgression(p, isPerfectFast);
+    saveGameProgress(p);
+    renderResultsScreen('spot', st.correctRounds + ' out of ' + st.totalRounds + ' rounds — both picture and side correct.', st.correctRounds + ' of ' + st.totalRounds, p.games.spot.personalBest + ' of ' + st.totalRounds + ' correct', levelResult.leveledUp ? ('🎉 Great work — moving up to ' + getLevelLabel(levelResult.newLevel) + '!') : null);
   }
 
   /* ===================== JIGSAW PUZZLES ===================== */
@@ -5467,109 +5560,26 @@ var LC_DATA={"mandarin":{"name":"Mandarin","voice":"zh-CN"},"malay":{"name":"Mal
   }
 
   function lcSpeakPhrase(rate){
-    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance){
-      lcFeedback('Speech playback is unavailable in this browser.', 'bad');
-      return;
-    }
-
+    if (!window.speechSynthesis){ lcFeedback('Speech playback is unavailable in this browser.', 'bad'); return; }
     lcStopAudio();
-
-    var synth = window.speechSynthesis;
     var lang = LC_DATA[lcState.settings.language].voice;
-    var text = lcItem().text;
-    var requestedRate = (typeof rate === 'number' && isFinite(rate)) ? rate : 1;
-
-    function chooseVoice(voices){
-      if (!voices || !voices.length) return null;
-
-      var wanted = String(lang || '').toLowerCase().replace('_','-');
-      var base = wanted.split('-')[0];
-
-      // 1) Prefer the requested locale/language.
-      var exact = voices.find(function(v){
-        return String(v.lang || '').toLowerCase().replace('_','-') === wanted;
-      });
-      if (exact) return exact;
-
-      // Cantonese is often exposed by browsers as yue-* or zh-HK.
-      if (wanted === 'yue-hk'){
-        var cantonese = voices.find(function(v){
-          var tag = String(v.lang || '').toLowerCase().replace('_','-');
-          return tag.indexOf('yue') === 0 || tag === 'zh-hk';
-        });
-        if (cantonese) return cantonese;
-      }
-
-      // Mandarin may be exposed as zh-CN, zh-SG or cmn-*.
-      if (wanted === 'zh-cn'){
-        var mandarin = voices.find(function(v){
-          var tag = String(v.lang || '').toLowerCase().replace('_','-');
-          return ['zh-cn','zh-sg','cmn-cn','cmn-hans-cn'].indexOf(tag) !== -1 ||
-                 tag.indexOf('zh-cn') === 0 || tag.indexOf('cmn') === 0;
-        });
-        if (mandarin) return mandarin;
-      }
-
-      var sameLanguage = voices.find(function(v){
-        var tag = String(v.lang || '').toLowerCase().replace('_','-');
-        return tag.split('-')[0] === base;
-      });
-      if (sameLanguage) return sameLanguage;
-
-      // 2) If there is no matching installed voice, prefer the browser's
-      // declared default. If none is marked default, leave voice unset so
-      // the browser can select its own fallback.
-      return voices.find(function(v){ return v.default; }) || null;
-    }
-
-    function speakWithAvailableVoices(){
-      var voices = synth.getVoices();
-      var voice = chooseVoice(voices);
-      var utterance = new SpeechSynthesisUtterance(text);
-
-      // Keep the requested language even when falling back to the browser
-      // voice. This gives the speech engine its best chance to select the
-      // appropriate pronunciation.
-      utterance.lang = lang;
-      if (voice) utterance.voice = voice;
-      utterance.rate = requestedRate;
-
-      utterance.onerror = function(event){
-        var reason = event && event.error ? ' (' + event.error + ')' : '';
-        lcFeedback('Audio could not play' + reason + '. Please try again.', 'bad');
-      };
-
-      synth.cancel();
-      // A tiny delay helps Chromium-based browsers after cancel().
-      setTimeout(function(){ synth.speak(utterance); }, 40);
-    }
-
-    var initialVoices = synth.getVoices();
-    if (initialVoices && initialVoices.length){
-      speakWithAvailableVoices();
+    var voices = window.speechSynthesis.getVoices();
+    var matches = voices.filter(function(v){
+      var tag = v.lang.toLowerCase().replace('_','-');
+      if (lang === 'yue-HK') return tag.indexOf('yue') === 0 || tag === 'zh-hk';
+      if (lang === 'zh-CN') return ['zh-cn','zh-sg','cmn-cn','cmn-hans-cn'].indexOf(tag) !== -1;
+      return tag.indexOf(lang.split('-')[0]) === 0;
+    });
+    if (!matches.length){
+      lcFeedback('No ' + LC_DATA[lcState.settings.language].name + ' voice is available. Add a matching voice in your device\u2019s speech settings, then reopen this file.', 'bad');
       return;
     }
-
-    // Chromium/Edge may return an empty list while voices are still loading.
-    // Wait for voiceschanged, but also use a timeout so playback is never
-    // permanently blocked if the event is not fired.
-    var finished = false;
-    var timer = setTimeout(function(){
-      if (finished) return;
-      finished = true;
-      synth.removeEventListener('voiceschanged', onVoicesChanged);
-      speakWithAvailableVoices();
-    }, 1200);
-
-    function onVoicesChanged(){
-      if (finished) return;
-      finished = true;
-      clearTimeout(timer);
-      synth.removeEventListener('voiceschanged', onVoicesChanged);
-      speakWithAvailableVoices();
-    }
-
-    synth.addEventListener('voiceschanged', onVoicesChanged);
+    var utterance = new SpeechSynthesisUtterance(lcItem().text);
+    utterance.voice = matches[0];
+    utterance.lang = matches[0].lang;
+    utterance.rate = rate;
+    utterance.onerror = function(){ lcFeedback('Audio could not play. Please try again.', 'bad'); };
+    window.speechSynthesis.speak(utterance);
   }
 
   function lcHandleSpeak(){
