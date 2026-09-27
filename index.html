@@ -258,6 +258,263 @@ main{gap:16px}
 #view-home .col:nth-child(2) .tile-mini:nth-of-type(6){border-top:4px solid #F04452}
 #view-home .col:nth-child(2) .tile-mini:nth-of-type(7){border-top:4px solid #5968E8}
 @media(max-width:380px){main{padding-left:14px;padding-right:14px}.columns{gap:9px}.tile-mini{padding:13px 6px}}
+
+  /* ===================== HOME EXERCISES (scoped) ===================== */
+  #view-exercises {
+    --bg: #f4f6f5;
+    --card: #ffffff;
+    --text: #1f2430;
+    --muted: #5a6072;
+    --accent: #2d7d6e;
+    --accent-soft: rgba(45,125,110,0.12);
+    --accent-dark: #1f5a4f;
+    --warn: #c0562c;
+    --border: #dfe3e0;
+    --radius: 16px;
+    --font-scale: 1;
+  }
+  #view-exercises[data-contrast="high"] {
+    --bg: #000000;
+    --card: #000000;
+    --text: #ffffff;
+    --muted: #ffffff;
+    --accent: #ffd400;
+    --accent-soft: transparent;
+    --accent-dark: #ffd400;
+    --warn: #ff6b6b;
+    --border: #ffffff;
+  }
+  #view-exercises * { box-sizing: border-box; }
+  #view-exercises html,
+  #view-exercises body { height: 100%; margin: 0; }
+  #view-exercises body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: calc(18px * var(--font-scale));
+    line-height: 1.5;
+    padding-bottom: 40px;
+  }
+  #view-exercises header {
+    background: var(--accent-dark);
+    color: #fff;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  #view-exercises[data-contrast="high"] header { background: #000; border-bottom: 3px solid var(--accent); color: var(--accent); }
+  #view-exercises header h1 { font-size: calc(1.3rem * var(--font-scale)); margin: 0; }
+  #view-exercises .back-btn {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    font-size: calc(1rem * var(--font-scale));
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  #view-exercises[data-contrast="high"] .back-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+  #view-exercises main { max-width: 640px; margin: 0 auto; padding: 20px; }
+  #view-exercises .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  #view-exercises h2 { margin-top: 0; font-size: calc(1.15rem * var(--font-scale)); color: var(--text); }
+  #view-exercises p.muted,
+  #view-exercises .muted { color: var(--muted); font-size: calc(0.95rem * var(--font-scale)); }
+  #view-exercises .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 22px;
+    font-size: calc(1.1rem * var(--font-scale));
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  #view-exercises[data-contrast="high"] .btn { color: #000; }
+  #view-exercises .btn.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+  #view-exercises .btn.link {
+    background: transparent;
+    color: var(--accent-dark);
+    border: none;
+    width: auto;
+    padding: 4px 0;
+    font-size: calc(0.95rem * var(--font-scale));
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  #view-exercises[data-contrast="high"] .btn.link { color: var(--accent); }
+  #view-exercises .btn:active { transform: scale(0.98); }
+  #view-exercises .routine-list { list-style: none; padding: 0; margin: 0; }
+  #view-exercises .routine-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+    font-size: calc(1.05rem * var(--font-scale));
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #view-exercises .routine-list li:last-child { border-bottom: none; }
+  #view-exercises .demo-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--accent-dark);
+    text-decoration: underline;
+    font-size: calc(1.05rem * var(--font-scale));
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+  }
+  #view-exercises[data-contrast="high"] .demo-link { color: var(--accent); }
+  #view-exercises .tag {
+    font-size: calc(0.85rem * var(--font-scale));
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  #view-exercises[data-contrast="high"] .tag { border: 1px solid var(--accent); color: var(--accent); }
+  #view-exercises .cat-tag { background: transparent; border: 1px solid var(--border); color: var(--muted); margin-right: 4px; }
+  #view-exercises[data-contrast="high"] .cat-tag { border-color: var(--accent); color: var(--accent); }
+  #view-exercises select {
+    font-size: calc(0.95rem * var(--font-scale));
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+  }
+  #view-exercises[data-contrast="high"] select { border-color: var(--accent); color: var(--accent); }
+  #view-exercises .player { text-align: center; }
+  #view-exercises .player.resting .exercise-icon { opacity: 0.6; }
+  #view-exercises .exercise-icon { font-size: 96px; line-height: 1; margin: 10px 0; }
+  #view-exercises .exercise-name { font-size: calc(1.6rem * var(--font-scale)); font-weight: 700; margin: 6px 0 4px; }
+  #view-exercises .exercise-cue { font-size: calc(1.1rem * var(--font-scale)); color: var(--muted); min-height: 2.4em; }
+  #view-exercises .timer {
+    font-size: calc(3rem * var(--font-scale));
+    font-weight: 800;
+    color: var(--accent-dark);
+    margin: 14px 0;
+    font-variant-numeric: tabular-nums;
+  }
+  #view-exercises .progress-track { height: 10px; background: var(--border); border-radius: 6px; overflow: hidden; margin: 12px 0 20px; }
+  #view-exercises .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s linear; }
+  #view-exercises .player-controls { display: flex; gap: 12px; margin-top: 16px; }
+  #view-exercises .player-controls .btn { flex: 1; }
+  #view-exercises .hidden { display: none !important; }
+  #view-exercises .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  #view-exercises .settings-row:last-child { border-bottom: none; }
+  #view-exercises .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  #view-exercises .seg button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    font-size: calc(0.9rem * var(--font-scale));
+  }
+  #view-exercises .seg button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #view-exercises[data-contrast="high"] .seg button.active { color: #000; }
+  #view-exercises[data-contrast="high"] .seg button { background: #000; color: var(--accent); border-color: var(--accent); }
+  #view-exercises .level-current {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: calc(0.95rem * var(--font-scale));
+    flex-wrap: wrap;
+  }
+  #view-exercises[data-contrast="high"] .level-current { border: 1px solid var(--accent); }
+  #view-exercises .level-current .pill {
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: calc(0.85rem * var(--font-scale));
+  }
+  #view-exercises[data-contrast="high"] .level-current .pill { color: #000; }
+  #view-exercises .streak-box { display: flex; justify-content: space-between; text-align: center; }
+  #view-exercises .streak-box div { flex: 1; }
+  #view-exercises .streak-num { font-size: calc(1.6rem * var(--font-scale)); font-weight: 800; color: var(--accent-dark); }
+  #view-exercises .done-check { font-size: 60px; text-align: center; }
+  #view-exercises footer.note { text-align: center; color: var(--muted); font-size: calc(0.85rem * var(--font-scale)); padding: 20px; }
+  #view-exercises #demoOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+  }
+  #view-exercises .demo-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 22px 20px 26px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    position: relative;
+  }
+  #view-exercises .demo-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-soft);
+    border: none;
+    color: var(--accent-dark);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  #view-exercises[data-contrast="high"] .demo-close { color: var(--accent); border: 1px solid var(--accent); background: transparent; }
+  #view-exercises .demo-name { font-size: calc(1.25rem * var(--font-scale)); font-weight: 700; margin: 4px 0 2px; }
+  #view-exercises .demo-cue { color: var(--muted); font-size: calc(0.95rem * var(--font-scale)); min-height: 2.4em; margin-bottom: 2px; }
+  #view-exercises .demo-category { font-size: calc(0.85rem * var(--font-scale)); color: var(--muted); margin-bottom: 4px; }
+  #view-exercises .fig-wrap { width: 190px; height: 210px; margin: 6px auto; }
+  #view-exercises .fig-wrap canvas { display: block; }
+  #view-exercises .demo-timer {
+    font-size: calc(2.2rem * var(--font-scale));
+    font-weight: 800;
+    color: var(--accent-dark);
+    font-variant-numeric: tabular-nums;
+    margin-top: 4px;
+  }
+  #view-exercises .demo-caption { color: var(--muted); font-size: calc(0.85rem * var(--font-scale)); margin-top: 4px; }
 </style>
 
 </head>
@@ -369,6 +626,14 @@ main{gap:16px}
             <span class="sub-mini">Sports &amp; fitness</span>
             <a href="https://activesg.gov.sg/gym-pool-crowd" target="_blank" rel="noopener" style="font-size:11px;font-weight:700;color:#B45309;text-decoration:underline;">Gym and pool crowd</a>
           </div>
+
+          <button type="button" class="tile-mini" onclick="showView('exercises')" aria-label="Home Exercises — guided senior-friendly routines" style="font-family:inherit;width:100%;-webkit-appearance:none;appearance:none;outline:none;cursor:pointer;">
+            <span class="badge-mini" style="background:#FFEDD5;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M4 20l4-5 3 2 2-6 4 1"/><path d="M11 11l2-3 4 1-1 4"/></svg>
+            </span>
+            <span class="title-mini">Home Exercises</span>
+            <span class="sub-mini">Guided daily routines</span>
+          </button>
 
           <a class="tile-mini" href="#" onclick="showView('langhome');return false;">
             <span class="badge-mini" style="background:#DCFCE7;">
@@ -704,6 +969,171 @@ main{gap:16px}
       <p class="col-heading" style="margin-top:6px;">Past Completions</p>
       <div id="jigsawHistList" style="display:flex;flex-direction:column;gap:8px;"></div>
     </main>
+  </div>
+
+  <!-- HOME EXERCISES -->
+  <div id="view-exercises" class="view" data-contrast="normal">
+  <div class="back-header">
+    <button class="back-btn" type="button" onclick="showView('home')" aria-label="Back to home" style="border:none;padding:0;cursor:pointer;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <h1 style="flex:1;">Home Exercises</h1>
+    <button class="back-btn" type="button" onclick="showScreen('settings')" aria-label="Exercise settings" style="border:none;padding:0;cursor:pointer;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+<main>
+
+  <!-- HOME SCREEN -->
+  <section id="screen-home">
+    <div class="card">
+      <h2>Today's Routine</h2>
+      <div class="level-current">
+        <span>🎯 Gameplay Level: <span class="pill" id="levelPill">Easy (Automatic)</span></span>
+        <button class="btn link" onclick="showScreen('settings')">Change in Settings</button>
+      </div>
+
+      <div class="settings-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+        <span><strong>Step 1 — Choose a category</strong></span>
+        <select id="categorySelect" style="width:100%;">
+          <option value="" disabled selected>— Select a category —</option>
+          <option value="all">All (balanced sampler)</option>
+          <option value="Digestive Health">Digestive Health</option>
+          <option value="Low-Impact Fitness">Low-Impact Fitness</option>
+          <option value="Cardio">Cardio</option>
+          <option value="Strength">Strength</option>
+          <option value="Balance">Balance</option>
+          <option value="Flexibility & Mobility">Flexibility &amp; Mobility</option>
+          <option value="Dual-Task & Cognitive">Dual-Task &amp; Cognitive</option>
+        </select>
+        <div class="hidden" id="categoryBenefits" style="margin-top:4px;"></div>
+      </div>
+
+      <p class="muted" id="chooseCategoryPrompt">👆 Choose a category above to see its exercises. Tap any exercise name to watch a 10-second 3D demo. Sit near a sturdy chair or wall in case you need support.</p>
+      <ul class="routine-list hidden" id="routineList"></ul>
+      <p class="muted hidden" id="emptyCategoryNote">No exercises found for this category.</p>
+      <div class="hidden" id="startRoutineWrap" style="margin-top:16px;">
+        <button class="btn" id="startRoutineBtn" onclick="startRoutine()">▶ Start Routine (about <span id="totalMinutes">6</span> min)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Your Progress</h2>
+      <div class="streak-box">
+        <div>
+          <div class="streak-num" id="streakDays">0</div>
+          <div class="muted">Day streak</div>
+        </div>
+        <div>
+          <div class="streak-num" id="totalSessions">0</div>
+          <div class="muted">Sessions done</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYER SCREEN -->
+  <section id="screen-player" class="hidden">
+    <div class="card player" id="playerCard">
+      <div class="muted" id="stepCounter">Exercise 1 of 5</div>
+      <div class="exercise-icon" id="exIcon">🪑</div>
+      <div class="exercise-name" id="exName">Seated March</div>
+      <div class="exercise-cue" id="exCue">Lift your knees one at a time, like marching in your chair.</div>
+      <button class="demo-link" id="playerDemoLink" onclick="openCurrentStepDemo()">▶ Watch 10s demo</button>
+      <div class="timer" id="exTimer">30</div>
+      <div class="progress-track"><div class="progress-fill" id="exProgress"></div></div>
+      <div class="player-controls">
+        <button class="btn secondary" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+        <button class="btn" onclick="skipExercise()">Skip ⏭</button>
+      </div>
+      <div style="margin-top:14px;">
+        <button class="btn secondary" onclick="endRoutine(false)">✕ Stop Routine</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONE SCREEN -->
+  <section id="screen-done" class="hidden">
+    <div class="card" style="text-align:center;">
+      <div class="done-check">🎉</div>
+      <h2>Well done!</h2>
+      <p class="muted" id="doneSummary">You completed today's routine.</p>
+      <button class="btn" onclick="goHome()">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- SETTINGS SCREEN -->
+  <section id="screen-settings" class="hidden">
+    <div class="card">
+      <h2>🎯 Exercise Difficulty</h2>
+      <div class="settings-row">
+        <span>Gameplay Level</span>
+        <div class="seg" id="levelSeg">
+          <button data-level="auto" class="active">Automatic</button>
+          <button data-level="easy">Easy</button>
+          <button data-level="medium">Medium</button>
+          <button data-level="hard">Hard</button>
+          <button data-level="advanced">Advanced</button>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;">
+        Each level uses genuinely different, more challenging moves within its category — not just longer timers.
+        <strong>Easy</strong> is slow and fully supported. <strong>Medium</strong> adds a bit more range of motion.
+        <strong>Hard</strong> reduces hand support and adds faster pace. <strong>Advanced</strong> includes
+        single-leg balance, dual-task moves (moving while counting), and shorter rests between exercises.
+      </p>
+      <p class="muted">
+        <strong>Automatic</strong> starts at Easy and moves up one level after 3 routines completed in a row
+        without skipping any exercise. Choosing a level yourself keeps every routine at that level, no matter
+        how many times you play.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Accessibility</h2>
+      <div class="settings-row">
+        <span>Text Size</span>
+        <div class="seg" id="textSizeSeg">
+          <button data-scale="1" class="active">A</button>
+          <button data-scale="1.2">A+</button>
+          <button data-scale="1.45">A++</button>
+        </div>
+      </div>
+      <div class="settings-row">
+        <span>High Contrast</span>
+        <div class="seg" id="contrastSeg">
+          <button data-contrast="normal" class="active">Off</button>
+          <button data-contrast="high">On</button>
+        </div>
+      </div>
+      <div class="settings-row">
+        <span>🔊 Spoken Instructions</span>
+        <div class="seg" id="voiceSeg">
+          <button data-voice="on" class="active">On</button>
+          <button data-voice="off">Off</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn secondary" onclick="goHome()">← Back to Home</button>
+  </section>
+
+</main>
+
+<footer class="note">Prototype for local testing · not medical advice · the demo figures are simple animated 3D illustrations, not real video · stop any movement that causes pain, and check with a doctor before starting a new exercise routine or trying Advanced-level balance moves.</footer>
+
+<!-- DEMO OVERLAY -->
+<div id="demoOverlay" class="hidden" onclick="closeDemoOutside(event)">
+  <div class="demo-card">
+    <button class="demo-close" onclick="closeDemo()">✕</button>
+    <div class="demo-name" id="demoName">Seated March</div>
+    <div class="demo-cue" id="demoCue">Lift your knees one at a time, like marching in your chair.</div>
+    <div class="demo-category" id="demoCategory"></div>
+    <div class="fig-wrap" id="demoFig3d"></div>
+    <div class="demo-timer" id="demoTimer">10</div>
+    <div class="demo-caption">seconds remaining · tap ✕ to close</div>
+  </div>
+</div>
   </div>
 
   <!-- LEARN LANGUAGE: HOME -->
@@ -3676,6 +4106,7 @@ main{gap:16px}
     if (name === 'gamesprogress') { renderProgressScreen(); }
     if (name === 'jigsaw') { renderJigsawLevelUI(); startJigsawGame(); }
     if (name === 'jigsawhistory') { renderJigsawHistory(); }
+    if (name === 'exercises') { goHome(); }
     if (name === 'langhome') { lcSyncFields(); }
     if (name === 'langsettings') { lcSyncFields(); }
     if (name === 'langsummary') { lcRenderSummary(); }
@@ -5764,7 +6195,912 @@ var LC_DATA={"mandarin":{"name":"Mandarin","voice":"zh-CN"},"malay":{"name":"Mal
   }
 </script>
 
+<!-- HOME EXERCISES script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const EXERCISES_BY_CATEGORY = {
+
+  "Low-Impact Fitness": {
+    easy: [
+      { name: "Seated March", icon: "🪑", cue: "Slowly lift your knees one at a time, like marching in your chair.", seconds: 30, move: "march" },
+      { name: "Arm Raises", icon: "🙆", cue: "Raise both arms slowly out to the side, up to shoulder height, and lower.", seconds: 30, move: "armraise" },
+      { name: "Ankle Circles", icon: "🦶", cue: "Lift one foot off the floor and draw slow circles with your ankle.", seconds: 25, move: "anklecircle" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 30, move: "breathing" }
+    ],
+    medium: [
+      { name: "Seated March with Arm Swing", icon: "🪑", cue: "March in your chair while swinging your arms gently, opposite arm to leg.", seconds: 30, move: "marcharm" },
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Standing March (hold chair)", icon: "🚶", cue: "Hold the back of a chair with both hands and march gently on the spot.", seconds: 30, move: "march" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    hard: [
+      { name: "Faster Seated March", icon: "🪑", cue: "March at a brisker pace, lifting your knees a little higher.", seconds: 35, move: "march" },
+      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up.", seconds: 30, move: "pushup" },
+      { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march a little higher.", seconds: 35, move: "march" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    advanced: [
+      { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms, like a brisk walk in your seat.", seconds: 40, move: "marchpump" },
+      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup" },
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees at a brisker pace.", seconds: 35, move: "march" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ]
+  },
+
+  "Cardio": {
+    easy: [
+      { name: "Seated March", icon: "🪑", cue: "Slowly lift your knees one at a time, like marching in your chair.", seconds: 30, move: "march" },
+      { name: "Seated March with Arm Swing", icon: "🪑", cue: "March in your chair while swinging your arms gently.", seconds: 30, move: "marcharm" },
+      { name: "Standing March (hold chair)", icon: "🚶", cue: "Hold the back of a chair with both hands and march gently on the spot.", seconds: 30, move: "march" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Slow it back down — breathe in through your nose, out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    medium: [
+      { name: "Faster Seated March", icon: "🪑", cue: "March at a brisker pace, lifting your knees a little higher.", seconds: 32, move: "march" },
+      { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march a little higher.", seconds: 32, move: "march" },
+      { name: "Seated Punches", icon: "🥊", cue: "Alternate punching one arm forward at a time, like light boxing.", seconds: 30, move: "punch" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Slow it back down — breathe in through your nose, out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    hard: [
+      { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms.", seconds: 38, move: "marchpump" },
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees, brisker pace.", seconds: 38, move: "march" },
+      { name: "Seated Punches", icon: "🥊", cue: "Alternate punching one arm forward at a time, a little faster now.", seconds: 35, move: "punch" },
+      { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march at a strong pace.", seconds: 35, move: "march" }
+    ],
+    advanced: [
+      { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms — keep the pace brisk throughout.", seconds: 42, move: "marchpump" },
+      { name: "High Knees with Arm Reach", icon: "🚶", cue: "March with high knees, no hands, reaching the opposite arm up each time.", seconds: 40, move: "marchreach" },
+      { name: "Seated Punches", icon: "🥊", cue: "Alternate punching one arm forward at a time, at a strong steady pace.", seconds: 40, move: "punch" },
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — high knees, brisk pace.", seconds: 38, move: "march" }
+    ]
+  },
+
+  "Strength": {
+    easy: [
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Wall Push-ups", icon: "🧱", cue: "Hands on the wall, slowly bend your elbows and push back.", seconds: 30, move: "pushup" },
+      { name: "Heel Raises (hold chair)", icon: "👣", cue: "Hold the chair with both hands, rise onto your toes, then lower slowly.", seconds: 25, move: "heelraise" },
+      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly. Alternate legs.", seconds: 30, move: "legextend" }
+    ],
+    medium: [
+      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up. Go a little deeper each time.", seconds: 30, move: "pushup" },
+      { name: "Heel Raises (one hand)", icon: "👣", cue: "One hand on the chair, rise onto your toes, then lower slowly.", seconds: 30, move: "heelraise" },
+      { name: "Side Leg Lifts (one hand)", icon: "🦵", cue: "One hand on the chair, lift one leg out to the side and lower.", seconds: 25, move: "sideleg" },
+      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, hold briefly, then lower.", seconds: 30, move: "legextend" }
+    ],
+    hard: [
+      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup" },
+      { name: "Side Leg Lifts (no hands)", icon: "🦵", cue: "Fingertip touch only — lift one leg out to the side with control.", seconds: 30, move: "sideleg" },
+      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 35, move: "legextend" }
+    ],
+    advanced: [
+      { name: "Wall Push-ups with Hold", icon: "🧱", cue: "Lower down and hold for 2 seconds at the bottom before pushing back up.", seconds: 40, move: "pushup" },
+      { name: "Side Leg Lifts with Pulse", icon: "🦵", cue: "No hands — lift one leg to the side and add a small pulse at the top.", seconds: 35, move: "sideleg" },
+      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 3 seconds, point your toes, then lower slowly.", seconds: 40, move: "legextend" }
+    ]
+  },
+
+  "Balance": {
+    easy: [
+      { name: "Ankle Circles", icon: "🦶", cue: "Lift one foot off the floor and draw slow circles with your ankle.", seconds: 25, move: "anklecircle" },
+      { name: "Standing Balance (two hands)", icon: "⚖️", cue: "Both hands on the chair, try shifting your weight gently side to side.", seconds: 25, move: "balance" },
+      { name: "Heel Raises (hold chair)", icon: "👣", cue: "Hold the chair with both hands, rise onto your toes, then lower slowly.", seconds: 25, move: "heelraise" },
+      { name: "Seated March", icon: "🪑", cue: "A gentle warm-up before standing work — lift your knees slowly.", seconds: 25, move: "march" }
+    ],
+    medium: [
+      { name: "Standing Balance (one hand)", icon: "⚖️", cue: "One hand on the chair, try lifting one foot just off the floor.", seconds: 25, move: "balance" },
+      { name: "Heel Raises (one hand)", icon: "👣", cue: "One hand on the chair, rise onto your toes, then lower slowly.", seconds: 30, move: "heelraise" },
+      { name: "Side Leg Lifts (one hand)", icon: "🦵", cue: "One hand on the chair, lift one leg out to the side and lower.", seconds: 25, move: "sideleg" },
+      { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march, lifting knees a bit higher.", seconds: 28, move: "march" }
+    ],
+    hard: [
+      { name: "Heel-to-Toe Stand", icon: "⚖️", cue: "Stand with one foot directly in front of the other, near the chair for safety.", seconds: 20, move: "heeltoe" },
+      { name: "Side Leg Lifts (no hands)", icon: "🦵", cue: "Fingertip touch only — lift one leg out to the side with control.", seconds: 30, move: "sideleg" },
+      { name: "Standing Balance (one hand)", icon: "⚖️", cue: "One hand on the chair, hold the lifted-foot position a little longer.", seconds: 25, move: "balance" },
+      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand" }
+    ],
+    advanced: [
+      { name: "Single-Leg Stand", icon: "🦩", cue: "Stand near the chair for safety, but try not to hold on. Lift one foot and balance.", seconds: 20, move: "singleleg" },
+      { name: "Side Leg Lifts with Pulse", icon: "🦵", cue: "No hands — lift one leg to the side and add a small pulse at the top.", seconds: 35, move: "sideleg" },
+      { name: "Heel-to-Toe Stand", icon: "⚖️", cue: "One foot directly in front of the other, no hands, near the chair for safety.", seconds: 20, move: "heeltoe" },
+      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand" }
+    ]
+  },
+
+  "Flexibility & Mobility": {
+    easy: [
+      { name: "Ankle Circles", icon: "🦶", cue: "Lift one foot off the floor and draw slow circles with your ankle.", seconds: 25, move: "anklecircle" },
+      { name: "Seated Torso Twist", icon: "🔄", cue: "Hands on shoulders, gently twist your upper body left and right.", seconds: 30, move: "twist" },
+      { name: "Arm Raises", icon: "🙆", cue: "Raise both arms slowly out to the side, up to shoulder height, and lower.", seconds: 30, move: "armraise" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    medium: [
+      { name: "Seated Torso Twist", icon: "🔄", cue: "Twist a little further each time, staying comfortable.", seconds: 30, move: "twist" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Roll both shoulders slowly backward, then gently tilt your head side to side.", seconds: 30, move: "shoulderroll" },
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    hard: [
+      { name: "Torso Twist with Reach", icon: "🔄", cue: "Twist your torso and reach your hand toward the opposite knee.", seconds: 35, move: "twist" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Bigger, slower shoulder rolls, then a gentle deeper neck stretch.", seconds: 30, move: "shoulderroll" },
+      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly. Alternate legs.", seconds: 30, move: "legextend" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    advanced: [
+      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body to the opposite side, alternating arms.", seconds: 40, move: "twist" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 40, move: "legextend" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Full, slow shoulder rolls both ways, then a full gentle neck stretch.", seconds: 30, move: "shoulderroll" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ]
+  },
+
+  "Dual-Task & Cognitive": {
+    easy: [
+      { name: "Seated March with Counting", icon: "🔢", cue: "March in your chair, counting each knee lift out loud from 1 to 10, then start again.", seconds: 30, move: "march" },
+      { name: "Simple Toe Taps", icon: "👣", cue: "Tap one toe forward, then back, while naming the days of the week.", seconds: 25, move: "anklecircle" },
+      { name: "Arm Raises with Counting", icon: "🙆", cue: "Raise your arms slowly, counting each raise out loud from 1 to 10.", seconds: 30, move: "armraise" }
+    ],
+    medium: [
+      { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand. Try counting each tap out loud.", seconds: 32, move: "kneetap" },
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 10 aloud.", seconds: 30, move: "kneetap" },
+      { name: "Arm Raises with Counting", icon: "🙆", cue: "Raise your arms slowly, counting each raise out loud from 1 to 15.", seconds: 30, move: "armraise" }
+    ],
+    hard: [
+      { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, a little faster now.", seconds: 35, move: "kneetap" },
+      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Tap each knee to the opposite hand while counting backward from 15.", seconds: 35, move: "kneetap" },
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 15 aloud.", seconds: 32, move: "kneetap" }
+    ],
+    advanced: [
+      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Tap each knee to the opposite hand while counting backward from 20.", seconds: 40, move: "kneetap" },
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 20 aloud.", seconds: 35, move: "kneetap" },
+      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body, alternating arms, while counting each punch.", seconds: 40, move: "twist" },
+      { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, keeping a steady count.", seconds: 38, move: "kneetap" }
+    ]
+  },
+
+  "Digestive Health": {
+    easy: [
+      { name: "Knee-to-Chest", icon: "🦵", cue: "Seated, pull one knee toward your chest and hold, then switch legs.", seconds: 30, move: "kneetochest" },
+      { name: "Pelvic Tilts", icon: "🧘", cue: "Seated, gently rock your pelvis forward and back.", seconds: 30, move: "pelvictilt" },
+      { name: "Cat-Cow", icon: "🐱", cue: "Seated, alternate gently arching and rounding your back.", seconds: 30, move: "catcow" },
+      { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
+    ],
+    medium: [
+      { name: "Knee-to-Chest (Hold Longer)", icon: "🦵", cue: "Pull one knee to your chest and hold a little longer, then switch.", seconds: 35, move: "kneetochest" },
+      { name: "Pelvic Tilts", icon: "🧘", cue: "Rock your pelvis forward and back with a bit more range.", seconds: 30, move: "pelvictilt" },
+      { name: "Cat-Cow", icon: "🐱", cue: "Arch and round your back a little deeper each time.", seconds: 30, move: "catcow" },
+      { name: "Supported Squat Hold", icon: "🪑⬇️", cue: "Hold the chair with both hands, lower into a shallow squat, and hold briefly.", seconds: 25, move: "squathold" }
+    ],
+    hard: [
+      { name: "Knee-to-Chest (Double Knee)", icon: "🦵", cue: "Pull one knee to your chest, hold, then bring both knees in briefly.", seconds: 35, move: "kneetochest" },
+      { name: "Pelvic Tilts with Breath", icon: "🧘", cue: "Rock your pelvis forward and back, breathing out as you tilt.", seconds: 32, move: "pelvictilt" },
+      { name: "Cat-Cow (Deeper)", icon: "🐱", cue: "Deepen the arch and round, moving a little slower.", seconds: 32, move: "catcow" },
+      { name: "Supported Squat Hold (Longer)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deeper squat, and hold a little longer.", seconds: 30, move: "squathold" }
+    ],
+    advanced: [
+      { name: "Knee-to-Chest (Extended Hold)", icon: "🦵", cue: "Pull one knee to your chest and hold longer, then switch, twice each side.", seconds: 40, move: "kneetochest" },
+      { name: "Pelvic Tilts (Continuous)", icon: "🧘", cue: "Flow continuously between forward and back pelvic tilts.", seconds: 35, move: "pelvictilt" },
+      { name: "Cat-Cow (Flow)", icon: "🐱", cue: "Flow smoothly and fully between arch and round, syncing with your breath.", seconds: 35, move: "catcow" },
+      { name: "Supported Squat Hold (No Rest)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deep squat, and hold as long as comfortable before rising.", seconds: 35, move: "squathold" }
+    ]
+  }
+};
+
+const REAL_CATEGORIES = Object.keys(EXERCISES_BY_CATEGORY);
+
+/* Exercises done sitting in a chair — used to show the seated 3D pose + chair prop.
+   This is intrinsic to the movement itself, so it's looked up by name rather than
+   duplicated on every exercise object across every category/level. */
+const SEATED_EXERCISE_NAMES = new Set([
+  "Seated March", "Arm Raises", "Ankle Circles", "Deep Breathing",
+  "Seated March with Arm Swing", "Arm Raises with Hold",
+  "Faster Seated March", "Fast Seated March with Arm Pump",
+  "Seated Punches",
+  "Seated Torso Twist", "Torso Twist with Reach", "Torso Twist with Punches",
+  "Knee Extensions", "Leg Extension Hold & Point",
+  "Shoulder Rolls & Neck Stretch",
+  "Seated March with Counting", "Simple Toe Taps", "Arm Raises with Counting",
+  "Cross-Body Knee Taps", "Toe Taps with Counting", "Dual-Task Knee Taps",
+  "Knee-to-Chest", "Knee-to-Chest (Hold Longer)", "Knee-to-Chest (Double Knee)", "Knee-to-Chest (Extended Hold)",
+  "Pelvic Tilts", "Pelvic Tilts with Breath", "Pelvic Tilts (Continuous)",
+  "Cat-Cow", "Cat-Cow (Deeper)", "Cat-Cow (Flow)"
+]);
+
+/* Standing, but sitting down and standing back up from THIS chair repeatedly —
+   the chair belongs directly under the figure, but the sit-to-stand animation
+   itself already drives the crouch, so no separate hip-bend is applied here. */
+const CHAIR_UNDER_EXERCISE_NAMES = new Set([
+  "Sit-to-Stand x8", "Sit-to-Stand x10 (no hands)"
+]);
+
+/* Cue explicitly says BOTH hands are on the chair — both arms reach for it. */
+const CHAIR_TWO_HAND_NAMES = new Set([
+  "Standing March (hold chair)", "Heel Raises (hold chair)", "Standing Balance (two hands)",
+  "Supported Squat Hold", "Supported Squat Hold (Longer)", "Supported Squat Hold (No Rest)"
+]);
+
+/* Cue says one hand / a fingertip touches the chair — the near-side arm reaches for it. */
+const CHAIR_ONE_HAND_NAMES = new Set([
+  "Standing March (fingertips)", "High-Knee March (fingertip touch)",
+  "Heel Raises (one hand)", "Side Leg Lifts (one hand)", "Standing Balance (one hand)"
+]);
+
+/* Chair kept nearby "for safety" or explicitly "no hands" — shown beside the
+   figure, but the arms stay at rest since the cue says not to hold on. */
+const CHAIR_NO_REACH_NAMES = new Set([
+  "Side Leg Lifts (no hands)", "Heel-to-Toe Stand", "Single-Leg Stand"
+]);
+
+/* Hands-on-the-wall exercises — a wall prop appears and both arms reach for it. */
+const WALL_EXERCISE_NAMES = new Set([
+  "Wall Push-ups", "Wall Push-ups (slower)", "Wall Push-ups (3-count)", "Wall Push-ups with Hold"
+]);
+
+function propModeFor(name) {
+  if (SEATED_EXERCISE_NAMES.has(name)) return "seated";
+  if (CHAIR_UNDER_EXERCISE_NAMES.has(name)) return "under";
+  if (WALL_EXERCISE_NAMES.has(name)) return "wall";
+  if (CHAIR_TWO_HAND_NAMES.has(name)) return "side-two";
+  if (CHAIR_ONE_HAND_NAMES.has(name)) return "side-one";
+  if (CHAIR_NO_REACH_NAMES.has(name)) return "side-none";
+  return "none";
+}
+
+const LEVELS = ["easy", "medium", "hard", "advanced"];
+const LEVEL_LABEL = { easy: "Easy", medium: "Medium", hard: "Hard", advanced: "Advanced" };
+const REST_SECONDS = { easy: 12, medium: 8, hard: 6, advanced: 4 };
+
+const CATEGORY_BENEFITS = {
+  "all": ["Full-body", "Balanced", "Variety", "Complete", "Well-rounded"],
+  "Low-Impact Fitness": ["Safe", "Gentle", "Everyday movement", "Warm-up", "Beginner-friendly"],
+  "Cardio": ["Heart health", "Circulation", "Stamina", "Energy", "Endurance"],
+  "Strength": ["Independence", "Fall prevention", "Muscle", "Bone density", "Functional strength"],
+  "Balance": ["Fall prevention", "Stability", "Coordination", "Confidence", "Independence"],
+  "Flexibility & Mobility": ["Joint health", "Range of motion", "Less stiffness", "Posture", "Everyday ease"],
+  "Dual-Task & Cognitive": ["Dementia risk", "Brain-body link", "Memory", "Focus", "Reaction time"],
+  "Digestive Health": ["Regularity", "Bloating relief", "Gut motility", "Relaxation", "Core comfort"]
+};
+
+let currentCategory = "";
+let levelSetting = "auto";
+let autoLevelIndex = 0;
+let queue = [];
+let stepIndex = 0;
+let secondsLeft = 0;
+let totalSeconds = 0;
+let timerHandle = null;
+let paused = false;
+let skippedAny = false;
+let totalExercisesInRoutine = 0;
+let currentExerciseNumber = 0;
+
+const STORE_KEY = "homeExercisesProtoData";
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return { streak: 0, sessions: 0, lastDate: null, levelSetting: "auto", autoLevelIndex: 0, autoStreakNoSkip: 0 };
+}
+function saveData(data) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+let progressData = loadData();
+levelSetting = progressData.levelSetting || "auto";
+autoLevelIndex = progressData.autoLevelIndex || 0;
+
+function refreshProgressUI() {
+  document.getElementById("streakDays").textContent = progressData.streak || 0;
+  document.getElementById("totalSessions").textContent = progressData.sessions || 0;
+}
+
+function effectiveLevel() {
+  return levelSetting === "auto" ? LEVELS[autoLevelIndex] : levelSetting;
+}
+
+function refreshLevelUI() {
+  const lvl = effectiveLevel();
+  const label = LEVEL_LABEL[lvl] + (levelSetting === "auto" ? " (Automatic)" : "");
+  document.getElementById("levelPill").textContent = label;
+  [...document.getElementById("levelSeg").children].forEach(b => {
+    b.classList.toggle("active", b.dataset.level === levelSetting);
+  });
+}
+
+function recordCompletion(noSkips) {
+  const today = new Date().toDateString();
+  if (progressData.lastDate === today) {
+    progressData.sessions = (progressData.sessions || 0) + 1;
+  } else {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    progressData.streak = (progressData.lastDate === yesterday) ? (progressData.streak || 0) + 1 : 1;
+    progressData.lastDate = today;
+    progressData.sessions = (progressData.sessions || 0) + 1;
+  }
+  if (levelSetting === "auto") {
+    progressData.autoStreakNoSkip = noSkips ? (progressData.autoStreakNoSkip || 0) + 1 : 0;
+    if (progressData.autoStreakNoSkip >= 3 && autoLevelIndex < LEVELS.length - 1) {
+      autoLevelIndex++;
+      progressData.autoStreakNoSkip = 0;
+    }
+    progressData.autoLevelIndex = autoLevelIndex;
+  }
+  saveData(progressData);
+  refreshProgressUI();
+  refreshLevelUI();
+}
+
+function showScreen(name) {
+  ["home", "player", "done", "settings"].forEach(s => {
+    document.getElementById("screen-" + s).classList.toggle("hidden", s !== name);
+  });
+}
+
+function goHome() {
+  stopTimer();
+  renderRoutineList();
+  refreshLevelUI();
+  showScreen("home");
+}
+
+function listForCategory(category, level) {
+  if (category === "all") {
+    return REAL_CATEGORIES.map(cat => {
+      const ex = EXERCISES_BY_CATEGORY[cat][level][0];
+      return { ...ex, category: cat, propMode: propModeFor(ex.name) };
+    });
+  }
+  return EXERCISES_BY_CATEGORY[category][level].map(ex => ({ ...ex, category, propMode: propModeFor(ex.name) }));
+}
+
+function filteredExercises() {
+  if (currentCategory === "") return null;
+  return listForCategory(currentCategory, effectiveLevel());
+}
+
+function buildQueue() {
+  const lvl = effectiveLevel();
+  const list = filteredExercises() || [];
+  const restSecs = REST_SECONDS[lvl];
+  const steps = [];
+  list.forEach((ex, i) => {
+    steps.push({ type: "exercise", ...ex });
+    if (i < list.length - 1) {
+      steps.push({ type: "rest", seconds: restSecs, nextName: list[i + 1].name, nextIcon: list[i + 1].icon });
+    }
+  });
+  return steps;
+}
+
+function renderRoutineList() {
+  const list = filteredExercises();
+  const restSecs = REST_SECONDS[effectiveLevel()];
+  const ul = document.getElementById("routineList");
+  const emptyNote = document.getElementById("emptyCategoryNote");
+  const promptNote = document.getElementById("chooseCategoryPrompt");
+  const startWrap = document.getElementById("startRoutineWrap");
+
+  if (list === null) {
+    ul.classList.add("hidden");
+    emptyNote.classList.add("hidden");
+    promptNote.classList.remove("hidden");
+    startWrap.classList.add("hidden");
+    return;
+  }
+
+  promptNote.classList.add("hidden");
+  ul.innerHTML = "";
+  let total = 0;
+  list.forEach(ex => {
+    total += ex.seconds;
+    const li = document.createElement("li");
+    const safeName = ex.name.replace(/'/g, "\\'");
+    li.innerHTML = `<button class="demo-link" onclick="openDemoByName('${safeName}')">${ex.icon} ${ex.name}</button><span><span class="tag cat-tag">${ex.category}</span><span class="tag">${ex.seconds}s</span></span>`;
+    ul.appendChild(li);
+  });
+  total += restSecs * Math.max(0, list.length - 1);
+  document.getElementById("totalMinutes").textContent = Math.max(1, Math.round(total / 60));
+
+  const isEmpty = list.length === 0;
+  emptyNote.classList.toggle("hidden", !isEmpty);
+  ul.classList.toggle("hidden", isEmpty);
+  startWrap.classList.toggle("hidden", isEmpty);
+}
+
+function renderCategoryBenefits() {
+  const box = document.getElementById("categoryBenefits");
+  const words = CATEGORY_BENEFITS[currentCategory];
+  if (!words) {
+    box.classList.add("hidden");
+    box.innerHTML = "";
+    return;
+  }
+  const label = '<span class="muted">Benefits: </span>';
+  box.innerHTML = label + `<strong>${words.join(", ")}</strong>`;
+  box.classList.remove("hidden");
+}
+
+document.getElementById("categorySelect").addEventListener("change", (e) => {
+  currentCategory = e.target.value;
+  renderCategoryBenefits();
+  renderRoutineList();
+});
+
+document.getElementById("levelSeg").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  levelSetting = btn.dataset.level;
+  progressData.levelSetting = levelSetting;
+  saveData(progressData);
+  refreshLevelUI();
+  renderRoutineList();
+});
+
+let demoTimerHandle = null;
+
+let renderer3d = null, scene3d = null, camera3d = null;
+let root3d = null, upper3d = null, torsoMesh3d = null;
+let leftShoulder3d = null, rightShoulder3d = null, leftHip3d = null, rightHip3d = null;
+let chairGroup3d = null, wallGroup3d = null;
+let bodyMaterials3d = [];
+let rafId3d = null;
+let clockStart3d = 0;
+let currentMoveKey3d = "march";
+let seatedBaseHipX = 0;   /* thighs rest forward when the exercise is done sitting in a chair */
+let currentPropMode = "none"; /* seated | under | side-two | side-one | side-none | wall | none */
+
+const MOVE3D = {
+  march(t) { const s = Math.sin(t * 3); leftHip3d.rotation.x = seatedBaseHipX + s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; },
+  marcharm(t) {
+    const s = Math.sin(t * 3);
+    leftHip3d.rotation.x = seatedBaseHipX + s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6;
+    leftShoulder3d.rotation.x = s * 0.45; rightShoulder3d.rotation.x = -s * 0.45; /* opposite-arm swing */
+  },
+  marchpump(t) {
+    const s = Math.sin(t * 3.4);
+    leftHip3d.rotation.x = seatedBaseHipX + s * 0.7; rightHip3d.rotation.x = seatedBaseHipX - s * 0.7;
+    leftShoulder3d.rotation.x = s * 0.9; rightShoulder3d.rotation.x = -s * 0.9; /* vigorous arm pump */
+  },
+  marchreach(t) {
+    const s = Math.sin(t * 3.2);
+    leftHip3d.rotation.x = seatedBaseHipX + s * 0.75; rightHip3d.rotation.x = seatedBaseHipX - s * 0.75;
+    const upR = Math.max(s, 0), upL = Math.max(-s, 0);
+    leftShoulder3d.rotation.z = upL * 1.5; rightShoulder3d.rotation.z = -upR * 1.5; /* opposite arm reaches up */
+  },
+  armraise(t) { const s = (Math.sin(t * 1.8) + 1) / 2; leftShoulder3d.rotation.z = s * 1.3; rightShoulder3d.rotation.z = -s * 1.3; },
+  anklecircle(t) { leftHip3d.rotation.z = Math.sin(t * 2.2) * 0.35; leftHip3d.rotation.x = seatedBaseHipX + Math.cos(t * 2.2) * 0.15; },
+  breathing(t) { const s = 1 + 0.07 * Math.sin(t * 1.7); torsoMesh3d.scale.set(s, s, s); },
+  twist(t) { upper3d.rotation.y = Math.sin(t * 2.4) * 0.5; },
+  legextend(t) { const s = (Math.sin(t * 2.3) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.1; },
+  punch(t) { const l = Math.max(Math.sin(t * 7), 0); const r = Math.max(Math.sin(t * 7 + Math.PI), 0); leftShoulder3d.rotation.x = -l * 1.5; rightShoulder3d.rotation.x = -r * 1.5; },
+  kneetap(t) { const s = (Math.sin(t * 4.6) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.0; rightShoulder3d.rotation.z = -s * 0.8; },
+  shoulderroll(t) { leftShoulder3d.rotation.z = Math.sin(t * 4.2) * 0.4; rightShoulder3d.rotation.z = -Math.sin(t * 4.2) * 0.4; },
+  pushup(t) { root3d.position.z = Math.sin(t * 3.6) * 0.2; root3d.rotation.x = Math.sin(t * 3.6) * 0.1; },
+  heelraise(t) { root3d.position.y = Math.abs(Math.sin(t * 4.4)) * 0.28; },
+  balance(t) { const s = (Math.sin(t * 2.1) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.15; root3d.rotation.z = Math.sin(t * 4) * 0.05; },
+  sideleg(t) { const s = (Math.sin(t * 3.8) + 1) / 2; leftHip3d.rotation.z = s * 0.85; },
+  heeltoe(t) { root3d.rotation.z = Math.sin(t * 4.7) * 0.06; },
+  sittostand(t) { const s = (Math.sin(t * 3.4) + 1) / 2; root3d.position.y = -s * 0.32; torsoMesh3d.scale.y = 1 - 0.1 * s; leftHip3d.rotation.x = seatedBaseHipX - s * 0.85; rightHip3d.rotation.x = seatedBaseHipX - s * 0.85; },
+  singleleg(t) { const s = (Math.sin(t * 2.0) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.6; root3d.rotation.z = Math.sin(t * 3.2) * 0.07; },
+  kneetochest(t) { const s = (Math.sin(t * 1.6) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.7; upper3d.rotation.x = -s * 0.25; },
+  pelvictilt(t) { upper3d.rotation.x = Math.sin(t * 2) * 0.15; },
+  catcow(t) { upper3d.rotation.x = Math.sin(t * 1.8) * 0.35; },
+  squathold(t) { const s = (Math.sin(t * 1.0) + 1) / 2; root3d.position.y = -s * 0.3; torsoMesh3d.scale.y = 1 - 0.08 * s; leftHip3d.rotation.x = seatedBaseHipX - s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; }
+};
+
+function buildChair3d() {
+  const chair = new THREE.Group();
+  const chairMat = new THREE.MeshStandardMaterial({ color: 0x8a6d4f, roughness: 0.85, metalness: 0.05 });
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.12, 0.95), chairMat);
+  seat.position.set(0, -0.08, 0.22);
+  chair.add(seat);
+  const legSpots = [[-0.48, 0.6], [0.48, 0.6], [-0.48, -0.15], [0.48, -0.15]];
+  legSpots.forEach(([x, z]) => {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1.1, 8), chairMat);
+    leg.position.set(x, -0.63, z);
+    chair.add(leg);
+  });
+  const back = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.95, 0.1), chairMat);
+  back.position.set(0, 0.4, -0.22);
+  chair.add(back);
+  chair.visible = false;
+  return chair;
+}
+
+function buildWall3d() {
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xd7d2c4, roughness: 0.95, metalness: 0.02 });
+  const wall = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 0.08), wallMat);
+  wall.position.set(0, 0.55, -1.05);
+  wall.visible = false;
+  return wall;
+}
+
+function init3d() {
+  if (renderer3d) return;
+  const container = document.getElementById("demoFig3d");
+  const w = container.clientWidth || 190, h = container.clientHeight || 210;
+
+  scene3d = new THREE.Scene();
+  camera3d = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
+  camera3d.position.set(0, 0.5, 4.6);
+  camera3d.lookAt(0, 0.35, 0);
+
+  renderer3d = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer3d.setSize(w, h);
+  renderer3d.setClearColor(0x000000, 0);
+  container.appendChild(renderer3d.domElement);
+
+  scene3d.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const dl = new THREE.DirectionalLight(0xffffff, 0.7);
+  dl.position.set(2, 3, 4);
+  scene3d.add(dl);
+
+  const initialColor = document.getElementById("view-exercises").getAttribute("data-contrast") === "high" ? 0xffd400 : 0x1f5a4f;
+  const mat = new THREE.MeshStandardMaterial({ color: initialColor, roughness: 0.55, metalness: 0.08 });
+  bodyMaterials3d.push(mat);
+
+  root3d = new THREE.Group();
+  scene3d.add(root3d);
+
+  upper3d = new THREE.Group();
+  root3d.add(upper3d);
+
+  torsoMesh3d = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.16, 1.2, 10), mat);
+  torsoMesh3d.position.y = 0.6;
+  upper3d.add(torsoMesh3d);
+
+  const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.28, 14, 14), mat);
+  headMesh.position.y = 1.55;
+  upper3d.add(headMesh);
+
+  function makeLimb(pivotX, pivotY, length, radius) {
+    const group = new THREE.Group();
+    group.position.set(pivotX, pivotY, 0);
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius * 0.85, length, 8), mat);
+    mesh.position.y = -length / 2;
+    group.add(mesh);
+    return group;
+  }
+
+  leftShoulder3d = makeLimb(-0.4, 1.15, 0.9, 0.09);
+  rightShoulder3d = makeLimb(0.4, 1.15, 0.9, 0.09);
+  upper3d.add(leftShoulder3d, rightShoulder3d);
+
+  leftHip3d = makeLimb(-0.22, 0, 1.3, 0.11);
+  rightHip3d = makeLimb(0.22, 0, 1.3, 0.11);
+  root3d.add(leftHip3d, rightHip3d);
+
+  chairGroup3d = buildChair3d();
+  scene3d.add(chairGroup3d);
+
+  wallGroup3d = buildWall3d();
+  scene3d.add(wallGroup3d);
+}
+
+/* Arm-reach poses layered on top of whatever the move animation itself sets.
+   None of the moves used by side-chair or wall exercises (march variants,
+   heelraise, balance, sideleg, heeltoe, singleleg, pushup) touch these same
+   shoulder rotations, so a static reach here persists correctly every frame. */
+function applyPropReachPose() {
+  /* Positive rotation.z swings a hanging arm toward +X (screen-right); negative
+     swings it toward -X (screen-left). The chair now sits on the LEFT
+     (x = -0.95), so the near arm is the LEFT shoulder and it needs a
+     NEGATIVE rotation.z to swing toward the chair, not a positive one. */
+  if (currentPropMode === "side-two") {
+    leftShoulder3d.rotation.z = -0.85; leftShoulder3d.rotation.x = -0.1;   /* near (left) arm reaches the chair */
+    rightShoulder3d.rotation.z = -1.3; rightShoulder3d.rotation.x = -0.15; /* far (right) arm crosses over to also hold it */
+  } else if (currentPropMode === "side-one") {
+    leftShoulder3d.rotation.z = -0.85; leftShoulder3d.rotation.x = -0.1;   /* only the near (left) arm reaches */
+  } else if (currentPropMode === "wall") {
+    leftShoulder3d.rotation.x = 1.3; rightShoulder3d.rotation.x = 1.3;    /* both arms extend back to the wall */
+  }
+}
+
+function resetPose3d() {
+  root3d.position.set(0, 0, 0); root3d.rotation.set(0, 0, 0); root3d.scale.set(1, 1, 1);
+  upper3d.rotation.set(0, 0, 0);
+  leftShoulder3d.rotation.set(0, 0, 0); rightShoulder3d.rotation.set(0, 0, 0);
+  leftHip3d.rotation.set(seatedBaseHipX, 0, 0); rightHip3d.rotation.set(seatedBaseHipX, 0, 0);
+  torsoMesh3d.scale.set(1, 1, 1);
+  applyPropReachPose();
+}
+
+function update3dColors() {
+  if (!bodyMaterials3d.length) return;
+  const color = document.getElementById("view-exercises").getAttribute("data-contrast") === "high" ? 0xffd400 : 0x1f5a4f;
+  bodyMaterials3d.forEach(m => m.color.setHex(color));
+}
+
+function animateFrame3d() {
+  rafId3d = requestAnimationFrame(animateFrame3d);
+  const t = (performance.now() - clockStart3d) / 1000;
+  resetPose3d();
+  (MOVE3D[currentMoveKey3d] || MOVE3D.march)(t);
+  camera3d.position.x = Math.sin(t * 0.3) * 0.9;
+  camera3d.lookAt(0, 0.4, 0);
+  renderer3d.render(scene3d, camera3d);
+}
+
+function openDemoByName(name) {
+  const list = filteredExercises() || [];
+  const ex = list.find(e => e.name === name);
+  if (!ex) return;
+  openDemo(ex.name, ex.cue, ex.move, ex.category, ex.propMode);
+}
+
+function openCurrentStepDemo() {
+  const step = queue[stepIndex];
+  if (!step || step.type !== "exercise") return;
+  openDemo(step.name, step.cue, step.move, step.category, step.propMode);
+}
+
+function applyPropMode(mode) {
+  currentPropMode = mode || "none";
+  if (!chairGroup3d || !wallGroup3d) return;
+
+  chairGroup3d.visible = false;
+  wallGroup3d.visible = false;
+
+  if (currentPropMode === "seated" || currentPropMode === "under") {
+    chairGroup3d.position.set(0, 0, 0);
+    chairGroup3d.rotation.set(0, 0, 0);
+    chairGroup3d.visible = true;
+  } else if (currentPropMode === "side-two" || currentPropMode === "side-one" || currentPropMode === "side-none") {
+    chairGroup3d.position.set(-0.95, 0, -0.05);
+    chairGroup3d.rotation.set(0, -Math.PI / 2, 0);
+    chairGroup3d.visible = true;
+  } else if (currentPropMode === "wall") {
+    wallGroup3d.visible = true;
+  }
+}
+
+function openDemo(name, cue, moveKey, category, propMode) {
+  document.getElementById("demoName").textContent = name;
+  document.getElementById("demoCue").textContent = cue;
+  document.getElementById("demoCategory").textContent = category ? ("Category: " + category) : "";
+  document.getElementById("demoOverlay").classList.remove("hidden");
+
+  init3d();
+  currentMoveKey3d = moveKey || "march";
+  seatedBaseHipX = (propMode === "seated") ? -1.3 : 0;
+  applyPropMode(propMode || "none");
+  clockStart3d = performance.now();
+  if (!rafId3d) animateFrame3d();
+
+  if (voiceEnabled && "speechSynthesis" in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const demoUtterance = new SpeechSynthesisUtterance("Demo: " + name + ". " + cue);
+      if (preferredVoice) demoUtterance.voice = preferredVoice;
+      window.speechSynthesis.speak(demoUtterance);
+    } catch (e) {}
+  }
+
+  let secs = 10;
+  document.getElementById("demoTimer").textContent = secs;
+  if (demoTimerHandle) clearInterval(demoTimerHandle);
+  demoTimerHandle = setInterval(() => {
+    secs--;
+    document.getElementById("demoTimer").textContent = Math.max(secs, 0);
+    if (secs <= 0) closeDemo();
+  }, 1000);
+}
+
+function closeDemo() {
+  document.getElementById("demoOverlay").classList.add("hidden");
+  if (demoTimerHandle) { clearInterval(demoTimerHandle); demoTimerHandle = null; }
+  if (rafId3d) { cancelAnimationFrame(rafId3d); rafId3d = null; }
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function closeDemoOutside(evt) {
+  if (evt.target.id === "demoOverlay") closeDemo();
+}
+
+function startRoutine() {
+  queue = buildQueue();
+  stepIndex = 0;
+  skippedAny = false;
+  currentExerciseNumber = 0;
+  totalExercisesInRoutine = (filteredExercises() || []).length;
+  if (totalExercisesInRoutine === 0) return;
+  showScreen("player");
+  runStep();
+}
+
+function exSpeak(text) {
+  if (voiceEnabled && "speechSynthesis" in window) {
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95;
+      if (preferredVoice) u.voice = preferredVoice;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+}
+
+function runStep() {
+  paused = false;
+  document.getElementById("pauseBtn").textContent = "⏸ Pause";
+  const step = queue[stepIndex];
+  const card = document.getElementById("playerCard");
+  const demoLink = document.getElementById("playerDemoLink");
+
+  if (step.type === "exercise") {
+    currentExerciseNumber++;
+    card.classList.remove("resting");
+    totalSeconds = step.seconds;
+    secondsLeft = step.seconds;
+    document.getElementById("stepCounter").textContent = `Exercise ${currentExerciseNumber} of ${totalExercisesInRoutine}`;
+    document.getElementById("exIcon").textContent = step.icon;
+    document.getElementById("exName").textContent = step.name;
+    document.getElementById("exCue").textContent = step.cue;
+    demoLink.classList.remove("hidden");
+    exSpeak(`${step.name}. ${step.cue}`);
+  } else {
+    card.classList.add("resting");
+    totalSeconds = step.seconds;
+    secondsLeft = step.seconds;
+    document.getElementById("stepCounter").textContent = `Get ready`;
+    document.getElementById("exIcon").textContent = "⏳";
+    document.getElementById("exName").textContent = "Short Rest";
+    document.getElementById("exCue").textContent = `Next: ${step.nextIcon} ${step.nextName}`;
+    demoLink.classList.add("hidden");
+    exSpeak(`Short rest. Next: ${step.nextName}`);
+  }
+
+  document.getElementById("exTimer").textContent = secondsLeft;
+  document.getElementById("exProgress").style.width = "0%";
+  stopTimer();
+  timerHandle = setInterval(tick, 1000);
+}
+
+function tick() {
+  if (paused) return;
+  secondsLeft--;
+  document.getElementById("exTimer").textContent = Math.max(secondsLeft, 0);
+  const pct = ((totalSeconds - secondsLeft) / totalSeconds) * 100;
+  document.getElementById("exProgress").style.width = pct + "%";
+  if (secondsLeft <= 0) {
+    stopTimer();
+    nextStep();
+  }
+}
+
+function nextStep() {
+  stepIndex++;
+  if (stepIndex >= queue.length) {
+    endRoutine(true);
+  } else {
+    runStep();
+  }
+}
+
+function skipExercise() {
+  if (queue[stepIndex].type === "exercise") skippedAny = true;
+  stopTimer();
+  nextStep();
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById("pauseBtn").textContent = paused ? "▶ Resume" : "⏸ Pause";
+}
+
+function stopTimer() {
+  if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+}
+
+function endRoutine(completed) {
+  stopTimer();
+  closeDemo();
+  if (completed) {
+    recordCompletion(!skippedAny);
+    const lvl = LEVEL_LABEL[effectiveLevel()];
+    const catLabel = currentCategory === "all" ? "All (balanced sampler)" : currentCategory;
+    document.getElementById("doneSummary").textContent =
+      `You completed today's ${catLabel} routine at ${lvl} level — ${totalExercisesInRoutine} exercises.`;
+    exSpeak("Great job! You completed today's routine.");
+    showScreen("done");
+  } else {
+    goHome();
+  }
+}
+
+let voiceEnabled = true;
+
+/* Picks a female voice by default, when the browser offers one */
+let preferredVoice = null;
+function pickPreferredVoice() {
+  if (!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return;
+  const preferredNames = [
+    "Samantha", "Victoria", "Fiona", "Karen", "Moira", "Tessa",
+    "Google UK English Female", "Google US English",
+    "Microsoft Zira", "Microsoft Zira Desktop", "Microsoft Hazel"
+  ];
+  for (const name of preferredNames) {
+    const v = voices.find(v => v.name.includes(name));
+    if (v) { preferredVoice = v; return; }
+  }
+  const femaleMatch = voices.find(v => /female/i.test(v.name));
+  if (femaleMatch) { preferredVoice = femaleMatch; return; }
+  preferredVoice = voices[0];
+}
+pickPreferredVoice();
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.onvoiceschanged = pickPreferredVoice;
+}
+
+document.getElementById("textSizeSeg").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  document.getElementById("view-exercises").style.setProperty("--font-scale", btn.dataset.scale);
+  [...document.getElementById("textSizeSeg").children].forEach(b => b.classList.toggle("active", b === btn));
+});
+
+document.getElementById("contrastSeg").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  document.getElementById("view-exercises").setAttribute("data-contrast", btn.dataset.contrast);
+  [...document.getElementById("contrastSeg").children].forEach(b => b.classList.toggle("active", b === btn));
+  update3dColors();
+});
+
+document.getElementById("voiceSeg").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  voiceEnabled = btn.dataset.voice === "on";
+  [...document.getElementById("voiceSeg").children].forEach(b => b.classList.toggle("active", b === btn));
+});
+
+renderRoutineList();
+refreshProgressUI();
+refreshLevelUI();
+showScreen("home");
+
+  window.showScreen = showScreen;
+  window.startRoutine = startRoutine;
+  window.togglePause = togglePause;
+  window.skipExercise = skipExercise;
+  window.endRoutine = endRoutine;
+  window.goHome = goHome;
+  window.openCurrentStepDemo = openCurrentStepDemo;
+  window.openDemoByName = openDemoByName;
+  window.closeDemo = closeDemo;
+  window.closeDemoOutside = closeDemoOutside;
+})();
+</script>
+
 <script>(function(){
+if(window.top===window.self)return;
+var WRAPPER_ORIGIN="https://sharable.link";
+function retarget(raw,isDownload){
+var here,url;
+try{here=new URL(location.href);url=new URL(raw,location.href)}catch(e){return null}
+if(url.protocol!=="http:"&&url.protocol!=="https:")return null;
+if(url.origin!==here.origin)return url.href;
+if(isDownload||url.pathname===here.pathname)return null;
+return WRAPPER_ORIGIN+url.pathname+url.search+url.hash}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+if(document.querySelector("base[target]"))return;
+var a=e.target&&e.target.closest?e.target.closest("a[href]"):null;
+if(!a||(a.target&&a.target!=="_self"))return;
+var href=retarget(a.getAttribute("href"),a.hasAttribute("download"));
+if(!href)return;
+a.href=href;a.target="_top"});
+document.addEventListener("submit",function(e){
+var form=e.target;
+if(e.defaultPrevented||!form||form.target)return;
+var href=retarget(form.getAttribute("action"),false);
+if(!href)return;
+form.action=href;form.target="_top"})})();</script><script>(function(){
 if(window.top===window.self)return;
 var WRAPPER_ORIGIN="https://sharable.link";
 function retarget(raw,isDownload){
