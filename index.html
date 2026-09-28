@@ -974,7 +974,7 @@ main{gap:16px}
   <!-- HOME EXERCISES -->
   <div id="view-exercises" class="view" data-contrast="normal">
   <div class="back-header">
-    <button class="back-btn" type="button" onclick="showView('home')" aria-label="Back to home" style="border:none;padding:0;cursor:pointer;">
+    <button class="back-btn" type="button" onclick="exercisesHeaderBack()" aria-label="Back" style="border:none;padding:0;cursor:pointer;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
     </button>
     <h1 style="flex:1;">Home Exercises</h1>
@@ -990,12 +990,11 @@ main{gap:16px}
     <div class="card">
       <h2>Today's Routine</h2>
       <div class="level-current">
-        <span>🎯 Gameplay Level: <span class="pill" id="levelPill">Easy (Automatic)</span></span>
-        <button class="btn link" onclick="showScreen('settings')">Change in Settings</button>
+        <span>🎯 Level: <span class="pill" id="levelPill">Easy (Automatic)</span></span>
       </div>
 
       <div class="settings-row" style="flex-direction:column; align-items:stretch; gap:8px;">
-        <span><strong>Step 1 — Choose a category</strong></span>
+        <span><strong>Choose a category</strong></span>
         <select id="categorySelect" style="width:100%;">
           <option value="" disabled selected>— Select a category —</option>
           <option value="all">All (balanced sampler)</option>
@@ -1010,7 +1009,7 @@ main{gap:16px}
         <div class="hidden" id="categoryBenefits" style="margin-top:4px;"></div>
       </div>
 
-      <p class="muted" id="chooseCategoryPrompt">👆 Choose a category above to see its exercises. Tap any exercise name to watch a 10-second 3D demo. Sit near a sturdy chair or wall in case you need support.</p>
+      <p class="muted" id="chooseCategoryPrompt">👆 Choose a category above to see its exercises. Tap any exercise name to watch a 30-second 3D demo. Sit near a sturdy chair or wall in case you need support.</p>
       <ul class="routine-list hidden" id="routineList"></ul>
       <p class="muted hidden" id="emptyCategoryNote">No exercises found for this category.</p>
       <div class="hidden" id="startRoutineWrap" style="margin-top:16px;">
@@ -1040,7 +1039,7 @@ main{gap:16px}
       <div class="exercise-icon" id="exIcon">🪑</div>
       <div class="exercise-name" id="exName">Seated March</div>
       <div class="exercise-cue" id="exCue">Lift your knees one at a time, like marching in your chair.</div>
-      <button class="demo-link" id="playerDemoLink" onclick="openCurrentStepDemo()">▶ Watch 10s demo</button>
+      <button class="demo-link" id="playerDemoLink" onclick="openCurrentStepDemo()">▶ Watch 30s demo</button>
       <div class="timer" id="exTimer">30</div>
       <div class="progress-track"><div class="progress-fill" id="exProgress"></div></div>
       <div class="player-controls">
@@ -1120,7 +1119,7 @@ main{gap:16px}
 
 </main>
 
-<footer class="note">Important Safety Notice: Please consult your doctor or qualified healthcare professional before starting these exercises, especially if you have any medical condition, injury, balance problem, or mobility concern. This demonstration is for general information only and is not medical advice. The figures shown are animated 3D illustrations, not real people or video. Stop immediately if you experience pain, dizziness, discomfort, or feel unsteady. Seek medical advice before attempting Advanced-level balance exercises.</footer>
+<footer class="note" style="font-weight:700 !important;color:#FF0000 !important;"><p style="margin:0 0 8px;"><strong>Safety Disclaimer:</strong></p><p style="margin:0 0 8px;">These exercises are for general guidance only and are not medical advice. Please check with your doctor or healthcare professional before starting, especially if you have a health condition, injury, or balance/mobility concerns.</p><p style="margin:0;">Exercise at your own pace and stop immediately if you feel pain, dizzy, unwell, or unsafe. The 3D demonstrations are illustrations only. You are responsible for exercising safely, and the creator is not responsible for injury or health problems resulting from use of this tool, as far as permitted by law.</p></footer>
 
 <!-- DEMO OVERLAY -->
 <div id="demoOverlay" class="hidden" onclick="closeDemoOutside(event)">
@@ -1130,7 +1129,7 @@ main{gap:16px}
     <div class="demo-cue" id="demoCue">Lift your knees one at a time, like marching in your chair.</div>
     <div class="demo-category" id="demoCategory"></div>
     <div class="fig-wrap" id="demoFig3d"></div>
-    <div class="demo-timer" id="demoTimer">10</div>
+    <div class="demo-timer" id="demoTimer">30</div>
     <div class="demo-caption">seconds remaining · tap ✕ to close</div>
   </div>
 </div>
@@ -1609,8 +1608,7 @@ main{gap:16px}
           <span class="settings-num" style="background:#FEE2E2;color:#DC2626;">SOS</span>
           <span style="font-size:15px;font-weight:700;">Emergency SOS number</span>
         </div>
-        <p s
-tyle="margin:0;font-size:13px;color:var(--gray);">This is the number the red SOS button on the Home screen dials.</p>
+        <p style="margin:0;font-size:13px;color:var(--gray);">This is the number the red SOS button on the Home screen dials.</p>
         <div class="field"><label for="sosName">Name (optional)</label><input id="sosName" type="text" placeholder="e.g. Mary Tan / SCDF non-emergency"></div>
         <div class="field"><label for="sosPhone">Phone number</label><input id="sosPhone" type="tel" placeholder="e.g. 9123 4567"></div>
       </div>
@@ -6548,8 +6546,11 @@ function goHome() {
 
 function listForCategory(category, level) {
   if (category === "all") {
+    const used = new Set();
     return REAL_CATEGORIES.map(cat => {
-      const ex = EXERCISES_BY_CATEGORY[cat][level][0];
+      const options = EXERCISES_BY_CATEGORY[cat][level];
+      let ex = options.find(o => !used.has(o.name)) || options[0];
+      used.add(ex.name);
       return { ...ex, category: cat, propMode: propModeFor(ex.name) };
     });
   }
@@ -6598,7 +6599,7 @@ function renderRoutineList() {
     total += ex.seconds;
     const li = document.createElement("li");
     const safeName = ex.name.replace(/'/g, "\\'");
-    li.innerHTML = `<button class="demo-link" onclick="openDemoByName('${safeName}')">${ex.icon} ${ex.name}</button><span><span class="tag cat-tag">${ex.category}</span><span class="tag">${ex.seconds}s</span></span>`;
+    li.innerHTML = `<button class="demo-link" onclick="openDemoByName('${safeName}')">${ex.icon} ${ex.name}</button><span><span class="tag">${ex.seconds}s</span></span>`;
     ul.appendChild(li);
   });
   total += restSecs * Math.max(0, list.length - 1);
@@ -6879,7 +6880,7 @@ function openDemo(name, cue, moveKey, category, propMode) {
     } catch (e) {}
   }
 
-  let secs = 10;
+  let secs = 30;
   document.getElementById("demoTimer").textContent = secs;
   if (demoTimerHandle) clearInterval(demoTimerHandle);
   demoTimerHandle = setInterval(() => {
@@ -7065,6 +7066,15 @@ refreshProgressUI();
 refreshLevelUI();
 showScreen("home");
 
+function exercisesHeaderBack() {
+  const atHome = !document.getElementById("screen-home").classList.contains("hidden");
+  if (atHome) {
+    showView("home");
+  } else {
+    goHome();
+  }
+}
+
   window.showScreen = showScreen;
   window.startRoutine = startRoutine;
   window.togglePause = togglePause;
@@ -7075,6 +7085,7 @@ showScreen("home");
   window.openDemoByName = openDemoByName;
   window.closeDemo = closeDemo;
   window.closeDemoOutside = closeDemoOutside;
+  window.exercisesHeaderBack = exercisesHeaderBack;
 })();
 </script>
 
