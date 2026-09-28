@@ -7143,7 +7143,7 @@ function squatMove(t, o) {
 
 function squatPose(s) {
   const TH = 0.65, SH = 0.65, Az = 0, Ay = -1.235;                    /* ankles stay put, flat on the floor */
-  const hy = -s * 1.25, hz = -s * 0.8;                                /* hips sink straight down and shift back */
+  const hy = -s * 0.62, hz = 0;                                       /* hips sink straight down (no backward drift, so the hands can stay on the chair) */
   root3d.position.set(0, hy, hz);
   upper3d.rotation.x = s * 0.55;                                      /* chest leans forward over the knees */
   head3d.rotation.x = -0.2 * s; noseMesh3d.visible = true;
@@ -7426,13 +7426,18 @@ function applyPropReachPose() {
    Each frame the arms re-aim (and stretch a touch) so the hands stay on the chair while the body rises or dips. */
 const CHAIR_FRONT_Z = 1.03, CHAIR_FRONT_Y = -0.12, HAND_Z = 0.806, HAND_Y = 0.755;
 function holdChairArms() {
-  const L = 0.9;
-  [leftShoulder3d, rightShoulder3d].forEach(sh => {
-    const dy = HAND_Y - (1.15 + root3d.position.y), dz = HAND_Z - root3d.position.z;
-    const d = Math.sqrt(dy * dy + dz * dz);
-    sh.rotation.x = Math.atan2(-dz, -dy);
-    sh.rotation.z = -Math.asin(Math.max(-1, Math.min(1, root3d.position.x / d)));
-    sh.scale.y = d / L;
+  const topY = 0.875 + CHAIR_FRONT_Y;                                 /* top edge of the chair back */
+  const Hy = topY + 0.09, Hz = HAND_Z;                                /* rest just above the rail, not through it */
+  const cx = Math.cos(upper3d.rotation.x), sx = Math.sin(upper3d.rotation.x);
+  const Sy = root3d.position.y + 1.15 * cx, Sz = root3d.position.z + 1.15 * sx;  /* shoulder follows any forward lean */
+  const dz = Hz - Sz, dy = Hy - Sy, dl = Math.hypot(dz, dy), d = Math.min(dl, 0.89);
+  const uz = dz / dl, uy = dy / dl, h = Math.sqrt(Math.max(0.2025 - (d / 2) * (d / 2), 0));
+  const Ez = Sz + uz * d / 2 + uy * h, Ey = Sy + uy * d / 2 - uz * h;   /* elbow drops down beside the body */
+  leftShoulder3d.visible = false; rightShoulder3d.visible = false; wallArms3d.visible = true;
+  wallArmParts3d.forEach(pt => {
+    const place = (mesh, az, ay, bz, by) => { mesh.position.set(pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    place(pt.upper, Sz, Sy, Ez, Ey); place(pt.fore, Ez, Ey, Hz, Hy);
+    pt.elbow.position.set(pt.x, Ey, Ez); pt.hand.position.set(pt.x, Hy, Hz);
   });
 }
 
