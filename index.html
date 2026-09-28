@@ -514,6 +514,7 @@ main{gap:16px}
     font-variant-numeric: tabular-nums;
     margin-top: 4px;
   }
+  #view-exercises .demo-phase { color: var(--accent); font-weight: 700; font-size: calc(0.95rem * var(--font-scale)); min-height: 2.4em; margin-top: 2px; }
   #view-exercises .demo-caption { color: var(--muted); font-size: calc(0.85rem * var(--font-scale)); margin-top: 4px; }
 </style>
 
@@ -1129,6 +1130,7 @@ main{gap:16px}
     <div class="demo-cue" id="demoCue">Lift your knees one at a time, like marching in your chair.</div>
     <div class="demo-category" id="demoCategory"></div>
     <div class="fig-wrap" id="demoFig3d"></div>
+    <div class="demo-phase hidden" id="demoPhase"></div>
     <div class="demo-timer" id="demoTimer">30</div>
     <div class="demo-caption">seconds remaining · tap ✕ to close</div>
   </div>
@@ -6209,19 +6211,19 @@ const EXERCISES_BY_CATEGORY = {
     ],
     medium: [
       { name: "Seated March with Arm Swing", icon: "🪑", cue: "March in your chair while swinging your arms gently, opposite arm to leg.", seconds: 30, move: "marcharm" },
-      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraisehold" },
       { name: "Standing March (hold chair)", icon: "🚶", cue: "Hold the back of a chair with both hands and march gently on the spot.", seconds: 30, move: "march" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ],
     hard: [
       { name: "Faster Seated March", icon: "🪑", cue: "March at a brisker pace, lifting your knees a little higher.", seconds: 35, move: "march" },
-      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up.", seconds: 30, move: "pushup" },
+      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up.", seconds: 30, move: "pushupslow" },
       { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march a little higher.", seconds: 35, move: "march" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ],
     advanced: [
       { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms, like a brisk walk in your seat.", seconds: 40, move: "marchpump" },
-      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup" },
+      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup3count" },
       { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees at a brisker pace.", seconds: 35, move: "march" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ]
@@ -6256,35 +6258,35 @@ const EXERCISES_BY_CATEGORY = {
 
   "Strength": {
     easy: [
-      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraisehold" },
       { name: "Wall Push-ups", icon: "🧱", cue: "Hands on the wall, slowly bend your elbows and push back.", seconds: 30, move: "pushup" },
       { name: "Heel Raises (hold chair)", icon: "👣", cue: "Hold the chair with both hands, rise onto your toes, then lower slowly.", seconds: 25, move: "heelraise" },
-      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly. Alternate legs.", seconds: 30, move: "legextend" }
+      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly.", seconds: 30, move: "legextend" }
     ],
     medium: [
-      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up. Go a little deeper each time.", seconds: 30, move: "pushup" },
+      { name: "Wall Push-ups (slower)", icon: "🧱", cue: "Take 3 seconds to lower, then push back up. Go a little deeper each time.", seconds: 30, move: "pushupslow" },
       { name: "Heel Raises (one hand)", icon: "👣", cue: "One hand on the chair, rise onto your toes, then lower slowly.", seconds: 30, move: "heelraise" },
       { name: "Side Leg Lifts (one hand)", icon: "🦵", cue: "One hand on the chair, lift one leg out to the side and lower.", seconds: 25, move: "sideleg" },
       { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, hold briefly, then lower.", seconds: 30, move: "legextend" }
     ],
     hard: [
-      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup" },
+      { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup3count" },
       { name: "Side Leg Lifts (no hands)", icon: "🦵", cue: "Fingertip touch only — lift one leg out to the side with control.", seconds: 30, move: "sideleg" },
-      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand" },
-      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 35, move: "legextend" }
+      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand8" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 35, move: "legholdpoint2" }
     ],
     advanced: [
-      { name: "Wall Push-ups with Hold", icon: "🧱", cue: "Lower down and hold for 2 seconds at the bottom before pushing back up.", seconds: 40, move: "pushup" },
+      { name: "Wall Push-ups with Hold", icon: "🧱", cue: "Lower down and hold for 2 seconds at the bottom before pushing back up.", seconds: 40, move: "pushuphold" },
       { name: "Side Leg Lifts with Pulse", icon: "🦵", cue: "No hands — lift one leg to the side and add a small pulse at the top.", seconds: 35, move: "sideleg" },
-      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand" },
-      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 3 seconds, point your toes, then lower slowly.", seconds: 40, move: "legextend" }
+      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand10" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 3 seconds, point your toes, then lower slowly.", seconds: 40, move: "legholdpoint3" }
     ]
   },
 
   "Balance": {
     easy: [
       { name: "Ankle Circles", icon: "🦶", cue: "Lift one foot off the floor and draw slow circles with your ankle.", seconds: 25, move: "anklecircle" },
-      { name: "Standing Balance (two hands)", icon: "⚖️", cue: "Both hands on the chair, try shifting your weight gently side to side.", seconds: 25, move: "balance" },
+      { name: "Standing Balance (two hands)", icon: "⚖️", cue: "Both hands on the chair, try shifting your weight gently side to side.", seconds: 25, move: "weightshift" },
       { name: "Heel Raises (hold chair)", icon: "👣", cue: "Hold the chair with both hands, rise onto your toes, then lower slowly.", seconds: 25, move: "heelraise" },
       { name: "Seated March", icon: "🪑", cue: "A gentle warm-up before standing work — lift your knees slowly.", seconds: 25, move: "march" }
     ],
@@ -6298,13 +6300,13 @@ const EXERCISES_BY_CATEGORY = {
       { name: "Heel-to-Toe Stand", icon: "⚖️", cue: "Stand with one foot directly in front of the other, near the chair for safety.", seconds: 20, move: "heeltoe" },
       { name: "Side Leg Lifts (no hands)", icon: "🦵", cue: "Fingertip touch only — lift one leg out to the side with control.", seconds: 30, move: "sideleg" },
       { name: "Standing Balance (one hand)", icon: "⚖️", cue: "One hand on the chair, hold the lifted-foot position a little longer.", seconds: 25, move: "balance" },
-      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand" }
+      { name: "Sit-to-Stand x8", icon: "🪑⬆️", cue: "Stand up from the chair and sit back down, 8 times, at a steady pace.", seconds: 30, move: "sittostand8" }
     ],
     advanced: [
       { name: "Single-Leg Stand", icon: "🦩", cue: "Stand near the chair for safety, but try not to hold on. Lift one foot and balance.", seconds: 20, move: "singleleg" },
       { name: "Side Leg Lifts with Pulse", icon: "🦵", cue: "No hands — lift one leg to the side and add a small pulse at the top.", seconds: 35, move: "sideleg" },
       { name: "Heel-to-Toe Stand", icon: "⚖️", cue: "One foot directly in front of the other, no hands, near the chair for safety.", seconds: 20, move: "heeltoe" },
-      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand" }
+      { name: "Sit-to-Stand x10 (no hands)", icon: "🪑⬆️", cue: "Stand up and sit back down 10 times without pushing off with your hands.", seconds: 30, move: "sittostand10" }
     ]
   },
 
@@ -6317,20 +6319,20 @@ const EXERCISES_BY_CATEGORY = {
     ],
     medium: [
       { name: "Seated Torso Twist", icon: "🔄", cue: "Twist a little further each time, staying comfortable.", seconds: 30, move: "twist" },
-      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Roll both shoulders slowly backward, then gently tilt your head side to side.", seconds: 30, move: "shoulderroll" },
-      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraise" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Roll both shoulders slowly backward, then gently tilt your head toward this side.", seconds: 30, move: "shoulderroll" },
+      { name: "Arm Raises with Hold", icon: "🙆", cue: "Raise both arms to shoulder height and hold for 3 seconds before lowering.", seconds: 30, move: "armraisehold" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ],
     hard: [
       { name: "Torso Twist with Reach", icon: "🔄", cue: "Twist your torso and reach your hand toward the opposite knee.", seconds: 35, move: "twist" },
-      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Bigger, slower shoulder rolls, then a gentle deeper neck stretch.", seconds: 30, move: "shoulderroll" },
-      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly. Alternate legs.", seconds: 30, move: "legextend" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Bigger, slower shoulder rolls, then a gentle deeper neck stretch toward this side.", seconds: 30, move: "shoulderrollbig" },
+      { name: "Knee Extensions", icon: "🦵", cue: "Straighten one knee out in front of you, then lower slowly.", seconds: 30, move: "legextend" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ],
     advanced: [
-      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body to the opposite side, alternating arms.", seconds: 40, move: "twist" },
-      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 40, move: "legextend" },
-      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Full, slow shoulder rolls both ways, then a full gentle neck stretch.", seconds: 30, move: "shoulderroll" },
+      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body to the opposite side, alternating arms.", seconds: 40, move: "twistpunch" },
+      { name: "Leg Extension Hold & Point", icon: "🦵", cue: "Straighten one leg, hold for 2 seconds, point your toes, then lower slowly.", seconds: 40, move: "legholdpoint2" },
+      { name: "Shoulder Rolls & Neck Stretch", icon: "💪", cue: "Full, slow shoulder rolls both ways, then a full gentle neck stretch toward this side.", seconds: 30, move: "shoulderrollboth" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ]
   },
@@ -6348,38 +6350,38 @@ const EXERCISES_BY_CATEGORY = {
     ],
     hard: [
       { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, a little faster now.", seconds: 35, move: "kneetap" },
-      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Tap each knee to the opposite hand while counting backward from 15.", seconds: 35, move: "kneetap" },
+      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand while counting backward from 15.", seconds: 35, move: "kneetap" },
       { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 15 aloud.", seconds: 32, move: "kneetap" }
     ],
     advanced: [
-      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Tap each knee to the opposite hand while counting backward from 20.", seconds: 40, move: "kneetap" },
+      { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand while counting backward from 20.", seconds: 40, move: "kneetap" },
       { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 20 aloud.", seconds: 35, move: "kneetap" },
-      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body, alternating arms, while counting each punch.", seconds: 40, move: "twist" },
+      { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body, alternating arms, while counting each punch.", seconds: 40, move: "twistpunchcount" },
       { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, keeping a steady count.", seconds: 38, move: "kneetap" }
     ]
   },
 
   "Digestive Health": {
     easy: [
-      { name: "Knee-to-Chest", icon: "🦵", cue: "Seated, pull one knee toward your chest and hold, then switch legs.", seconds: 30, move: "kneetochest" },
+      { name: "Knee-to-Chest", icon: "🦵", cue: "Seated, pull one knee toward your chest and hold, then lower slowly.", seconds: 30, move: "kneetochest" },
       { name: "Pelvic Tilts", icon: "🧘", cue: "Seated, gently rock your pelvis forward and back.", seconds: 30, move: "pelvictilt" },
       { name: "Cat-Cow", icon: "🐱", cue: "Seated, alternate gently arching and rounding your back.", seconds: 30, move: "catcow" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ],
     medium: [
-      { name: "Knee-to-Chest (Hold Longer)", icon: "🦵", cue: "Pull one knee to your chest and hold a little longer, then switch.", seconds: 35, move: "kneetochest" },
+      { name: "Knee-to-Chest (Hold Longer)", icon: "🦵", cue: "Pull one knee to your chest and hold a little longer, then lower slowly.", seconds: 35, move: "kneetochestlong" },
       { name: "Pelvic Tilts", icon: "🧘", cue: "Rock your pelvis forward and back with a bit more range.", seconds: 30, move: "pelvictilt" },
       { name: "Cat-Cow", icon: "🐱", cue: "Arch and round your back a little deeper each time.", seconds: 30, move: "catcow" },
       { name: "Supported Squat Hold", icon: "🪑⬇️", cue: "Hold the chair with both hands, lower into a shallow squat, and hold briefly.", seconds: 25, move: "squathold" }
     ],
     hard: [
-      { name: "Knee-to-Chest (Double Knee)", icon: "🦵", cue: "Pull one knee to your chest, hold, then bring both knees in briefly.", seconds: 35, move: "kneetochest" },
+      { name: "Knee-to-Chest (Double Knee)", icon: "🦵", cue: "Pull one knee to your chest, hold, then bring both knees in briefly. Repeat on this side.", seconds: 35, move: "kneetochestdouble" },
       { name: "Pelvic Tilts with Breath", icon: "🧘", cue: "Rock your pelvis forward and back, breathing out as you tilt.", seconds: 32, move: "pelvictilt" },
       { name: "Cat-Cow (Deeper)", icon: "🐱", cue: "Deepen the arch and round, moving a little slower.", seconds: 32, move: "catcow" },
       { name: "Supported Squat Hold (Longer)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deeper squat, and hold a little longer.", seconds: 30, move: "squathold" }
     ],
     advanced: [
-      { name: "Knee-to-Chest (Extended Hold)", icon: "🦵", cue: "Pull one knee to your chest and hold longer, then switch, twice each side.", seconds: 40, move: "kneetochest" },
+      { name: "Knee-to-Chest (Extended Hold)", icon: "🦵", cue: "Pull one knee to your chest and hold longer, then lower. Repeat twice on this side.", seconds: 40, move: "kneetochestlong" },
       { name: "Pelvic Tilts (Continuous)", icon: "🧘", cue: "Flow continuously between forward and back pelvic tilts.", seconds: 35, move: "pelvictilt" },
       { name: "Cat-Cow (Flow)", icon: "🐱", cue: "Flow smoothly and fully between arch and round, syncing with your breath.", seconds: 35, move: "catcow" },
       { name: "Supported Squat Hold (No Rest)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deep squat, and hold as long as comfortable before rising.", seconds: 35, move: "squathold" }
@@ -6450,6 +6452,17 @@ function propModeFor(name) {
 const LEVELS = ["easy", "medium", "hard", "advanced"];
 const LEVEL_LABEL = { easy: "Easy", medium: "Medium", hard: "Hard", advanced: "Advanced" };
 const REST_SECONDS = { easy: 12, medium: 8, hard: 6, advanced: 4 };
+/* Exercises done on one limb at a time: each side gets the full time */
+const TWO_SIDED = new Set([
+  "Ankle Circles", "Simple Toe Taps", "Toe Taps with Counting",
+  "Standing Balance (one hand)", "Heel-to-Toe Stand", "Single-Leg Stand",
+  "Side Leg Lifts (one hand)", "Side Leg Lifts (no hands)", "Side Leg Lifts with Pulse",
+  "Leg Extension Hold & Point", "Knee Extensions",
+  "Knee-to-Chest", "Knee-to-Chest (Hold Longer)", "Knee-to-Chest (Double Knee)", "Knee-to-Chest (Extended Hold)",
+  "Cross-Body Knee Taps", "Dual-Task Knee Taps", "Shoulder Rolls & Neck Stretch"
+]);
+const SWITCH_SECONDS = 5;
+function withSides(ex) { return { ...ex, sides: TWO_SIDED.has(ex.name) ? 2 : 1 }; }
 
 const CATEGORY_BENEFITS = {
   "all": ["Full-body", "Balanced", "Variety", "Complete", "Well-rounded"],
@@ -6551,10 +6564,10 @@ function listForCategory(category, level) {
       const options = EXERCISES_BY_CATEGORY[cat][level];
       let ex = options.find(o => !used.has(o.name)) || options[0];
       used.add(ex.name);
-      return { ...ex, category: cat, propMode: propModeFor(ex.name) };
+      return withSides({ ...ex, category: cat, propMode: propModeFor(ex.name) });
     });
   }
-  return EXERCISES_BY_CATEGORY[category][level].map(ex => ({ ...ex, category, propMode: propModeFor(ex.name) }));
+  return EXERCISES_BY_CATEGORY[category][level].map(ex => withSides({ ...ex, category, propMode: propModeFor(ex.name) }));
 }
 
 function filteredExercises() {
@@ -6568,7 +6581,13 @@ function buildQueue() {
   const restSecs = REST_SECONDS[lvl];
   const steps = [];
   list.forEach((ex, i) => {
-    steps.push({ type: "exercise", ...ex });
+    if (ex.sides === 2) {
+      steps.push({ type: "exercise", ...ex, exIndex: i + 1, sideLabel: "Left side" });
+      steps.push({ type: "rest", seconds: SWITCH_SECONDS, switchSides: true, nextName: ex.name + " (Right side)", nextIcon: ex.icon });
+      steps.push({ type: "exercise", ...ex, exIndex: i + 1, sideLabel: "Right side" });
+    } else {
+      steps.push({ type: "exercise", ...ex, exIndex: i + 1, sideLabel: "" });
+    }
     if (i < list.length - 1) {
       steps.push({ type: "rest", seconds: restSecs, nextName: list[i + 1].name, nextIcon: list[i + 1].icon });
     }
@@ -6594,15 +6613,13 @@ function renderRoutineList() {
 
   promptNote.classList.add("hidden");
   ul.innerHTML = "";
-  let total = 0;
   list.forEach(ex => {
-    total += ex.seconds;
     const li = document.createElement("li");
     const safeName = ex.name.replace(/'/g, "\\'");
-    li.innerHTML = `<button class="demo-link" onclick="openDemoByName('${safeName}')">${ex.icon} ${ex.name}</button><span><span class="tag">${ex.seconds}s</span></span>`;
+    li.innerHTML = `<button class="demo-link" onclick="openDemoByName('${safeName}')">${ex.icon} ${ex.name}</button><span><span class="tag">${ex.seconds}s${ex.sides === 2 ? " each side" : ""}</span></span>`;
     ul.appendChild(li);
   });
-  total += restSecs * Math.max(0, list.length - 1);
+  const total = buildQueue().reduce((sum, st) => sum + st.seconds, 0);
   document.getElementById("totalMinutes").textContent = Math.max(1, Math.round(total / 60));
 
   const isEmpty = list.length === 0;
@@ -6644,6 +6661,18 @@ let demoTimerHandle = null;
 
 let renderer3d = null, scene3d = null, camera3d = null;
 let root3d = null, upper3d = null, torsoMesh3d = null;
+let head3d = null, noseMesh3d = null, spineGroup3d = null, light3d = null;
+let wallArms3d = null, wallArmParts3d = [];
+let kneeLegs3d = null, kneeLegParts3d = [];
+let sideArm3d = null, sideArmParts = null, demoFingertip3d = false;
+let chairLow3d = null, punchArms3d = null, punchArmParts3d = [];
+let camOverride3d = null, rollRing3d = null, neckMesh3d = null, earMeshes3d = [], footMeshes3d = [], tandemLine3d = null, contactMark3d = null;
+let matFar3d = null; /* far-side limbs: a shade darker in side views so overlapping limbs stay readable */
+let spineSegs3d = [], spineJoints3d = [];
+let lastPhase3d = "";
+let demoSide3d = "";
+/* Spine-bending moves are filmed from the side so the curve of the back is visible */
+const SIDE_VIEW_MOVES = new Set(["catcow", "pelvictilt", "kneetochest", "kneetochestlong", "kneetochestdouble"]);
 let leftShoulder3d = null, rightShoulder3d = null, leftHip3d = null, rightHip3d = null;
 let chairGroup3d = null, wallGroup3d = null;
 let bodyMaterials3d = [];
@@ -6652,6 +6681,281 @@ let clockStart3d = 0;
 let currentMoveKey3d = "march";
 let seatedBaseHipX = 0;   /* thighs rest forward when the exercise is done sitting in a chair */
 let currentPropMode = "none"; /* seated | under | side-two | side-one | side-none | wall | none */
+
+function setPhase3d(text) {
+  if (text === lastPhase3d) return;
+  lastPhase3d = text;
+  const el = document.getElementById("demoPhase");
+  el.textContent = text;
+  el.classList.remove("hidden");
+}
+
+/* Bends the torso as a chain of segments. c > 0 arches the back (chest up, belly forward);
+   c < 0 rounds it (upper back pushes out, chin tucks). */
+function flexSpine(c, o) {
+  const N = spineSegs3d.length, segLen = 1.2 / N;
+  torsoMesh3d.visible = false; spineGroup3d.visible = true; noseMesh3d.visible = true;
+  let y = 0, z = 0, phi = 0;
+  spineJoints3d[0].position.set(0, 0, 0);
+  for (let i = 0; i < N; i++) {
+    const u = (i + 0.5) / N;
+    const low = (c < 0 && o.catLow !== undefined) ? o.catLow : o.low;
+    const slope = (c < 0 && o.catSlope !== undefined) ? o.catSlope : o.slope;
+    phi += c * (low - slope * u);
+    const cs = Math.cos(phi), sn = Math.sin(phi);
+    spineSegs3d[i].position.set(0, y + cs * segLen / 2, z + sn * segLen / 2);
+    spineSegs3d[i].rotation.x = phi;
+    y += cs * segLen; z += sn * segLen;
+    spineJoints3d[i + 1].position.set(0, y, z);
+  }
+  const hp = phi - c * o.head; /* arch: look up; round: chin to chest */
+  head3d.position.set(0, y + Math.cos(hp) * 0.35, z + Math.sin(hp) * 0.35);
+  head3d.rotation.x = hp;
+  [leftShoulder3d, rightShoulder3d].forEach(sh => {
+    sh.position.y = y - 0.05 * Math.cos(phi);
+    sh.position.z = z - 0.05 * Math.sin(phi);
+    sh.rotation.x = -0.8; /* arms rest forward, hands toward the knees */
+  });
+  if (c > 0.3) setPhase3d(o.archText);
+  else if (c < -0.3) setPhase3d(o.roundText);
+}
+
+/* Seated knee-to-chest: one knee (or both) is pulled up and hugged with both hands, held, then lowered.
+   seq lists which knee goes up in turn: "L", "R" or "B" (both). */
+/* Wall push-up pose for a given depth s (0 = arms straight, 1 = chest close to the wall). Feet stay planted; the body
+   leans in as one straight line while the hands stay flat on the wall. */
+function wallPushPose(s) {
+  const beta = 0.33 + s * (0.50 - 0.33);                         /* body lean from vertical (radians) */
+  const sb = Math.sin(beta), cb = Math.cos(beta);
+  root3d.rotation.x = beta;
+  root3d.position.set(0, FLOOR_Y + 1.3 * cb, 1.3 * sb);          /* pivot about the feet */
+  leftShoulder3d.visible = false; rightShoulder3d.visible = false; wallArms3d.visible = true;
+  const Sz = 2.45 * sb, Sy = FLOOR_Y + 2.45 * cb;                /* shoulder (y-z plane) */
+  const Hz = WALL_Z - 0.1, Hy = 1.0;                             /* hands on the wall */
+  const dz = Hz - Sz, dy = Hy - Sy, d = Math.min(Math.hypot(dz, dy), 0.89);
+  const uz = dz / Math.hypot(dz, dy), uy = dy / Math.hypot(dz, dy);
+  const h = Math.sqrt(Math.max(0.45 * 0.45 - (d / 2) * (d / 2), 0));
+  const Ez = Sz + uz * d / 2 + uy * h, Ey = Sy + uy * d / 2 - uz * h;   /* elbow drops below the shoulder-hand line */
+  const place = (mesh, az, ay, bz, by) => {
+    mesh.position.set(mesh.parentX, (ay + by) / 2, (az + bz) / 2);
+    mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0);
+  };
+  wallArmParts3d.forEach(pt => {
+    [pt.upper, pt.fore, pt.elbow, pt.hand].forEach(m => { m.parentX = pt.x; });
+    place(pt.upper, Sz, Sy, Ez, Ey); pt.upper.position.x = pt.x;
+    place(pt.fore, Ez, Ey, Hz, Hy); pt.fore.position.x = pt.x;
+    pt.elbow.position.set(pt.x, Ey, Ez);
+    pt.hand.position.set(pt.x, Hy, Hz);
+  });
+}
+
+/* Timeline: lower, (hold / pause), push back, short rest. */
+function wallPushMove(t, o) {
+  const ease = x => x * x * (3 - 2 * x);
+  const total = o.down + o.hold + o.up + o.rest, c = t % total;
+  let s, text;
+  if (c < o.down) {
+    const u = c / o.down; s = ease(u);
+    text = o.count ? `⬇️ Lower slowly — count ${Math.min(3, 1 + Math.floor(u * 3))}` : "⬇️ Bend your elbows, chest toward the wall";
+  } else if (c < o.down + o.hold) {
+    s = 1; text = o.hold >= 1.5 ? `✋ Hold at the bottom (${o.hold} seconds)` : "⏸ Pause at the bottom";
+  } else if (c < o.down + o.hold + o.up) {
+    s = 1 - ease((c - o.down - o.hold) / o.up); text = "⬆️ Push back to the start";
+  } else { s = 0; text = "Arms straight, get ready"; }
+  wallPushPose(s);
+  setPhase3d(text);
+}
+
+/* Seated torso twist with punches: the trunk turns to one side while the opposite arm punches across the body,
+   then it turns to the other side and the other arm punches. Arms are chambered at the chest between punches. */
+function twistPunchMove(t, count) {
+  const ease = x => x * x * (3 - 2 * x);
+  const B = 1.1, w = Math.PI / B, sn = Math.sin(w * t);
+  upper3d.rotation.y = 0.75 * sn;                                   /* + turns the chest toward screen-right */
+  leftShoulder3d.visible = false; rightShoulder3d.visible = false; punchArms3d.visible = true;
+  const Sy = 1.15, Sz = 0;
+  punchArmParts3d.forEach((pt, i) => {
+    const e = ease(Math.max(i === 0 ? sn : -sn, 0));                /* left arm punches while turning right, and vice versa */
+    const Hz = 0.16 + e * 0.78, Hy = 1.02 + e * 0.10;               /* fist: chambered at the chest -> fully extended */
+    const dz = Hz - Sz, dy = Hy - Sy, dl = Math.hypot(dz, dy), d = Math.min(dl, 0.89);
+    const uz = dz / dl, uy = dy / dl, h = Math.sqrt(Math.max(0.2025 - (d / 2) * (d / 2), 0));
+    const Ez = Sz + uz * d / 2 + uy * h, Ey = Sy + uy * d / 2 - uz * h;
+    const Fz = Sz + uz * d, Fy = Sy + uy * d;
+    const seg = (mesh, az, ay, bz, by) => { mesh.position.set(pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    seg(pt.upper, Sz, Sy, Ez, Ey); seg(pt.fore, Ez, Ey, Fz, Fy);
+    pt.shoulder.position.set(pt.x, Sy, Sz); pt.elbow.position.set(pt.x, Ey, Ez); pt.fist.position.set(pt.x, Fy, Fz);
+  });
+  const idx = Math.floor(t / B), n = idx + 1, toRight = idx % 2 === 0;   /* same source for number and direction, so they never disagree */
+  setPhase3d(`🥊 ${count ? "Punch " + n + " — " : ""}Twist to the ${toRight ? "right" : "left"}, punch across with your ${toRight ? "left" : "right"} arm`);
+  camOverride3d = { yaw: 0, camY: 4.2, lookY: 0.75, lookZ: 0.55, dist: 3.4 };   /* high front view: both punches and the trunk turn are visible */
+}
+
+/* Sit-to-stand, side view: lean forward, stand tall, pause, then sit back down slowly. */
+function sitToStandMove(t, reps, noHands) {
+  const ease = x => x * x * (3 - 2 * x);
+  const P0 = 0.4, UP = 1.4, P1 = 0.4, DN = 1.8, total = P0 + UP + P1 + DN;
+  const rep = Math.floor(t / total) % reps + 1, c = t % total;
+  let u, text;                                              /* u: 0 = seated, 1 = standing */
+  if (c < P0) { u = 0; text = noHands ? `🪑 Sit tall, arms forward, no hands — rep ${rep} of ${reps}` : `🪑 Sit tall, feet flat — rep ${rep} of ${reps}`; }
+  else if (c < P0 + UP) { u = ease((c - P0) / UP); text = c < P0 + UP * 0.4 ? "➡️ Lean forward from the hips" : "⬆️ Push through your feet and stand up"; }
+  else if (c < P0 + UP + P1) { u = 1; text = "🧍 Stand tall"; }
+  else { u = 1 - ease((c - P0 - UP - P1) / DN); text = "⬇️ Sit back down slowly, controlled"; }
+
+  /* hips travel forward and up; the trunk leans most as the hips leave the seat */
+  const hz = -0.25 + 0.65 * ease(Math.min(1, u * 1.25));
+  const hy = -0.62 + 0.68 * ease(Math.max(0, (u - 0.12) / 0.88));
+  const lean = 0.62 * Math.sin(Math.PI * u);
+  root3d.position.set(0, hy, hz);
+  upper3d.rotation.x = lean;
+  head3d.rotation.x = -0.25 * lean; noseMesh3d.visible = true;
+  [leftShoulder3d, rightShoulder3d].forEach(sh => { sh.rotation.x = -1.4 - lean; });     /* arms forward, level, for balance */
+
+  /* legs: two-bone IK from the hip to feet that stay flat on the floor, knees forward */
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const TH = 0.65, SH = 0.65, Az = 0.42, Ay = -1.235;
+  const dz = Az - hz, dy = Ay - hy, d = Math.min(Math.hypot(dz, dy), TH + SH - 0.002);
+  const uz = dz / Math.hypot(dz, dy), uy = dy / Math.hypot(dz, dy);
+  const hh = Math.sqrt(Math.max(TH * TH - (d / 2) * (d / 2), 0));
+  const Kz = hz + uz * d / 2 - uy * hh, Ky = hy + uy * d / 2 + uz * hh;
+  kneeLegParts3d.forEach((pt, i) => {
+    const seg = (mesh, az, ay, bz, by) => { mesh.position.set(pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    seg(pt.thigh, hz, hy, Kz, Ky); seg(pt.shin, Kz, Ky, Az, Ay);
+    pt.knee.position.set(pt.x, Ky, Kz);
+    pt.foot.visible = false;
+    const f = footMeshes3d[i]; f.visible = true; f.scale.set(0.9, 0.8, 0.8);
+    f.position.set(pt.x, -1.3 + 0.044, Az + 0.1);
+  });
+
+  chairGroup3d.visible = false; chairLow3d.visible = true;
+  camOverride3d = { yaw: Math.PI / 2, lookY: 0.3, lookZ: 0.4, dist: 5.6 };
+  setPhase3d(text);
+}
+
+/* Seated leg extension: straighten one leg, hold with the foot flexed, then point the toes, then lower slowly. */
+function legHoldPointMove(t, hold) {
+  const ease = x => x * x * (3 - 2 * x);
+  const RS = 1.4, PT = 0.8, PH = 1.0, LW = 1.8, RT = 0.5, total = RS + hold + PT + PH + LW + RT, c = t % total;
+  let e, f, phase;
+  if (c < RS) { const k = ease(c / RS); e = k; f = k; phase = "⬆️ Straighten your leg out in front"; }
+  else if (c < RS + hold) { e = 1; f = 1; phase = `✋ Hold, toes pulled back (${hold} seconds)`; }
+  else if (c < RS + hold + PT) { e = 1; f = 1 - 2 * ease((c - RS - hold) / PT); phase = "🦶 Now point your toes away"; }
+  else if (c < RS + hold + PT + PH) { e = 1; f = -1; phase = "🦶 Keep pointing, leg straight"; }
+  else if (c < RS + hold + PT + PH + LW) { const u = (c - RS - hold - PT - PH) / LW; e = 1 - ease(u); f = -1 + ease(Math.min(1, u / 0.4)); phase = "⬇️ Lower slowly"; }
+  else { e = 0; f = 0; phase = "Get ready for the other leg"; }
+  setPhase3d(phase);
+
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const TH = 0.65, SH = 0.65, ANK = Math.PI / 2 + 0.15;
+  const legs = [{ pt: kneeLegParts3d[0], foot: footMeshes3d[0], e: e, f: f },
+                { pt: kneeLegParts3d[1], foot: footMeshes3d[1], e: 0, f: 0 }];
+  legs.forEach(g => {
+    const phi = -0.1 + 0.06 * g.e, psi = -Math.PI / 2 + g.e * (Math.PI / 2);
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi), Az = Kz + SH * Math.cos(psi), Ay = Ky + SH * Math.sin(psi);
+    const seg = (mesh, az, ay, bz, by) => { mesh.position.set(g.pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    seg(g.pt.thigh, 0, 0, Kz, Ky); seg(g.pt.shin, Kz, Ky, Az, Ay);
+    g.pt.knee.position.set(g.pt.x, Ky, Kz);
+    g.pt.foot.visible = false;                                            /* a proper foot shape is used instead */
+    const delta = g.f >= 0 ? 0.25 * g.f : ANK * g.f;                      /* + flexed (toes back), - pointed (toes away) */
+    const th = psi + Math.PI / 2 + delta;                                 /* foot direction; neutral = 90 degrees to the shin */
+    g.foot.visible = true; g.foot.scale.set(0.9, 0.8, 0.8);
+    g.foot.rotation.set(-th, 0, 0);
+    g.foot.position.set(g.pt.x, Ay + 0.13 * Math.sin(th), Az + 0.13 * Math.cos(th));
+  });
+  camOverride3d = { yaw: Math.PI / 2, lookY: 0.3, lookZ: 0.5 };
+}
+
+/* Shoulder rolls (filmed from the side so the circle is visible), then a neck stretch (filmed from the front
+   so the ear-to-shoulder tilt is visible). The camera swings between the two views. */
+function shoulderRollMove(t, o) {
+  const ease = x => x * x * (3 - 2 * x);
+  const rollTotal = o.dirs.length * o.rollDur, TR = 0.9;
+  const neckSeg = o.tiltIn + o.hold + o.tiltOut, total = rollTotal + TR + neckSeg + TR;   /* one neck stretch: toward the current side */
+  const c = t % total;
+  let yaw = Math.PI / 2, dy = 0, dz = 0, tilt = 0;
+  if (c < rollTotal) {
+    const idx = Math.min(o.dirs.length - 1, Math.floor(c / o.rollDur)), th = 2 * Math.PI * (c - idx * o.rollDur) / o.rollDur, dir = o.dirs[idx];   /* min(): guards a rounding step at the boundary */
+    dy = (dir > 0 ? 1 : -1) * o.Ry * Math.sin(th); dz = o.Rz * Math.cos(th);       /* backward: front, up, back, down */
+    rollRing3d.visible = true;
+    rollRing3d.position.set(-0.55, 1.15, 0); rollRing3d.scale.set(o.Rz, o.Ry, 0.02);
+    setPhase3d(dir > 0 ? "🔄 Roll your shoulders: up, back and down" : "🔄 Now roll forward: up, forward and down");
+  } else if (c < rollTotal + TR) {
+    yaw = (Math.PI / 2) * (1 - ease((c - rollTotal) / TR));
+  } else if (c < rollTotal + TR + neckSeg) {
+    yaw = 0;
+    const u = c - rollTotal - TR;
+    const k = u < o.tiltIn ? ease(u / o.tiltIn) : u < o.tiltIn + o.hold ? 1 : 1 - ease((u - o.tiltIn - o.hold) / o.tiltOut);
+    tilt = k * o.tilt;                                                /* + = head toward screen-left (mirrored for the right side) */
+    const side = demoSide3d === "Right side" ? "right" : "left";
+    if (u < o.tiltIn) setPhase3d(`↔️ Tilt your head: ${side} ear toward ${side} shoulder`);
+    else if (u < o.tiltIn + o.hold) setPhase3d(`🧘 Hold the ${side} stretch gently`);
+    else setPhase3d("Bring your head back to centre");
+  } else {
+    yaw = (Math.PI / 2) * ease((c - rollTotal - TR - neckSeg) / TR);
+  }
+  [leftShoulder3d, rightShoulder3d].forEach(sh => { sh.position.y += dy; sh.position.z += dz; });
+  const NR = 0.34;                                                   /* neck-base to head-centre distance */
+  const hx = -NR * Math.sin(tilt), hy = 1.2 + NR * Math.cos(tilt);
+  head3d.position.set(hx, hy, 0);                                    /* head tilts about the base of the neck */
+  head3d.rotation.z = tilt;
+  earMeshes3d.forEach(e => { e.visible = true; });
+  neckMesh3d.visible = true;                                         /* a visible neck makes the bend readable */
+  const nlen = Math.hypot(hx, hy - 1.2);
+  neckMesh3d.scale.set(1, nlen, 1);
+  neckMesh3d.position.set(hx / 2, 1.2 + (hy - 1.2) / 2, 0);
+  neckMesh3d.rotation.z = tilt;
+  camOverride3d = { yaw };
+}
+
+function kneeToChestMove(t, seq, hold) {
+  const RAISE = 1.3, LOWER = 1.2, REST = 0.4, ease = x => x * x * (3 - 2 * x);
+  const segDur = RAISE + hold + LOWER + REST, total = segDur * seq.length;
+  const c = t % total, idx = Math.min(seq.length - 1, Math.floor(c / segDur)), u = c - idx * segDur;
+  const amt = u < RAISE ? ease(u / RAISE) : u < RAISE + hold ? 1 : u < RAISE + hold + LOWER ? 1 - ease((u - RAISE - hold) / LOWER) : 0;
+  const which = seq[idx];
+  const sL = (which === "L" || which === "B") ? amt : 0, sR = (which === "R" || which === "B") ? amt : 0;
+  const sMax = Math.max(sL, sR);
+
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true; noseMesh3d.visible = true;
+
+  /* legs, drawn in the side (z-y) plane */
+  const TH = 0.65, SH = 0.65;
+  const legPose = sAmt => {
+    const phi = -0.12 + sAmt * (0.85 + 0.12);          /* thigh angle above the horizontal */
+    const psi = -Math.PI / 2 - sAmt * 0.5;             /* shin angle: hangs down, folds back as the knee rises */
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
+    return { Kz, Ky, Fz: Kz + SH * Math.cos(psi), Fy: Ky + SH * Math.sin(psi), Gz: Kz + 0.3 * Math.cos(psi), Gy: Ky + 0.3 * Math.sin(psi) };
+  };
+  const seg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  const poses = [legPose(sL), legPose(sR)];
+  kneeLegParts3d.forEach((pt, i) => {
+    const P = poses[i];
+    seg(pt.thigh, pt.x, 0, 0, P.Kz, P.Ky);
+    seg(pt.shin, pt.x, P.Kz, P.Ky, P.Fz, P.Fy);
+    pt.knee.position.set(pt.x, P.Ky, P.Kz);
+    pt.foot.position.set(pt.x, P.Fy, P.Fz);
+  });
+
+  /* torso leans in toward the knee */
+  const lean = 0.38 * sMax;
+  upper3d.rotation.x = lean;
+  head3d.rotation.x = 0.1 * sMax;
+
+  /* both hands clasp the raised shin; at rest they sit near the thighs */
+  const Sy = 1.15 * Math.cos(lean), Sz = 1.15 * Math.sin(lean);
+  [leftShoulder3d, rightShoulder3d].forEach((sh, i) => {
+    const tgt = which === "B" ? poses[i] : poses[which === "L" ? 0 : 1];
+    const tz = 0.22 + sMax * (tgt.Gz - 0.22), ty = 0.22 + sMax * (tgt.Gy - 0.22);
+    const dz = tz - Sz, dy = ty - Sy, d = Math.hypot(dz, dy);
+    sh.rotation.x = Math.atan2(-dz, -dy) - lean;
+    sh.scale.y = d / 0.9;
+  });
+
+  const who = which === "B" ? "both" : ((which === "L") === (demoSide3d !== "Right side")) ? "left" : "right";
+  if (u < RAISE) setPhase3d(`⬆️ Pull your ${who} knee${who === "both" ? "s" : ""} up toward your chest`);
+  else if (u < RAISE + hold) setPhase3d(`🤗 Hold — hug your ${who} knee${who === "both" ? "s" : ""} close`);
+  else if (u < RAISE + hold + LOWER) setPhase3d("⬇️ Lower your foot slowly");
+  else setPhase3d("Get ready for the next one");
+}
 
 const MOVE3D = {
   march(t) { const s = Math.sin(t * 3); leftHip3d.rotation.x = seatedBaseHipX + s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; },
@@ -6671,24 +6975,128 @@ const MOVE3D = {
     const upR = Math.max(s, 0), upL = Math.max(-s, 0);
     leftShoulder3d.rotation.z = upL * 1.5; rightShoulder3d.rotation.z = -upR * 1.5; /* opposite arm reaches up */
   },
-  armraise(t) { const s = (Math.sin(t * 1.8) + 1) / 2; leftShoulder3d.rotation.z = s * 1.3; rightShoulder3d.rotation.z = -s * 1.3; },
+  armraise(t) {
+    const s = (Math.sin(t * 1.8 - Math.PI / 2) + 1) / 2, rising = Math.cos(t * 1.8 - Math.PI / 2) > 0;   /* starts with arms down */
+    leftShoulder3d.rotation.z = -s * 1.5; rightShoulder3d.rotation.z = s * 1.5;        /* both arms swing OUT to the sides */
+    if (s > 0.93) setPhase3d("🙆 Arms at shoulder height");
+    else if (s < 0.07) setPhase3d("Arms down, ready");
+    else setPhase3d(rising ? "⬆️ Raise both arms out to the sides" : "⬇️ Lower slowly");
+  },
+  armraisehold(t) {
+    /* 6.5s cycle: raise 1.5s, hold 3s, lower 1.5s, short rest 0.5s */
+    const ease = x => x * x * (3 - 2 * x), c = t % 6.5;
+    const s = c < 1.5 ? ease(c / 1.5) : c < 4.5 ? 1 : c < 6.0 ? 1 - ease((c - 4.5) / 1.5) : 0;
+    leftShoulder3d.rotation.z = -s * 1.5; rightShoulder3d.rotation.z = s * 1.5;
+    if (c < 1.5) setPhase3d("⬆️ Raise both arms out to the sides");
+    else if (c < 4.5) setPhase3d("✋ Hold at shoulder height (3 seconds)");
+    else if (c < 6.0) setPhase3d("⬇️ Lower slowly");
+    else setPhase3d("Arms down, ready");
+  },
   anklecircle(t) { leftHip3d.rotation.z = Math.sin(t * 2.2) * 0.35; leftHip3d.rotation.x = seatedBaseHipX + Math.cos(t * 2.2) * 0.15; },
   breathing(t) { const s = 1 + 0.07 * Math.sin(t * 1.7); torsoMesh3d.scale.set(s, s, s); },
+  twistpunch(t) { twistPunchMove(t, false); },
+  twistpunchcount(t) { twistPunchMove(t, true); },
   twist(t) { upper3d.rotation.y = Math.sin(t * 2.4) * 0.5; },
+  legholdpoint2(t) { legHoldPointMove(t, 2); },
+  legholdpoint3(t) { legHoldPointMove(t, 3); },
   legextend(t) { const s = (Math.sin(t * 2.3) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.1; },
   punch(t) { const l = Math.max(Math.sin(t * 7), 0); const r = Math.max(Math.sin(t * 7 + Math.PI), 0); leftShoulder3d.rotation.x = -l * 1.5; rightShoulder3d.rotation.x = -r * 1.5; },
   kneetap(t) { const s = (Math.sin(t * 4.6) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.0; rightShoulder3d.rotation.z = -s * 0.8; },
-  shoulderroll(t) { leftShoulder3d.rotation.z = Math.sin(t * 4.2) * 0.4; rightShoulder3d.rotation.z = -Math.sin(t * 4.2) * 0.4; },
-  pushup(t) { root3d.position.z = Math.sin(t * 3.6) * 0.2; root3d.rotation.x = Math.sin(t * 3.6) * 0.1; },
-  heelraise(t) { root3d.position.y = Math.abs(Math.sin(t * 4.4)) * 0.28; },
+  shoulderroll(t) { shoulderRollMove(t, { Ry: 0.13, Rz: 0.16, rollDur: 2.2, dirs: [1, 1, 1], tilt: 0.50, tiltIn: 1.2, hold: 1.6, tiltOut: 1.0 }); },
+  shoulderrollbig(t) { shoulderRollMove(t, { Ry: 0.17, Rz: 0.20, rollDur: 2.6, dirs: [1, 1, 1], tilt: 0.62, tiltIn: 1.4, hold: 2.2, tiltOut: 1.2 }); },
+  shoulderrollboth(t) { shoulderRollMove(t, { Ry: 0.17, Rz: 0.20, rollDur: 2.4, dirs: [1, 1, -1, -1], tilt: 0.72, tiltIn: 1.4, hold: 2.6, tiltOut: 1.2 }); },
+  pushup(t) { wallPushMove(t, { down: 1.9, hold: 0, up: 1.9, rest: 0 }); },
+  pushupslow(t) { wallPushMove(t, { down: 3.0, hold: 0, up: 1.5, rest: 0.4 }); },
+  pushup3count(t) { wallPushMove(t, { down: 3.0, hold: 1.0, up: 1.5, rest: 0.4, count: true }); },
+  pushuphold(t) { wallPushMove(t, { down: 1.5, hold: 2.0, up: 1.5, rest: 0.4 }); },
+  heelraise(t) {
+    /* slow, controlled cycle (4.5s): rise, brief hold, lower slowly, short rest */
+    const ease = x => x * x * (3 - 2 * x), p = (t % 4.5) / 4.5;
+    const s = p < 0.35 ? ease(p / 0.35) : p < 0.5 ? 1 : p < 0.9 ? 1 - ease((p - 0.5) / 0.4) : 0;
+    const h = s * 0.14;
+    root3d.position.y = h;                                   /* body rises onto the toes... */
+    leftHip3d.scale.y = 1 + h / 1.3; rightHip3d.scale.y = 1 + h / 1.3; /* ...while the feet stay on the floor */
+  },
   balance(t) { const s = (Math.sin(t * 2.1) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.15; root3d.rotation.z = Math.sin(t * 4) * 0.05; },
+  weightshift(t) { root3d.position.x = Math.sin(t * 1.5) * 0.14; /* both feet stay planted; legs & arms compensate below */
+    const dx = root3d.position.x; leftHip3d.rotation.z = -Math.asin(dx / 1.3); rightHip3d.rotation.z = -Math.asin(dx / 1.3); },
   sideleg(t) { const s = (Math.sin(t * 3.8) + 1) / 2; leftHip3d.rotation.z = s * 0.85; },
-  heeltoe(t) { root3d.rotation.z = Math.sin(t * 4.7) * 0.06; },
+  heeltoe(t) {
+    /* Feet slide into a tandem stance (front heel touching back toes), hold perfectly still, then step back out.
+       Filmed from the front-side so the foot placement is visible; no body sway. */
+    const ease = x => x * x * (3 - 2 * x);
+    const A = 0.8, B = 1.5, C = 4.0, D = 1.5, E = 0.8, total = A + B + C + D + E, c = t % total;
+    const s = c < A ? 0 : c < A + B ? ease((c - A) / B) : c < A + B + C ? 1 : c < A + B + C + D ? 1 - ease((c - A - B - C) / D) : 0;
+    const frontIsLeft = demoSide3d !== "Right side";
+    const L = 1.3, HALF = 0.225;                                    /* half of one foot-length between the ankles (heel meets toes) */
+    const legs = [{ hx: -0.22, front: frontIsLeft, hip: leftHip3d, foot: footMeshes3d[0] },
+                  { hx: 0.22, front: !frontIsLeft, hip: rightHip3d, foot: footMeshes3d[1] }];
+    const dxr = 0.22 * s, dz = HALF * s, d = Math.hypot(dxr, dz), h = Math.sqrt(L * L - d * d);
+    root3d.position.y = h - L;                                      /* hips settle a touch; feet stay on the floor */
+    legs.forEach(g => {
+      const ax = g.hx * (1 - s), az = (g.front ? 1 : -1) * dz;      /* ankle position (world x, z) */
+      const ux = (ax - g.hx) / L, uy = -h / L, uz = az / L;
+      g.hip.rotation.set(Math.atan2(-uz, -uy), 0, Math.asin(ux));
+      g.foot.visible = true;
+      g.foot.position.set(ax, -1.3 + 0.055, az + 0.12);             /* foot reaches forward of the ankle */
+    });
+    leftShoulder3d.rotation.z = -0.3 * s; rightShoulder3d.rotation.z = 0.3 * s;   /* arms out a little for balance */
+    tandemLine3d.visible = true;                                    /* straight guide line on the floor */
+    if (s > 0.95) { contactMark3d.visible = true; contactMark3d.position.set(0, -1.27, 0); }   /* where heel meets toes */
+    camOverride3d = { yaw: -1.3, lookY: 0.25 };
+    const front = frontIsLeft ? "left" : "right";
+    if (c < A) setPhase3d("Stand tall, feet together");
+    else if (c < A + B) setPhase3d(`🦶 Place your ${front} foot directly in front — heel touching toes`);
+    else if (c < A + B + C) setPhase3d("🧍 Hold steady — eyes forward, chair nearby for safety");
+    else if (c < A + B + C + D) setPhase3d("Step back to standing");
+    else setPhase3d("Stand tall, feet together");
+  },
+  sittostand8(t) { sitToStandMove(t, 8); },
+  sittostand10(t) { sitToStandMove(t, 10, true); },
   sittostand(t) { const s = (Math.sin(t * 3.4) + 1) / 2; root3d.position.y = -s * 0.32; torsoMesh3d.scale.y = 1 - 0.1 * s; leftHip3d.rotation.x = seatedBaseHipX - s * 0.85; rightHip3d.rotation.x = seatedBaseHipX - s * 0.85; },
-  singleleg(t) { const s = (Math.sin(t * 2.0) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.6; root3d.rotation.z = Math.sin(t * 3.2) * 0.07; },
-  kneetochest(t) { const s = (Math.sin(t * 1.6) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.7; upper3d.rotation.x = -s * 0.25; },
-  pelvictilt(t) { upper3d.rotation.x = Math.sin(t * 2) * 0.15; },
-  catcow(t) { upper3d.rotation.x = Math.sin(t * 1.8) * 0.35; },
+  singleleg(t) {
+    /* Steady single-leg stand: shift weight over the standing leg, lift the other knee (bent), hold still, lower, recentre.
+       The standing foot stays planted, the body does not swing, and the camera stays put. */
+    const ease = x => x * x * (3 - 2 * x);
+    const SH = 1.0, LF = 1.2, HD = 3.6, LW = 1.2, RC = 1.0, total = SH + LF + HD + LW + RC, c = t % total;
+    let shift, lift;
+    if (c < SH) { shift = ease(c / SH); lift = 0; }
+    else if (c < SH + LF) { shift = 1; lift = ease((c - SH) / LF); }
+    else if (c < SH + LF + HD) { shift = 1; lift = 1; }
+    else if (c < SH + LF + HD + LW) { shift = 1; lift = 1 - ease((c - SH - LF - HD) / LW); }
+    else { shift = 1 - ease((c - SH - LF - HD - LW) / RC); lift = 0; }
+
+    const dx = 0.11 * shift;                                   /* body moves over the standing (right) leg */
+    root3d.position.x = dx;
+    rightHip3d.rotation.z = -Math.asin(dx / 1.3);              /* ...while its foot stays where it was */
+    leftHip3d.visible = false; kneeLegs3d.visible = true;      /* lifted leg is drawn with a bent knee */
+    const idle = kneeLegParts3d[1];
+    [idle.thigh, idle.shin, idle.knee, idle.foot].forEach(m => { m.visible = false; });
+
+    const phi = -Math.PI / 2 + lift * (Math.PI / 2 - 0.1), psi = -Math.PI / 2 - lift * 0.25;
+    const Kz = 0.65 * Math.cos(phi), Ky = 0.65 * Math.sin(phi);
+    const Fz = Kz + 0.65 * Math.cos(psi), Fy = Ky + 0.65 * Math.sin(psi);
+    const pt = kneeLegParts3d[0], lx = pt.x + dx;
+    const seg = (mesh, az, ay, bz, by) => { mesh.position.set(lx, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    seg(pt.thigh, 0, 0, Kz, Ky); seg(pt.shin, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(lx, Ky, Kz); pt.foot.position.set(lx, Fy, Fz);
+
+    const out = 0.35 * lift;                                   /* arms drift out a little for balance */
+    leftShoulder3d.rotation.z = -out; rightShoulder3d.rotation.z = out;
+
+    camOverride3d = { yaw: -0.8, lookY: 0.2 };                 /* fixed 3/4 view from the chair-free side: no camera sway */
+    const lifted = demoSide3d === "Right side" ? "right" : "left", standing = lifted === "left" ? "right" : "left";
+    if (c < SH) setPhase3d(`⚖️ Shift your weight onto your ${standing} leg`);
+    else if (c < SH + LF) setPhase3d(`⬆️ Lift your ${lifted} knee`);
+    else if (c < SH + LF + HD) setPhase3d("🧍 Hold steady — eyes forward, chair nearby for safety");
+    else if (c < SH + LF + HD + LW) setPhase3d("⬇️ Lower your foot gently");
+    else setPhase3d("Stand tall on both feet");
+  },
+  kneetochest(t) { kneeToChestMove(t, ["L"], 1.8); },
+  kneetochestlong(t) { kneeToChestMove(t, ["L"], 3.5); },
+  kneetochestdouble(t) { kneeToChestMove(t, ["L", "B"], 1.5); },
+  pelvictilt(t) { flexSpine(Math.sin(t * 2), { low: 0.30, slope: 0.70, head: 0.15, archText: "⬆️ Tilt forward: belly out, lower back arches", roundText: "⬇️ Tilt back: tuck your pelvis, lower back rounds" }); },
+  catcow(t) { flexSpine(Math.sin(t * 1.8), { low: 0.42, slope: 0.95, catLow: 0.25, catSlope: 0.75, head: 0.40, archText: "🐮 Cow: arch your back, lift chest, look up", roundText: "🐱 Cat: round your back, tuck chin to chest" }); },
   squathold(t) { const s = (Math.sin(t * 1.0) + 1) / 2; root3d.position.y = -s * 0.3; torsoMesh3d.scale.y = 1 - 0.08 * s; leftHip3d.rotation.x = seatedBaseHipX - s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; }
 };
 
@@ -6711,12 +7119,40 @@ function buildChair3d() {
   return chair;
 }
 
+const WALL_Z = 1.75, FLOOR_Y = -1.3;
+/* A realistic-height chair for the sit-to-stand demo: seat top at knee height, feet flat on the floor. */
+function buildLowChair3d() {
+  const g = new THREE.Group();
+  const m = new THREE.MeshStandardMaterial({ color: 0x8a6d4f, roughness: 0.85, metalness: 0.05 });
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.1, 0.8), m);
+  seat.position.set(0, -0.79, -0.15);
+  g.add(seat);
+  [[-0.4, -0.5], [0.4, -0.5], [-0.4, 0.2], [0.4, 0.2]].forEach(([x, z]) => {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.46, 8), m);
+    leg.position.set(x, -1.07, z);
+    g.add(leg);
+  });
+  const back = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.8, 0.08), m);
+  back.position.set(0, -0.34, -0.51);
+  g.add(back);
+  g.visible = false;
+  return g;
+}
+
 function buildWall3d() {
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0xd7d2c4, roughness: 0.95, metalness: 0.02 });
-  const wall = new THREE.Mesh(new THREE.BoxGeometry(2.4, 2.4, 0.08), wallMat);
-  wall.position.set(0, 0.55, -1.05);
-  wall.visible = false;
-  return wall;
+  const g = new THREE.Group();
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xc9b898, roughness: 0.95, metalness: 0.02 });
+  const trimMat = new THREE.MeshStandardMaterial({ color: 0x8c7a5e, roughness: 0.9, metalness: 0.02 });
+  const floorMat = new THREE.MeshStandardMaterial({ color: 0xb4ad9f, roughness: 0.95, metalness: 0.02 });
+  const panel = new THREE.Mesh(new THREE.BoxGeometry(1.8, 3.6, 0.08), wallMat);
+  panel.position.set(0, FLOOR_Y + 1.8, WALL_Z + 0.04);
+  const skirting = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.16, 0.05), trimMat);
+  skirting.position.set(0, FLOOR_Y + 0.08, WALL_Z - 0.02);
+  const floor = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.05, 3.4), floorMat);
+  floor.position.set(0, FLOOR_Y - 0.025, WALL_Z - 1.7 + 0.3);
+  g.add(panel, skirting, floor);
+  g.visible = false;
+  return g;
 }
 
 function init3d() {
@@ -6735,13 +7171,14 @@ function init3d() {
   container.appendChild(renderer3d.domElement);
 
   scene3d.add(new THREE.AmbientLight(0xffffff, 0.7));
-  const dl = new THREE.DirectionalLight(0xffffff, 0.7);
-  dl.position.set(2, 3, 4);
-  scene3d.add(dl);
+  light3d = new THREE.DirectionalLight(0xffffff, 0.7);
+  light3d.position.set(2, 3, 4);
+  scene3d.add(light3d);
 
   const initialColor = document.getElementById("view-exercises").getAttribute("data-contrast") === "high" ? 0xffd400 : 0x1f5a4f;
   const mat = new THREE.MeshStandardMaterial({ color: initialColor, roughness: 0.55, metalness: 0.08 });
   bodyMaterials3d.push(mat);
+  matFar3d = new THREE.MeshStandardMaterial({ color: initialColor, roughness: 0.55, metalness: 0.08 });
 
   root3d = new THREE.Group();
   scene3d.add(root3d);
@@ -6753,29 +7190,154 @@ function init3d() {
   torsoMesh3d.position.y = 0.6;
   upper3d.add(torsoMesh3d);
 
-  const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.28, 14, 14), mat);
-  headMesh.position.y = 1.55;
-  upper3d.add(headMesh);
+  head3d = new THREE.Mesh(new THREE.SphereGeometry(0.28, 14, 14), mat);
+  head3d.position.y = 1.55;
+  upper3d.add(head3d);
+  noseMesh3d = new THREE.Mesh(new THREE.SphereGeometry(0.075, 10, 10), mat);
+  noseMesh3d.position.set(0, -0.02, 0.29);
+  noseMesh3d.visible = false;
+  head3d.add(noseMesh3d);
+  [-0.28, 0.28].forEach(ex => {
+    const ear = new THREE.Mesh(new THREE.SphereGeometry(0.065, 8, 8), ex > 0 ? matFar3d : mat);
+    ear.position.set(ex, -0.02, 0);
+    ear.visible = false;
+    head3d.add(ear);
+    earMeshes3d.push(ear);
+  });
+  neckMesh3d = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.11, 1, 8), mat);
+  neckMesh3d.visible = false;
+  upper3d.add(neckMesh3d);
 
-  function makeLimb(pivotX, pivotY, length, radius) {
+  /* Flexible spine (used by cat-cow and pelvic tilts) */
+  spineGroup3d = new THREE.Group();
+  spineGroup3d.visible = false;
+  upper3d.add(spineGroup3d);
+  const SPINE_N = 6, spineLen = 1.2 / SPINE_N;
+  const spineR = i => 0.16 + 0.04 * (i / SPINE_N);
+  for (let i = 0; i < SPINE_N; i++) {
+    const seg = new THREE.Mesh(new THREE.CylinderGeometry(spineR(i + 1), spineR(i), spineLen, 10), mat);
+    spineSegs3d.push(seg); spineGroup3d.add(seg);
+  }
+  for (let i = 0; i <= SPINE_N; i++) {
+    const jt = new THREE.Mesh(new THREE.SphereGeometry(spineR(i), 10, 10), mat);
+    spineJoints3d.push(jt); spineGroup3d.add(jt);
+  }
+
+  function makeLimb(pivotX, pivotY, length, radius, limbMat) {
     const group = new THREE.Group();
     group.position.set(pivotX, pivotY, 0);
-    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius * 0.85, length, 8), mat);
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius * 0.85, length, 8), limbMat || mat);
     mesh.position.y = -length / 2;
     group.add(mesh);
     return group;
   }
 
   leftShoulder3d = makeLimb(-0.4, 1.15, 0.9, 0.09);
-  rightShoulder3d = makeLimb(0.4, 1.15, 0.9, 0.09);
+  rightShoulder3d = makeLimb(0.4, 1.15, 0.9, 0.09, matFar3d);
+  [leftShoulder3d, rightShoulder3d].forEach(sh => {
+    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.11, 10, 10), sh === rightShoulder3d ? matFar3d : mat);
+    hand.position.y = -0.9;
+    sh.add(hand);
+    sh.add(new THREE.Mesh(new THREE.SphereGeometry(0.115, 10, 10), sh === rightShoulder3d ? matFar3d : mat)); /* visible shoulder joint */
+  });
   upper3d.add(leftShoulder3d, rightShoulder3d);
 
   leftHip3d = makeLimb(-0.22, 0, 1.3, 0.11);
-  rightHip3d = makeLimb(0.22, 0, 1.3, 0.11);
+  rightHip3d = makeLimb(0.22, 0, 1.3, 0.11, matFar3d);
   root3d.add(leftHip3d, rightHip3d);
+
+  /* Bendable arms (shoulder-elbow-hand) for the wall push-up */
+  wallArms3d = new THREE.Group();
+  wallArms3d.visible = false;
+  scene3d.add(wallArms3d);
+  [-0.4, 0.4].forEach(x => {
+    const lm = x > 0 ? matFar3d : mat;
+    const part = {
+      x,
+      upper: new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.09, 0.45, 8), lm),
+      fore: new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.085, 0.45, 8), lm),
+      elbow: new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 10), lm),
+      hand: new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10), lm)
+    };
+    wallArms3d.add(part.upper, part.fore, part.elbow, part.hand);
+    wallArmParts3d.push(part);
+  });
+
+  /* Bendable near-side arm for the one-hand / fingertip chair exercises (world coordinates, frontal plane) */
+  sideArm3d = new THREE.Group();
+  sideArm3d.visible = false;
+  scene3d.add(sideArm3d);
+  sideArmParts = {
+    upper: new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.09, 0.45, 8), mat),
+    fore: new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.085, 0.45, 8), mat),
+    elbow: new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 10), mat),
+    hand: new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10), mat),
+    finger: new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.14, 8), mat)
+  };
+  sideArm3d.add(sideArmParts.upper, sideArmParts.fore, sideArmParts.elbow, sideArmParts.hand, sideArmParts.finger);
+
+  /* Bendable arms for the torso-twist punches; children of the torso so they turn with it */
+  punchArms3d = new THREE.Group();
+  punchArms3d.visible = false;
+  upper3d.add(punchArms3d);
+  [-0.4, 0.4].forEach(x => {
+    const lm = x > 0 ? matFar3d : mat;
+    const part = {
+      x,
+      shoulder: new THREE.Mesh(new THREE.SphereGeometry(0.115, 10, 10), lm),
+      upper: new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.09, 0.45, 8), lm),
+      fore: new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.085, 0.45, 8), lm),
+      elbow: new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 10), lm),
+      fist: new THREE.Mesh(new THREE.SphereGeometry(0.125, 10, 10), lm)
+    };
+    punchArms3d.add(part.shoulder, part.upper, part.fore, part.elbow, part.fist);
+    punchArmParts3d.push(part);
+  });
+
+  /* Bendable legs (thigh + shin with a knee) for the knee-to-chest demo */
+  kneeLegs3d = new THREE.Group();
+  kneeLegs3d.visible = false;
+  scene3d.add(kneeLegs3d);
+  [-0.22, 0.22].forEach(x => {
+    const lm = x > 0 ? matFar3d : mat;
+    const part = {
+      x,
+      thigh: new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.65, 8), lm),
+      shin: new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.65, 8), lm),
+      knee: new THREE.Mesh(new THREE.SphereGeometry(0.105, 10, 10), lm),
+      foot: new THREE.Mesh(new THREE.SphereGeometry(0.095, 10, 10), lm)
+    };
+    kneeLegs3d.add(part.thigh, part.shin, part.knee, part.foot);
+    kneeLegParts3d.push(part);
+  });
+
+  /* two feet (shown only in the heel-to-toe stand so the foot placement is readable) */
+  [-0.22, 0.22].forEach(fx => {
+    const foot = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.11, 0.45), fx > 0 ? matFar3d : mat);
+    foot.visible = false;
+    scene3d.add(foot);
+    footMeshes3d.push(foot);
+  });
+
+  tandemLine3d = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.01, 1.7), new THREE.MeshStandardMaterial({ color: 0xe3a008, roughness: 0.5, metalness: 0.05 }));
+  tandemLine3d.position.set(0, -1.298, 0);
+  tandemLine3d.visible = false;
+  scene3d.add(tandemLine3d);
+
+  contactMark3d = new THREE.Mesh(new THREE.SphereGeometry(0.06, 10, 10), new THREE.MeshStandardMaterial({ color: 0xe3a008, roughness: 0.5, metalness: 0.05 }));
+  contactMark3d.visible = false;
+  scene3d.add(contactMark3d);
+
+  /* guide ring that traces the shoulder-roll path */
+  rollRing3d = new THREE.Mesh(new THREE.TorusGeometry(1, 0.1, 6, 40), new THREE.MeshStandardMaterial({ color: 0xe3a008, roughness: 0.5, metalness: 0.05 }));
+  rollRing3d.rotation.y = Math.PI / 2;
+  rollRing3d.visible = false;
+  scene3d.add(rollRing3d);
 
   chairGroup3d = buildChair3d();
   scene3d.add(chairGroup3d);
+  chairLow3d = buildLowChair3d();
+  scene3d.add(chairLow3d);
 
   wallGroup3d = buildWall3d();
   scene3d.add(wallGroup3d);
@@ -6791,8 +7353,7 @@ function applyPropReachPose() {
      (x = -0.95), so the near arm is the LEFT shoulder and it needs a
      NEGATIVE rotation.z to swing toward the chair, not a positive one. */
   if (currentPropMode === "side-two") {
-    leftShoulder3d.rotation.z = -0.85; leftShoulder3d.rotation.x = -0.1;   /* near (left) arm reaches the chair */
-    rightShoulder3d.rotation.z = -1.3; rightShoulder3d.rotation.x = -0.15; /* far (right) arm crosses over to also hold it */
+    /* arms are placed after the move each frame — see holdChairArms() */
   } else if (currentPropMode === "side-one") {
     leftShoulder3d.rotation.z = -0.85; leftShoulder3d.rotation.x = -0.1;   /* only the near (left) arm reaches */
   } else if (currentPropMode === "wall") {
@@ -6800,19 +7361,67 @@ function applyPropReachPose() {
   }
 }
 
+/* Two-hand chair hold: the chair stands in front of the figure and both hands rest on the top of its back.
+   Each frame the arms re-aim (and stretch a touch) so the hands stay on the chair while the body rises or dips. */
+const CHAIR_FRONT_Z = 1.03, CHAIR_FRONT_Y = -0.12, HAND_Z = 0.806, HAND_Y = 0.755;
+function holdChairArms() {
+  const L = 0.9;
+  [leftShoulder3d, rightShoulder3d].forEach(sh => {
+    const dy = HAND_Y - (1.15 + root3d.position.y), dz = HAND_Z - root3d.position.z;
+    const d = Math.sqrt(dy * dy + dz * dz);
+    sh.rotation.x = Math.atan2(-dz, -dy);
+    sh.rotation.z = -Math.asin(Math.max(-1, Math.min(1, root3d.position.x / d)));
+    sh.scale.y = d / L;
+  });
+}
+
+/* One-hand chair hold: the near arm bends so the hand rests on TOP of the chair back (not laid through it).
+   For "fingertip" exercises the hand hovers just above and only a single finger touches the chair. */
+function holdChairOneArm() {
+  const rz = root3d.rotation.z, cz = Math.cos(rz), sz = Math.sin(rz);          /* follow any body sway so the arm stays joined at the shoulder */
+  const SX = root3d.position.x + (-0.4 * cz - 1.15 * sz), SY = root3d.position.y + (-0.4 * sz + 1.15 * cz);
+  const HX = -0.73, topY = 0.875 + CHAIR_FRONT_Y;                 /* top edge of the chair back */
+  const HY = demoFingertip3d ? topY + 0.17 : topY + 0.10;
+  const dx = HX - SX, dy = HY - SY, dl = Math.hypot(dx, dy), d = Math.min(dl, 0.89);
+  const ux = dx / dl, uy = dy / dl, h = Math.sqrt(Math.max(0.2025 - (d / 2) * (d / 2), 0));
+  const Ex = SX + ux * d / 2 - uy * h, Ey = SY + uy * d / 2 + ux * h;   /* elbow drops down beside the body */
+  const seg = (mesh, ax, ay, bx, by) => { mesh.position.set((ax + bx) / 2, (ay + by) / 2, 0); mesh.rotation.set(0, 0, -Math.atan2(bx - ax, by - ay)); };
+  const P = sideArmParts;
+  seg(P.upper, SX, SY, Ex, Ey); seg(P.fore, Ex, Ey, HX, HY);
+  P.elbow.position.set(Ex, Ey, 0); P.hand.position.set(HX, HY, 0);
+  P.finger.visible = demoFingertip3d;
+  P.finger.position.set(HX, HY - 0.10, 0);                        /* fingertip just touches the top of the chair back */
+  leftShoulder3d.visible = false; sideArm3d.visible = true;
+}
+
 function resetPose3d() {
   root3d.position.set(0, 0, 0); root3d.rotation.set(0, 0, 0); root3d.scale.set(1, 1, 1);
   upper3d.rotation.set(0, 0, 0);
   leftShoulder3d.rotation.set(0, 0, 0); rightShoulder3d.rotation.set(0, 0, 0);
+  leftShoulder3d.scale.set(1, 1, 1); rightShoulder3d.scale.set(1, 1, 1);
+  leftShoulder3d.visible = true; rightShoulder3d.visible = true; wallArms3d.visible = false;
+  leftHip3d.visible = true; rightHip3d.visible = true; kneeLegs3d.visible = false;
+  kneeLegParts3d.forEach(pt => [pt.thigh, pt.shin, pt.knee, pt.foot].forEach(m => { m.visible = true; }));
+  footMeshes3d.forEach(f => { f.visible = false; f.scale.set(1, 1, 1); f.rotation.set(0, 0, 0); });
+  chairLow3d.visible = false; punchArms3d.visible = false; sideArm3d.visible = false;
+  tandemLine3d.visible = false; contactMark3d.visible = false;
+  rollRing3d.visible = false; camOverride3d = null; neckMesh3d.visible = false; earMeshes3d.forEach(e => { e.visible = false; });
   leftHip3d.rotation.set(seatedBaseHipX, 0, 0); rightHip3d.rotation.set(seatedBaseHipX, 0, 0);
+  leftHip3d.scale.set(1, 1, 1); rightHip3d.scale.set(1, 1, 1);
   torsoMesh3d.scale.set(1, 1, 1);
+  torsoMesh3d.visible = true; spineGroup3d.visible = false; noseMesh3d.visible = false;
+  head3d.position.set(0, 1.55, 0); head3d.rotation.set(0, 0, 0);
+  leftShoulder3d.position.set(-0.4, 1.15, 0); rightShoulder3d.position.set(0.4, 1.15, 0);
   applyPropReachPose();
 }
 
+let sideViewNow3d = false;
 function update3dColors() {
   if (!bodyMaterials3d.length) return;
-  const color = document.getElementById("view-exercises").getAttribute("data-contrast") === "high" ? 0xffd400 : 0x1f5a4f;
+  const high = document.getElementById("view-exercises").getAttribute("data-contrast") === "high";
+  const color = high ? 0xffd400 : 0x1f5a4f;
   bodyMaterials3d.forEach(m => m.color.setHex(color));
+  if (matFar3d) matFar3d.color.setHex(sideViewNow3d ? (high ? 0xa88c00 : 0x143d34) : color);
 }
 
 function animateFrame3d() {
@@ -6820,8 +7429,35 @@ function animateFrame3d() {
   const t = (performance.now() - clockStart3d) / 1000;
   resetPose3d();
   (MOVE3D[currentMoveKey3d] || MOVE3D.march)(t);
-  camera3d.position.x = Math.sin(t * 0.3) * 0.9;
-  camera3d.lookAt(0, 0.4, 0);
+  if (currentPropMode === "side-two") holdChairArms();
+  if (currentPropMode === "side-one") holdChairOneArm();
+  let lookY = 0.4, lookZ = 0;
+  const wantSide = camOverride3d ? camOverride3d.yaw > 0.9 : (currentPropMode === "wall" || SIDE_VIEW_MOVES.has(currentMoveKey3d));
+  if (wantSide !== sideViewNow3d) { sideViewNow3d = wantSide; update3dColors(); }
+  if (camOverride3d) {
+    const y = camOverride3d.yaw, k = y / (Math.PI / 2);
+    const dist = camOverride3d.dist || 4.8;
+    camera3d.position.set(-dist * Math.sin(y), camOverride3d.camY !== undefined ? camOverride3d.camY : 0.7, dist * Math.cos(y));
+    light3d.position.set(2 - 5 * k, 3, 4 - k);
+    lookY = camOverride3d.lookY !== undefined ? camOverride3d.lookY : 0.55;
+    lookZ = camOverride3d.lookZ || 0;
+  } else if (currentPropMode === "wall") {
+    camera3d.position.set(-5.4, 0.5, 0.85 + Math.sin(t * 0.3) * 0.25);
+    light3d.position.set(-3, 3, 3);
+    lookY = 0.15; lookZ = 0.85;
+  } else if (currentPropMode === "side-two") {
+    const yaw = 0.85 + Math.sin(t * 0.3) * 0.12;   /* front-left 3/4 view so both arms and the chair are visible */
+    camera3d.position.set(-5.2 * Math.sin(yaw), 1.1, 5.2 * Math.cos(yaw));
+    light3d.position.set(-3, 3, 4);
+    lookY = 0.3; lookZ = 0.4;
+  } else if (SIDE_VIEW_MOVES.has(currentMoveKey3d)) {
+    camera3d.position.set(-4.6, 0.5, Math.sin(t * 0.3) * 0.35);
+    light3d.position.set(-3, 3, 3);
+  } else {
+    camera3d.position.set(Math.sin(t * 0.3) * 0.9, 0.5, 4.6);
+    light3d.position.set(2, 3, 4);
+  }
+  camera3d.lookAt(0, lookY, lookZ);
   renderer3d.render(scene3d, camera3d);
 }
 
@@ -6835,7 +7471,7 @@ function openDemoByName(name) {
 function openCurrentStepDemo() {
   const step = queue[stepIndex];
   if (!step || step.type !== "exercise") return;
-  openDemo(step.name, step.cue, step.move, step.category, step.propMode);
+  openDemo(step.name, step.cue, step.move, step.category, step.propMode, step.sideLabel);
 }
 
 function applyPropMode(mode) {
@@ -6849,8 +7485,12 @@ function applyPropMode(mode) {
     chairGroup3d.position.set(0, 0, 0);
     chairGroup3d.rotation.set(0, 0, 0);
     chairGroup3d.visible = true;
-  } else if (currentPropMode === "side-two" || currentPropMode === "side-one" || currentPropMode === "side-none") {
-    chairGroup3d.position.set(-0.95, 0, -0.05);
+  } else if (currentPropMode === "side-two") {
+    chairGroup3d.position.set(0, CHAIR_FRONT_Y, CHAIR_FRONT_Z);   /* figure stands behind the chair, hands on its back */
+    chairGroup3d.rotation.set(0, 0, 0);
+    chairGroup3d.visible = true;
+  } else if (currentPropMode === "side-one" || currentPropMode === "side-none") {
+    chairGroup3d.position.set(-0.95, CHAIR_FRONT_Y, -0.05);
     chairGroup3d.rotation.set(0, -Math.PI / 2, 0);
     chairGroup3d.visible = true;
   } else if (currentPropMode === "wall") {
@@ -6858,8 +7498,11 @@ function applyPropMode(mode) {
   }
 }
 
-function openDemo(name, cue, moveKey, category, propMode) {
-  document.getElementById("demoName").textContent = name;
+function openDemo(name, cue, moveKey, category, propMode, sideLabel) {
+  demoSide3d = sideLabel || "";
+  demoFingertip3d = /fingertip/i.test(name);
+  document.getElementById("demoName").textContent = name + (sideLabel ? " — " + sideLabel : "");
+  document.getElementById("demoFig3d").style.transform = sideLabel === "Right side" ? "scaleX(-1)" : ""; /* mirror the figure for the right side */
   document.getElementById("demoCue").textContent = cue;
   document.getElementById("demoCategory").textContent = category ? ("Category: " + category) : "";
   document.getElementById("demoOverlay").classList.remove("hidden");
@@ -6868,6 +7511,10 @@ function openDemo(name, cue, moveKey, category, propMode) {
   currentMoveKey3d = moveKey || "march";
   seatedBaseHipX = (propMode === "seated") ? -1.3 : 0;
   applyPropMode(propMode || "none");
+  if (SIDE_VIEW_MOVES.has(currentMoveKey3d) && chairGroup3d.visible) chairGroup3d.position.z = -0.32; /* room for the back to round */
+  lastPhase3d = "";
+  const phaseEl = document.getElementById("demoPhase");
+  phaseEl.textContent = ""; phaseEl.classList.add("hidden");
   clockStart3d = performance.now();
   if (!rafId3d) animateFrame3d();
 
@@ -6932,26 +7579,26 @@ function runStep() {
   const demoLink = document.getElementById("playerDemoLink");
 
   if (step.type === "exercise") {
-    currentExerciseNumber++;
+    currentExerciseNumber = step.exIndex;
     card.classList.remove("resting");
     totalSeconds = step.seconds;
     secondsLeft = step.seconds;
-    document.getElementById("stepCounter").textContent = `Exercise ${currentExerciseNumber} of ${totalExercisesInRoutine}`;
+    document.getElementById("stepCounter").textContent = `Exercise ${currentExerciseNumber} of ${totalExercisesInRoutine}` + (step.sideLabel ? ` · ${step.sideLabel}` : "");
     document.getElementById("exIcon").textContent = step.icon;
-    document.getElementById("exName").textContent = step.name;
+    document.getElementById("exName").textContent = step.name + (step.sideLabel ? ` — ${step.sideLabel}` : "");
     document.getElementById("exCue").textContent = step.cue;
     demoLink.classList.remove("hidden");
-    exSpeak(`${step.name}. ${step.cue}`);
+    exSpeak(`${step.name}${step.sideLabel ? ", " + step.sideLabel : ""}. ${step.cue}`);
   } else {
     card.classList.add("resting");
     totalSeconds = step.seconds;
     secondsLeft = step.seconds;
     document.getElementById("stepCounter").textContent = `Get ready`;
-    document.getElementById("exIcon").textContent = "⏳";
-    document.getElementById("exName").textContent = "Short Rest";
+    document.getElementById("exIcon").textContent = step.switchSides ? "🔄" : "⏳";
+    document.getElementById("exName").textContent = step.switchSides ? "Switch Sides" : "Short Rest";
     document.getElementById("exCue").textContent = `Next: ${step.nextIcon} ${step.nextName}`;
     demoLink.classList.add("hidden");
-    exSpeak(`Short rest. Next: ${step.nextName}`);
+    exSpeak(`${step.switchSides ? "Switch sides" : "Short rest"}. Next: ${step.nextName}`);
   }
 
   document.getElementById("exTimer").textContent = secondsLeft;
