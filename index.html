@@ -6386,13 +6386,13 @@ const EXERCISES_BY_CATEGORY = {
       { name: "Knee-to-Chest (Double Knee)", icon: "🦵", cue: "Pull one knee to your chest, hold, then bring both knees in briefly. Repeat on this side.", seconds: 35, move: "kneetochestdouble" },
       { name: "Pelvic Tilts with Breath", icon: "🧘", cue: "Rock your pelvis forward and back, breathing out as you tilt.", seconds: 32, move: "pelvictilt" },
       { name: "Cat-Cow (Deeper)", icon: "🐱", cue: "Deepen the arch and round, moving a little slower.", seconds: 32, move: "catcow" },
-      { name: "Supported Squat Hold (Longer)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deeper squat, and hold a little longer.", seconds: 30, move: "squathold" }
+      { name: "Supported Squat Hold (Longer)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deeper squat, and hold a little longer.", seconds: 30, move: "squatholdlong" }
     ],
     advanced: [
       { name: "Knee-to-Chest (Extended Hold)", icon: "🦵", cue: "Pull one knee to your chest and hold longer, then lower. Repeat twice on this side.", seconds: 40, move: "kneetochestlong" },
       { name: "Pelvic Tilts (Continuous)", icon: "🧘", cue: "Flow continuously between forward and back pelvic tilts.", seconds: 35, move: "pelvictilt" },
       { name: "Cat-Cow (Flow)", icon: "🐱", cue: "Flow smoothly and fully between arch and round, syncing with your breath.", seconds: 35, move: "catcow" },
-      { name: "Supported Squat Hold (No Rest)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deep squat, and hold as long as comfortable before rising.", seconds: 35, move: "squathold" }
+      { name: "Supported Squat Hold (No Rest)", icon: "🪑⬇️", cue: "Hold the chair, lower into a deep squat, and hold as long as comfortable before rising.", seconds: 35, move: "squatholdnorest" }
     ]
   }
 };
@@ -7120,8 +7120,46 @@ const MOVE3D = {
   kneetochestdouble(t) { kneeToChestMove(t, ["L", "B"], 1.5); },
   pelvictilt(t) { flexSpine(Math.sin(t * 2), { low: 0.30, slope: 0.70, head: 0.15, archText: "⬆️ Tilt forward: belly out, lower back arches", roundText: "⬇️ Tilt back: tuck your pelvis, lower back rounds" }); },
   catcow(t) { flexSpine(Math.sin(t * 1.8), { low: 0.42, slope: 0.95, catLow: 0.25, catSlope: 0.75, head: 0.40, archText: "🐮 Cow: arch your back, lift chest, look up", roundText: "🐱 Cat: round your back, tuck chin to chest" }); },
-  squathold(t) { const s = (Math.sin(t * 1.0) + 1) / 2; root3d.position.y = -s * 0.3; torsoMesh3d.scale.y = 1 - 0.08 * s; leftHip3d.rotation.x = seatedBaseHipX - s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; }
+  squathold(t) { squatMove(t, { down: 1.0, hold: 1.6, up: 1.0, rest: 1.0, depth: 0.38 }); },
+  squatholdlong(t) { squatMove(t, { down: 1.2, hold: 3.0, up: 1.2, rest: 0.8, depth: 0.5 }); },
+  squatholdnorest(t) { squatMove(t, { down: 1.3, hold: 4.5, up: 1.3, rest: 0.3, depth: 0.58 }); }
 };
+
+/* Supported squat: knees bend and track forward, hips sink straight down and back slightly (as if
+   sitting toward an imaginary chair), heels stay flat on the floor. Real thigh/shin bend via the same
+   two-bone leg rig used for sit-to-stand, instead of just rotating a straight leg at the hip
+   (which used to just look like the whole body leaning forward). */
+function squatMove(t, o) {
+  const ease = x => x * x * (3 - 2 * x);
+  const total = o.down + o.hold + o.up + o.rest, c = t % total;
+  let s, text;
+  if (c < o.down) { s = ease(c / o.down) * o.depth; text = "⬇️ Bend your knees, lower into a squat"; }
+  else if (c < o.down + o.hold) { s = o.depth; text = o.hold >= 2.5 ? `✋ Hold the squat (${Math.round(o.hold)} seconds)` : "✋ Hold briefly"; }
+  else if (c < o.down + o.hold + o.up) { s = (1 - ease((c - o.down - o.hold) / o.up)) * o.depth; text = "⬆️ Push through your heels and rise"; }
+  else { s = 0; text = "🧍 Stand tall, holding the chair"; }
+  squatPose(s);
+  setPhase3d(text);
+}
+
+function squatPose(s) {
+  const TH = 0.65, SH = 0.65, Az = 0, Ay = -1.235;                    /* ankles stay put, flat on the floor */
+  const hy = -s * 1.25, hz = -s * 0.8;                                /* hips sink straight down and shift back */
+  root3d.position.set(0, hy, hz);
+  upper3d.rotation.x = s * 0.55;                                      /* chest leans forward over the knees */
+  head3d.rotation.x = -0.2 * s; noseMesh3d.visible = true;
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const dz = Az - hz, dy = Ay - hy, dl = Math.hypot(dz, dy), d = Math.min(dl, TH + SH - 0.002);
+  const uz = dz / dl, uy = dy / dl, hh = Math.sqrt(Math.max(TH * TH - (d / 2) * (d / 2), 0));
+  const Kz = hz + uz * d / 2 - uy * hh, Ky = hy + uy * d / 2 + uz * hh;   /* knee bows forward of the hip-ankle line */
+  kneeLegParts3d.forEach((pt, i) => {
+    const seg = (mesh, az, ay, bz, by) => { mesh.position.set(pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+    seg(pt.thigh, hz, hy, Kz, Ky); seg(pt.shin, Kz, Ky, Az, Ay);
+    pt.knee.position.set(pt.x, Ky, Kz);
+    pt.foot.visible = false;
+    const f = footMeshes3d[i]; f.visible = true; f.scale.set(0.9, 0.8, 0.8);
+    f.position.set(pt.x, -1.3 + 0.044, Az + 0.05);
+  });
+}
 
 function buildChair3d() {
   const chair = new THREE.Group();
