@@ -6232,7 +6232,7 @@ const EXERCISES_BY_CATEGORY = {
     advanced: [
       { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms, like a brisk walk in your seat.", seconds: 40, move: "marchpump" },
       { name: "Wall Push-ups (3-count)", icon: "🧱", cue: "Lower yourself slowly over 3 counts, pause, then push back up.", seconds: 35, move: "pushup3count" },
-      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees at a brisker pace.", seconds: 35, move: "march" },
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees at a brisker pace.", seconds: 35, move: "marchhighknee" },
       { name: "Deep Breathing", icon: "🌬️", cue: "Breathe in slowly through your nose, then out through your mouth.", seconds: 25, move: "breathing" }
     ]
   },
@@ -6252,7 +6252,7 @@ const EXERCISES_BY_CATEGORY = {
     ],
     hard: [
       { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms.", seconds: 38, move: "marchpump" },
-      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees, brisker pace.", seconds: 38, move: "march" },
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — march with higher knees, brisker pace.", seconds: 38, move: "marchhighknee" },
       { name: "Seated Punches", icon: "🥊", cue: "Alternate punching one arm forward at a time, a little faster now.", seconds: 35, move: "punch" },
       { name: "Standing March (fingertips)", icon: "🚶", cue: "Rest just your fingertips on the chair and march at a strong pace.", seconds: 35, move: "march" }
     ],
@@ -6260,7 +6260,7 @@ const EXERCISES_BY_CATEGORY = {
       { name: "Fast Seated March with Arm Pump", icon: "🪑", cue: "March quickly while pumping both arms — keep the pace brisk throughout.", seconds: 42, move: "marchpump" },
       { name: "High Knees with Arm Reach", icon: "🚶", cue: "March with high knees, no hands, reaching the opposite arm up each time.", seconds: 40, move: "marchreach" },
       { name: "Seated Punches", icon: "🥊", cue: "Alternate punching one arm forward at a time, at a strong steady pace.", seconds: 40, move: "punch" },
-      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — high knees, brisk pace.", seconds: 38, move: "march" }
+      { name: "High-Knee March (fingertip touch)", icon: "🚶", cue: "Just a fingertip on the chair — high knees, brisk pace.", seconds: 38, move: "marchhighknee" }
     ]
   },
 
@@ -6348,22 +6348,22 @@ const EXERCISES_BY_CATEGORY = {
   "Dual-Task & Cognitive": {
     easy: [
       { name: "Seated March with Counting", icon: "🔢", cue: "March in your chair, counting each knee lift out loud from 1 to 10, then start again.", seconds: 30, move: "march" },
-      { name: "Simple Toe Taps", icon: "👣", cue: "Tap one toe forward, then back, while naming the days of the week.", seconds: 25, move: "anklecircle" },
+      { name: "Simple Toe Taps", icon: "👣", cue: "Tap one toe forward, then back, while naming the days of the week.", seconds: 25, move: "toetapback" },
       { name: "Arm Raises with Counting", icon: "🙆", cue: "Raise your arms slowly, counting each raise out loud from 1 to 10.", seconds: 30, move: "armraise" }
     ],
     medium: [
       { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand. Try counting each tap out loud.", seconds: 32, move: "kneetap" },
-      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 10 aloud.", seconds: 30, move: "kneetap" },
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 10 aloud.", seconds: 30, move: "toetapside" },
       { name: "Arm Raises with Counting", icon: "🙆", cue: "Raise your arms slowly, counting each raise out loud from 1 to 15.", seconds: 30, move: "armraise" }
     ],
     hard: [
       { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, a little faster now.", seconds: 35, move: "kneetap" },
       { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand while counting backward from 15.", seconds: 35, move: "kneetap" },
-      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 15 aloud.", seconds: 32, move: "kneetap" }
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 15 aloud.", seconds: 32, move: "toetapside" }
     ],
     advanced: [
       { name: "Dual-Task Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand while counting backward from 20.", seconds: 40, move: "kneetap" },
-      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 20 aloud.", seconds: 35, move: "kneetap" },
+      { name: "Toe Taps with Counting", icon: "🔢", cue: "Tap one toe forward, then to the side, while counting backward from 20 aloud.", seconds: 35, move: "toetapside" },
       { name: "Torso Twist with Punches", icon: "🔄", cue: "Twist and punch across your body, alternating arms, while counting each punch.", seconds: 40, move: "twistpunchcount" },
       { name: "Cross-Body Knee Taps", icon: "🧠", cue: "Lift one knee and tap it with the opposite hand, keeping a steady count.", seconds: 38, move: "kneetap" }
     ]
@@ -6715,9 +6715,178 @@ function mount3d(containerId, w, h) {
 
 /* Bends the torso as a chain of segments. c > 0 arches the back (chest up, belly forward);
    c < 0 rounds it (upper back pushes out, chin tucks). */
+/* Alternating marching legs with a real knee joint (thigh + shin), used where a plain hip-only swing
+   doesn\'t read clearly as a knee lift. phiLow/phiHigh: thigh angle at rest / at the top of the lift.
+   psiBase/psiFold: shin angle at rest, and how much it folds back (bending the knee) as the leg lifts. */
+/* A straight leg (hip to foot, knee marker at the true midpoint) that can point in ANY direction -
+   sideways, forward, or any mix - not just the up/down plane the other leg helpers assume. Used for
+   legs that stay straight in real life (side leg lifts, heel-to-toe, weight shifts) but still need a
+   visible knee joint instead of one featureless rod. */
+function place3Seg(pt, hx, hy, hz, kx, ky, kz, fx, fy, fz) {
+  const seg = (ax, ay, az, bx, by, bz, mesh) => {
+    mesh.position.set((ax + bx) / 2, (ay + by) / 2, (az + bz) / 2);
+    const dir = new THREE.Vector3(bx - ax, by - ay, bz - az);
+    if (dir.lengthSq() > 1e-8) mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+  };
+  seg(hx, hy, hz, kx, ky, kz, pt.thigh); seg(kx, ky, kz, fx, fy, fz, pt.shin);
+  pt.knee.position.set(kx, ky, kz); pt.foot.position.set(fx, fy, fz);
+}
+
+function poseLeg3D(pt, hx, hy, hz, fx, fy, fz) {
+  place3Seg(pt, hx, hy, hz, (hx + fx) / 2, (hy + fy) / 2, (hz + fz) / 2, fx, fy, fz);
+}
+
+/* Toe taps: the leg stays mostly at its normal seated resting bend, and only the FOOT taps out -
+   forward, or forward+to-the-side, or forward+back - then returns. Nothing like a knee lift, and
+   no cross-body hand reach (that's the separate "knee tap" exercise). */
+function toeTapLikeMove(t, mode) {
+  const TH = 0.65, SH = 0.65;
+  const cyc = t * 1.1, phase = Math.floor(cyc) % 2, u = cyc - Math.floor(cyc);
+  const amt = Math.sin(Math.PI * u);
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const bentLegLocal = (liftAmt, backAmt) => {
+    const phi = -0.12 + liftAmt * 0.35 - backAmt * 0.12, psi = -Math.PI / 2 + liftAmt * 0.6 - backAmt * 0.35;
+    const kz = TH * Math.cos(phi), ky = TH * Math.sin(phi);
+    return { kz, ky, fz: kz + SH * Math.cos(psi), fy: ky + SH * Math.sin(psi) };
+  };
+  /* A proper flat foot shape (like Leg Extension Hold & Point uses) instead of the small round
+     ankle joint, so the tapping toe actually reads as a foot, angled to face the tap direction. */
+  const toWorld = (pt, footMesh, local, yaw) => {
+    const sy = Math.sin(yaw), cy = Math.cos(yaw);
+    const kneeX = pt.x + local.kz * sy, kneeY = local.ky, kneeZ = local.kz * cy;
+    const footX = pt.x + local.fz * sy, footY = local.fy, footZ = local.fz * cy;
+    place3Seg(pt, pt.x, 0, 0, kneeX, kneeY, kneeZ, footX, footY, footZ);
+    pt.foot.visible = false;
+    footMesh.visible = true; footMesh.scale.set(0.9, 0.8, 0.8);
+    footMesh.position.set(footX + 0.18 * sy, footY - 0.05, footZ + 0.18 * cy);
+    footMesh.rotation.set(0, Math.atan2(sy, cy), 0);
+  };
+  const active = kneeLegParts3d[0], idle = kneeLegParts3d[1];
+  toWorld(idle, footMeshes3d[1], bentLegLocal(0, 0), 0);
+  let yaw = 0, lift = 0, back = 0;
+  if (phase === 0) { lift = amt; }
+  else if (mode === "side") { yaw = -0.55 * amt; lift = amt * 0.7; }
+  else { back = amt; }
+  toWorld(active, footMeshes3d[0], bentLegLocal(lift, back), yaw);
+  const label2 = mode === "side" ? "👉 Tap your toe out to the side" : "👣 Tap your toe back";
+  setPhase3d(phase === 0 ? "👣 Tap your toe forward" : label2);
+}
+
+function marchKneeLegs(t, freq, phiLow, phiHigh, psiBase, psiFold) {
+  const TH = 0.65, SH = 0.65;
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  const raw = Math.sin(t * freq), legIdx = raw >= 0 ? 0 : 1, amt = Math.abs(raw);   /* which leg is currently lifting, and how far */
+  [0, 1].forEach(i => {
+    const a = i === legIdx ? amt : 0;
+    const phi = phiLow + a * (phiHigh - phiLow), psi = psiBase - a * psiFold;
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
+    const Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+    const pt = kneeLegParts3d[i];
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky);
+    legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz);
+    pt.foot.position.set(pt.x, Fy, Fz);
+  });
+  return { legIdx, amt };
+}
+
+/* Standing Balance (one hand): the lifted foot gets a real bent knee; the standing leg stays a
+   straight rigid rod, which is correct since it really is straight. */
+function balanceMove(t) {
+  const TH = 0.65, SH = 0.65;
+  const s = (Math.sin(t * 2.1) + 1) / 2;
+  root3d.rotation.z = Math.sin(t * 4) * 0.05;
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const standing = kneeLegParts3d[1];
+  poseLeg3D(standing, standing.x, 0, 0, standing.x, -1.3, 0);   /* straight standing leg, but with a visible knee */
+  const phi = -Math.PI / 2 + s * (Math.PI / 2 - 0.15), psi = -Math.PI / 2 - s * 0.6;
+  const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi), Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+  const pt = kneeLegParts3d[0];
+  const seg = (mesh, az, ay, bz, by) => { mesh.position.set(pt.x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  seg(pt.thigh, 0, 0, Kz, Ky); seg(pt.shin, Kz, Ky, Fz, Fy);
+  pt.knee.position.set(pt.x, Ky, Kz); pt.foot.position.set(pt.x, Fy, Fz);
+}
+
+/* Alternating knee-tap: one leg lifts with a real bent knee while the OPPOSITE hand reaches
+   across to tap it, then the other leg takes its turn. */
+function kneeTapMove(t) {
+  const TH = 0.65, SH = 0.65;
+  const cyc = t * 1.46, legIdx = Math.floor(cyc) % 2, u = cyc - Math.floor(cyc);
+  const amt = Math.sin(Math.PI * u);
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  [0, 1].forEach(i => {
+    const a = (i === legIdx) ? amt : 0;
+    const phi = -0.12 + a * 0.74, psi = -Math.PI / 2 - a * 0.55;
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
+    const Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+    const pt = kneeLegParts3d[i];
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky); legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz); pt.foot.position.set(pt.x, Fy, Fz);
+  });
+  const tapShoulder = legIdx === 0 ? rightShoulder3d : leftShoulder3d;    /* opposite hand taps the raised knee */
+  tapShoulder.rotation.z = (legIdx === 0 ? -1 : 1) * 0.8 * amt;
+  tapShoulder.rotation.x = -0.3 * amt;
+}
+
+/* One leg extended out in front with the foot tracing a small circle (the other leg stays at its
+   normal seated rest) - a real bent knee for the resting leg instead of a rigid rod, and a visible
+   loop at the ankle for the leg that is actually doing the exercise. */
+function ankleCircleMove(t) {
+  const TH = 0.65, SH = 0.65;
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  const restLeg = pt => {
+    const phi = -0.12, psi = -Math.PI / 2;
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi), Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky); legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz); pt.foot.position.set(pt.x, Fy, Fz);
+  };
+  const pt0 = kneeLegParts3d[0];                                    /* active leg: extended, ankle circling */
+  const phi = 0.5, psi = -0.1;
+  const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
+  const wob = 0.08, Fz = Kz + SH * Math.cos(psi) + wob * Math.cos(t * 2.2), Fy = Ky + SH * Math.sin(psi) + wob * Math.sin(t * 2.2);
+  legSeg(pt0.thigh, pt0.x, 0, 0, Kz, Ky); legSeg(pt0.shin, pt0.x, Kz, Ky, Fz, Fy);
+  pt0.knee.position.set(pt0.x, Ky, Kz); pt0.foot.position.set(pt0.x, Fy, Fz);
+  restLeg(kneeLegParts3d[1]);
+}
+
+/* Knee Extensions: one leg straightens out from the seated bent-knee rest position to fully
+   extended, then bends back; the other leg stays at rest throughout. */
+function legExtendMove(t) {
+  const TH = 0.65, SH = 0.65;
+  const s = (Math.sin(t * 2.3) + 1) / 2;
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  const pose = (pt, amt) => {
+    const phi = -0.12 + amt * 0.08, psi = -Math.PI / 2 + amt * (Math.PI / 2);
+    const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi), Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky); legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz); pt.foot.position.set(pt.x, Fy, Fz);
+  };
+  pose(kneeLegParts3d[0], s);
+  pose(kneeLegParts3d[1], 0);
+}
+
 function flexSpine(c, o) {
   const N = spineSegs3d.length, segLen = 1.2 / N;
   torsoMesh3d.visible = false; spineGroup3d.visible = true; noseMesh3d.visible = true;
+
+  /* Seated resting legs, viewed from the side: thigh forward off the seat, shin straight down to the
+     floor, with an actual knee joint (same rig/shape used at rest by the knee-to-chest exercise) —
+     instead of the single rigid hip-to-floor rod, which reads as one straight stick from a side view. */
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const TH = 0.65, SH = 0.65, legPhi = -0.12, legPsi = -Math.PI / 2;
+  const Kz = TH * Math.cos(legPhi), Ky = TH * Math.sin(legPhi);
+  const Fz = Kz + SH * Math.cos(legPsi), Fy = Ky + SH * Math.sin(legPsi);
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  kneeLegParts3d.forEach(pt => {
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky);
+    legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz);
+    pt.foot.position.set(pt.x, Fy, Fz);
+  });
   let y = 0, z = 0, phi = 0;
   spineJoints3d[0].position.set(0, 0, 0);
   for (let i = 0; i < N; i++) {
@@ -6753,6 +6922,20 @@ function wallPushPose(s) {
   root3d.rotation.x = beta;
   root3d.position.set(0, FLOOR_Y + 1.3 * cb, 1.3 * sb);          /* pivot about the feet */
   leftShoulder3d.visible = false; rightShoulder3d.visible = false; wallArms3d.visible = true;
+
+  /* Legs stay a straight line from planted feet to hip (a real wall push-up hinges at the ankles,
+     not the knee) but are drawn with the same two-part rig as everywhere else, so there's a clear
+     knee joint to see instead of one featureless rod. */
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  const hipY = FLOOR_Y + 1.3 * cb, hipZ = 1.3 * sb;               /* hip - the same point root3d sits at */
+  const kneeY = FLOOR_Y + 0.65 * cb, kneeZ = 0.65 * sb;           /* knee - straight leg, so exactly halfway down */
+  kneeLegParts3d.forEach(pt => {
+    legSeg(pt.thigh, pt.x, hipZ, hipY, kneeZ, kneeY);
+    legSeg(pt.shin, pt.x, kneeZ, kneeY, 0, FLOOR_Y);
+    pt.knee.position.set(pt.x, kneeY, kneeZ);
+    pt.foot.position.set(pt.x, FLOOR_Y, 0);
+  });
   const Sz = 2.45 * sb, Sy = FLOOR_Y + 2.45 * cb;                /* shoulder (y-z plane) */
   const Hz = WALL_Z - 0.1, Hy = 1.0;                             /* hands on the wall */
   const dz = Hz - Sz, dy = Hy - Sy, d = Math.min(Math.hypot(dz, dy), 0.89);
@@ -6981,22 +7164,28 @@ function kneeToChestMove(t, seq, hold) {
 }
 
 const MOVE3D = {
-  march(t) { const s = Math.sin(t * 3); leftHip3d.rotation.x = seatedBaseHipX + s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6; },
+  march(t) {
+    const s = Math.sin(t * 3), seated = currentPropMode === "seated";
+    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? 0.5 : 0.4);
+  },
   marcharm(t) {
-    const s = Math.sin(t * 3);
-    leftHip3d.rotation.x = seatedBaseHipX + s * 0.6; rightHip3d.rotation.x = seatedBaseHipX - s * 0.6;
+    const s = Math.sin(t * 3), seated = currentPropMode === "seated";
+    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? 0.5 : 0.4);
     leftShoulder3d.rotation.x = s * 0.45; rightShoulder3d.rotation.x = -s * 0.45; /* opposite-arm swing */
   },
   marchpump(t) {
     const s = Math.sin(t * 3.4);
-    leftHip3d.rotation.x = seatedBaseHipX + s * 0.7; rightHip3d.rotation.x = seatedBaseHipX - s * 0.7;
+    marchKneeLegs(t, 3.4, -0.12, 0.55, -Math.PI / 2, 0.55);           /* seated: thigh rests forward, lifts to a visible bent knee */
     leftShoulder3d.rotation.x = s * 0.9; rightShoulder3d.rotation.x = -s * 0.9; /* vigorous arm pump */
   },
+  marchhighknee(t) {
+    const s = Math.sin(t * 3.0);
+    marchKneeLegs(t, 3.0, -Math.PI / 2 + 0.05, 0.4, -Math.PI / 2, 0.95);  /* standing: leg hangs straight, then folds up into a clearly bent high knee */
+    leftShoulder3d.rotation.x = s * 0.5; rightShoulder3d.rotation.x = -s * 0.5;
+  },
   marchreach(t) {
-    const s = Math.sin(t * 3.2);
-    leftHip3d.rotation.x = seatedBaseHipX + s * 0.75; rightHip3d.rotation.x = seatedBaseHipX - s * 0.75;
-    const upR = Math.max(s, 0), upL = Math.max(-s, 0);
-    leftShoulder3d.rotation.z = upL * 1.5; rightShoulder3d.rotation.z = -upR * 1.5; /* opposite arm reaches up */
+    const { legIdx, amt } = marchKneeLegs(t, 3.2, -Math.PI / 2 + 0.05, 0.45, -Math.PI / 2, 0.95);
+    if (legIdx === 0) rightShoulder3d.rotation.z = -amt * 1.5; else leftShoulder3d.rotation.z = amt * 1.5; /* opposite arm reaches up */
   },
   armraise(t) {
     const s = (Math.sin(t * 1.8 - Math.PI / 2) + 1) / 2, rising = Math.cos(t * 1.8 - Math.PI / 2) > 0;   /* starts with arms down */
@@ -7015,16 +7204,18 @@ const MOVE3D = {
     else if (c < 6.0) setPhase3d("⬇️ Lower slowly");
     else setPhase3d("Arms down, ready");
   },
-  anklecircle(t) { leftHip3d.rotation.z = Math.sin(t * 2.2) * 0.35; leftHip3d.rotation.x = seatedBaseHipX + Math.cos(t * 2.2) * 0.15; },
+  anklecircle(t) { ankleCircleMove(t); },
   breathing(t) { const s = 1 + 0.07 * Math.sin(t * 1.7); torsoMesh3d.scale.set(s, s, s); },
   twistpunch(t) { twistPunchMove(t, false); },
   twistpunchcount(t) { twistPunchMove(t, true); },
   twist(t) { upper3d.rotation.y = Math.sin(t * 2.4) * 0.5; },
   legholdpoint2(t) { legHoldPointMove(t, 2); },
   legholdpoint3(t) { legHoldPointMove(t, 3); },
-  legextend(t) { const s = (Math.sin(t * 2.3) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.1; },
+  legextend(t) { legExtendMove(t); },
   punch(t) { const l = Math.max(Math.sin(t * 7), 0); const r = Math.max(Math.sin(t * 7 + Math.PI), 0); leftShoulder3d.rotation.x = -l * 1.5; rightShoulder3d.rotation.x = -r * 1.5; },
-  kneetap(t) { const s = (Math.sin(t * 4.6) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.0; rightShoulder3d.rotation.z = -s * 0.8; },
+  kneetap(t) { kneeTapMove(t); },
+  toetapside(t) { toeTapLikeMove(t, "side"); },
+  toetapback(t) { toeTapLikeMove(t, "back"); },
   shoulderroll(t) { shoulderRollMove(t, { Ry: 0.13, Rz: 0.16, rollDur: 2.2, dirs: [1, 1, 1], tilt: 0.50, tiltIn: 1.2, hold: 1.6, tiltOut: 1.0 }); },
   shoulderrollbig(t) { shoulderRollMove(t, { Ry: 0.17, Rz: 0.20, rollDur: 2.6, dirs: [1, 1, 1], tilt: 0.62, tiltIn: 1.4, hold: 2.2, tiltOut: 1.2 }); },
   shoulderrollboth(t) { shoulderRollMove(t, { Ry: 0.17, Rz: 0.20, rollDur: 2.4, dirs: [1, 1, -1, -1], tilt: 0.72, tiltIn: 1.4, hold: 2.6, tiltOut: 1.2 }); },
@@ -7038,12 +7229,29 @@ const MOVE3D = {
     const s = p < 0.35 ? ease(p / 0.35) : p < 0.5 ? 1 : p < 0.9 ? 1 - ease((p - 0.5) / 0.4) : 0;
     const h = s * 0.14;
     root3d.position.y = h;                                   /* body rises onto the toes... */
-    leftHip3d.scale.y = 1 + h / 1.3; rightHip3d.scale.y = 1 + h / 1.3; /* ...while the feet stay on the floor */
+    leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+    const scaleY = 1 + h / 1.3, kneeY = (h - 1.3) / 2;        /* leg stretches; feet stay on the floor */
+    kneeLegParts3d.forEach(pt => {
+      pt.thigh.position.set(pt.x, (h + kneeY) / 2, 0); pt.thigh.rotation.set(0, 0, 0); pt.thigh.scale.y = scaleY;
+      pt.shin.position.set(pt.x, (kneeY - 1.3) / 2, 0); pt.shin.rotation.set(0, 0, 0); pt.shin.scale.y = scaleY;
+      pt.knee.position.set(pt.x, kneeY, 0); pt.foot.position.set(pt.x, -1.3, 0);
+    });
   },
-  balance(t) { const s = (Math.sin(t * 2.1) + 1) / 2; leftHip3d.rotation.x = seatedBaseHipX - s * 1.15; root3d.rotation.z = Math.sin(t * 4) * 0.05; },
-  weightshift(t) { root3d.position.x = Math.sin(t * 1.5) * 0.14; /* both feet stay planted; legs & arms compensate below */
-    const dx = root3d.position.x; leftHip3d.rotation.z = -Math.asin(dx / 1.3); rightHip3d.rotation.z = -Math.asin(dx / 1.3); },
-  sideleg(t) { const s = (Math.sin(t * 3.8) + 1) / 2; leftHip3d.rotation.z = s * 0.85; },
+  balance(t) { balanceMove(t); },
+  weightshift(t) {
+    root3d.position.x = Math.sin(t * 1.5) * 0.14; /* both feet stay planted; legs lean to compensate */
+    const dx = root3d.position.x;
+    leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+    kneeLegParts3d.forEach(pt => poseLeg3D(pt, pt.x + dx, 0, 0, pt.x, -1.3, 0));
+  },
+  sideleg(t) {
+    const s = (Math.sin(t * 3.8) + 1) / 2, theta = -s * 0.85;
+    leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+    const active = kneeLegParts3d[0], idle = kneeLegParts3d[1];
+    const fx = active.x + 1.3 * Math.sin(theta), fy = -1.3 * Math.cos(theta);
+    poseLeg3D(active, active.x, 0, 0, fx, fy, 0);
+    poseLeg3D(idle, idle.x, 0, 0, idle.x, -1.3, 0);
+  },
   heeltoe(t) {
     /* Feet slide into a tandem stance (front heel touching back toes), hold perfectly still, then step back out.
        Filmed from the front-side so the foot placement is visible; no body sway. */
@@ -7052,14 +7260,15 @@ const MOVE3D = {
     const s = c < A ? 0 : c < A + B ? ease((c - A) / B) : c < A + B + C ? 1 : c < A + B + C + D ? 1 - ease((c - A - B - C) / D) : 0;
     const frontIsLeft = demoSide3d !== "Right side";
     const L = 1.3, HALF = 0.225;                                    /* half of one foot-length between the ankles (heel meets toes) */
-    const legs = [{ hx: -0.22, front: frontIsLeft, hip: leftHip3d, foot: footMeshes3d[0] },
-                  { hx: 0.22, front: !frontIsLeft, hip: rightHip3d, foot: footMeshes3d[1] }];
+    leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+    const legs = [{ hx: -0.22, front: frontIsLeft, pt: kneeLegParts3d[0], foot: footMeshes3d[0] },
+                  { hx: 0.22, front: !frontIsLeft, pt: kneeLegParts3d[1], foot: footMeshes3d[1] }];
     const dxr = 0.22 * s, dz = HALF * s, d = Math.hypot(dxr, dz), h = Math.sqrt(L * L - d * d);
     root3d.position.y = h - L;                                      /* hips settle a touch; feet stay on the floor */
     legs.forEach(g => {
       const ax = g.hx * (1 - s), az = (g.front ? 1 : -1) * dz;      /* ankle position (world x, z) */
-      const ux = (ax - g.hx) / L, uy = -h / L, uz = az / L;
-      g.hip.rotation.set(Math.atan2(-uz, -uy), 0, Math.asin(ux));
+      poseLeg3D(g.pt, g.hx, h - L, 0, ax, -1.3, az);                /* real bent-knee-free leg, visible joint at the midpoint */
+      g.pt.foot.visible = false;                                    /* the box-shaped prop below shows the actual foot */
       g.foot.visible = true;
       g.foot.position.set(ax, -1.3 + 0.055, az + 0.12);             /* foot reaches forward of the ankle */
     });
@@ -7091,10 +7300,9 @@ const MOVE3D = {
 
     const dx = 0.11 * shift;                                   /* body moves over the standing (right) leg */
     root3d.position.x = dx;
-    rightHip3d.rotation.z = -Math.asin(dx / 1.3);              /* ...while its foot stays where it was */
-    leftHip3d.visible = false; kneeLegs3d.visible = true;      /* lifted leg is drawn with a bent knee */
-    const idle = kneeLegParts3d[1];
-    [idle.thigh, idle.shin, idle.knee, idle.foot].forEach(m => { m.visible = false; });
+    leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+    const standingLeg = kneeLegParts3d[1];
+    poseLeg3D(standingLeg, standingLeg.x + dx, 0, 0, standingLeg.x, -1.3, 0);   /* straight, but with a visible knee; foot stays where it was */
 
     const phi = -Math.PI / 2 + lift * (Math.PI / 2 - 0.1), psi = -Math.PI / 2 - lift * 0.25;
     const Kz = 0.65 * Math.cos(phi), Ky = 0.65 * Math.sin(phi);
@@ -7460,6 +7668,24 @@ function holdChairOneArm() {
   leftShoulder3d.visible = false; sideArm3d.visible = true;
 }
 
+/* The natural resting shape of a seated leg: thigh forward off the seat, a real knee joint, shin
+   straight down to the floor. Used as the default for every seated exercise (below) so a move that
+   never touches the legs (punches, twists, shoulder rolls...) still shows a proper bent knee instead
+   of one rigid rod thrust straight out past the chair. */
+function seatedRestLegs() {
+  leftHip3d.visible = false; rightHip3d.visible = false; kneeLegs3d.visible = true;
+  const TH = 0.65, SH = 0.65, phi = -0.12, psi = -Math.PI / 2;
+  const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
+  const Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
+  const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
+  kneeLegParts3d.forEach(pt => {
+    legSeg(pt.thigh, pt.x, 0, 0, Kz, Ky);
+    legSeg(pt.shin, pt.x, Kz, Ky, Fz, Fy);
+    pt.knee.position.set(pt.x, Ky, Kz);
+    pt.foot.position.set(pt.x, Fy, Fz);
+  });
+}
+
 function resetPose3d() {
   root3d.position.set(0, 0, 0); root3d.rotation.set(0, 0, 0); root3d.scale.set(1, 1, 1);
   upper3d.rotation.set(0, 0, 0);
@@ -7478,6 +7704,7 @@ function resetPose3d() {
   torsoMesh3d.visible = true; spineGroup3d.visible = false; noseMesh3d.visible = false;
   head3d.position.set(0, 1.55, 0); head3d.rotation.set(0, 0, 0);
   leftShoulder3d.position.set(-0.4, 1.15, 0); rightShoulder3d.position.set(0.4, 1.15, 0);
+  if (currentPropMode === "seated") seatedRestLegs();     /* moves that animate legs themselves override this right after */
   applyPropReachPose();
 }
 
