@@ -371,9 +371,61 @@ main{gap:16px}
     flex-wrap: wrap;
   }
   #view-exercises .routine-list li:last-child { border-bottom: none; }
+  /* ---- Exercise history (by date), same structure as the Exercise Studio history ---- */
+  #view-exercises .hx-open { margin-top: 16px; }
+  #view-exercises .hx-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  #view-exercises .hx-head h2 { margin: 0; }
+  #view-exercises .btn.hx-edit { width: auto; padding: 10px 22px; min-height: 46px; font-size: calc(1rem * var(--font-scale)); }
+  #view-exercises .hx-keep { margin: 4px 0 14px; }
+  #view-exercises .hx-warn { background: #fff4e5; border: 1px solid #f2c27a; color: #7a4a00; border-radius: 12px; padding: 12px 14px; margin: 0 0 14px; font-size: calc(0.95rem * var(--font-scale)); }
+  #view-exercises .hx-tools, #view-exercises .hx-add, #view-exercises .hx-pick { background: #f1f6f5; border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin: 0 0 14px; }
+  #view-exercises .hx-tools .btn, #view-exercises .hx-add .btn, #view-exercises .hx-pick .btn, #view-exercises .hx-backup .btn { margin-top: 10px; padding: 13px 16px; font-size: calc(1rem * var(--font-scale)); }
+  #view-exercises .hx-trow { display: flex; gap: 10px; }
+  #view-exercises .hx-trow .btn { flex: 1; }
+  #view-exercises .btn.danger { background: #fff; color: var(--warn); border: 2px solid var(--warn); }
+  #view-exercises .btn.danger.armed { background: var(--warn); color: #fff; }
+  #view-exercises .btn:disabled { opacity: .45; cursor: not-allowed; }
+  #view-exercises .hx-add h3 { margin: 0 0 4px; font-size: calc(1.05rem * var(--font-scale)); }
+  #view-exercises .hx-add label, #view-exercises .hx-pick label.hx-field { display: block; margin-top: 10px; font-weight: 600; font-size: calc(0.95rem * var(--font-scale)); color: var(--text); }
+  #view-exercises .hx-add input[type=date], #view-exercises .hx-add select { display: block; width: 100%; box-sizing: border-box; margin-top: 4px; font-size: calc(1rem * var(--font-scale)); padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; color: var(--text); }
+  #view-exercises .hx-list { list-style: none; margin: 0; padding: 0; }
+  #view-exercises .hx-item { border-bottom: 1px solid var(--border); }
+  #view-exercises .hx-item:last-child { border-bottom: none; }
+  #view-exercises .hx-row { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 60px; padding: 10px 4px; background: none; border: none; text-align: left; font-family: inherit; font-size: calc(1.02rem * var(--font-scale)); font-weight: 700; color: var(--accent-dark); cursor: pointer; }
+  #view-exercises .hx-row:focus-visible, #view-exercises .hx-check:focus-within { outline: 3px solid #925300; outline-offset: 2px; border-radius: 10px; }
+  #view-exercises .hx-date { flex: 1 1 auto; min-width: 0; }
+  #view-exercises .hx-count { flex: 0 0 auto; font-size: calc(0.82rem * var(--font-scale)); font-weight: 600; color: var(--accent-dark); background: var(--accent-soft); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  #view-exercises .hx-plus { flex: 0 0 auto; width: 30px; height: 30px; line-height: 28px; text-align: center; font-size: 1.4rem; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); }
+  #view-exercises .hx-check { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 4px; font-weight: 700; color: var(--accent-dark); cursor: pointer; font-size: calc(1.02rem * var(--font-scale)); }
+  #view-exercises .hx-check input, #view-exercises .hx-pick input[type=checkbox] { width: 24px; height: 24px; flex: 0 0 auto; accent-color: var(--accent); }
+  #view-exercises .hx-ex { list-style: none; margin: 0 0 12px; padding: 0 0 0 6px; }
+  #view-exercises .hx-ex li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; font-size: calc(1rem * var(--font-scale)); color: var(--text); }
+  #view-exercises .hx-ex .hx-meta { display: block; font-size: calc(0.82rem * var(--font-scale)); color: var(--muted); }
+  #view-exercises .btn.hx-rm { width: auto; margin: 0; padding: 8px 14px; min-height: 40px; font-size: calc(0.9rem * var(--font-scale)); background: #fff; color: var(--warn); border: 2px solid var(--warn); }
+  #view-exercises .hx-empty { color: var(--muted); font-size: calc(1rem * var(--font-scale)); margin: 10px 0 18px; }
+  #view-exercises .hx-backup { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 12px; }
+  #view-exercises .hx-backup summary { cursor: pointer; font-weight: 700; color: var(--accent-dark); min-height: 44px; display: flex; align-items: center; font-size: calc(1.02rem * var(--font-scale)); }
+  #view-exercises .hx-backup textarea { display: block; width: 100%; box-sizing: border-box; margin-top: 10px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.82rem; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: #fff; color: var(--text); resize: vertical; }
+  #view-exercises .hx-pick ul { list-style: none; margin: 10px 0 0; padding: 0; }
+  #view-exercises .hx-pick li { border-bottom: 1px solid var(--border); }
+  #view-exercises .hx-pick li:last-child { border-bottom: none; }
+  #view-exercises .hx-pick label.hx-prow { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 8px 2px; cursor: pointer; font-weight: 700; color: var(--accent-dark); }
+  #view-exercises .hx-pick .hx-prow small { display: block; font-weight: 600; color: var(--muted); font-size: calc(0.82rem * var(--font-scale)); }
+  #view-exercises .hx-msg { margin: 8px 0 0; min-height: 1.2em; }
+  #view-exercises[data-contrast="high"] .hx-row, #view-exercises[data-contrast="high"] .hx-check, #view-exercises[data-contrast="high"] .hx-backup summary { color: #000; }
+
   #speedLine.hidden { display: none !important; }
   /* Home Exercises: each exercise is a button with its demo picture (replaces the underlined link + emoji) */
-  #view-exercises .routine-list li { display: block; padding: 7px 0; border-bottom: none; }
+  #view-exercises .routine-list li { display: flex; flex-wrap: nowrap; align-items: center; gap: 10px; padding: 7px 0; border-bottom: none; }
+  #view-exercises .routine-list li .demo-link.demo-btn { flex: 1 1 auto; width: auto; min-width: 0; }
+  #view-exercises .ex-play {
+    flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--accent); color: #fff; font-size: 1.35rem; line-height: 1; padding: 0 0 0 4px;
+    box-shadow: 0 4px 10px rgba(31,90,79,0.25); font-family: inherit;
+  }
+  #view-exercises .ex-play:active { transform: translateY(1px); }
+  #view-exercises .ex-play:focus-visible { outline: 3px solid #925300; outline-offset: 3px; }
+  #view-exercises[data-contrast="high"] .ex-play { background: #000; color: var(--accent); border: 2px solid var(--accent); }
   #view-exercises .demo-link.demo-btn {
     width: 100%; display: flex; align-items: center; gap: 14px; box-sizing: border-box;
     min-height: 82px; padding: 8px 14px 8px 8px; margin: 0;
@@ -434,6 +486,7 @@ main{gap:16px}
   #view-exercises .player.resting .exercise-icon { opacity: 0.6; }
   #view-exercises .exercise-icon { font-size: 96px; line-height: 1; margin: 10px 0; }
   #view-exercises .exercise-name { font-size: calc(1.6rem * var(--font-scale)); font-weight: 700; margin: 6px 0 4px; }
+  #view-exercises[data-contrast="high"] .exercise-name { color: #FFEB3B !important; }  /* bright yellow on the black player card */
   #view-exercises .exercise-cue { font-size: calc(1.1rem * var(--font-scale)); color: var(--muted); min-height: 2.4em; }
   #view-exercises .timer {
     font-size: calc(3rem * var(--font-scale));
@@ -470,6 +523,11 @@ main{gap:16px}
   #view-exercises .seg button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
   #view-exercises[data-contrast="high"] .seg button.active { color: #000; }
   #view-exercises[data-contrast="high"] .seg button { background: #000; color: var(--accent); border-color: var(--accent); }
+  /* selected option: yellow with black text (it was black on black, so the label disappeared) */
+  #view-exercises[data-contrast="high"] .seg button.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+  /* all text on the black cards is bright, labels in yellow */
+  #view-exercises[data-contrast="high"] { color: #fff; }
+  #view-exercises[data-contrast="high"] .settings-row > span, #view-exercises[data-contrast="high"] .settings-row label { color: #FFEB3B; }
   #view-exercises .level-current {
     display: flex;
     align-items: center;
@@ -1011,6 +1069,9 @@ main{gap:16px}
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
     </button>
     <h1 style="flex:1;">Home Exercises</h1>
+    <button class="back-btn" type="button" onclick="openHistory()" aria-label="Exercise history" style="border:none;padding:0;cursor:pointer;margin-right:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/><path d="M8.5 15l2.2 2.2L15.5 13"/></svg>
+    </button>
     <button class="back-btn" type="button" onclick="showScreen('settings')" aria-label="Exercise settings" style="border:none;padding:0;cursor:pointer;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </button>
@@ -1020,6 +1081,15 @@ main{gap:16px}
 
   <!-- HOME SCREEN -->
   <section id="screen-home">
+    <div class="card hidden" id="resumeCard" style="background:#fcefdc;border:2px solid #8a4b1a;">
+      <h2>Session stopped</h2>
+      <p id="resumeText" style="margin:0 0 14px;font-size:calc(1.05rem * var(--font-scale));"></p>
+      <button class="btn" type="button" onclick="resumeRoutine(true)">▶️ Resume</button>
+      <button class="btn secondary" type="button" id="resumeDoneBtn" style="margin-top:10px;" onclick="resumeMarkDone()"></button>
+      <button class="btn secondary" type="button" style="margin-top:10px;" onclick="resumeRoutine(false)">Restart this exercise</button>
+      <p style="text-align:center;margin:16px 0 2px;"><button type="button" onclick="discardResume()" style="background:none;border:none;color:var(--accent);text-decoration:underline;font-size:calc(1.05rem * var(--font-scale));cursor:pointer;padding:6px;">Discard session</button></p>
+    </div>
+
     <div class="card">
       <h2>Today's Routine</h2>
       <div class="level-current">
@@ -1063,7 +1133,14 @@ main{gap:16px}
           <div class="muted">Sessions done</div>
         </div>
       </div>
+      <button type="button" class="btn secondary hx-open" onclick="openHistory()">📅 Exercise history</button>
     </div>
+  </section>
+
+  <!-- HISTORY SCREEN (by date, with edit and back up / restore) -->
+  <section id="screen-history" class="hidden" aria-label="Exercise history">
+    <div class="card" id="hxCard"></div>
+    <button type="button" class="btn secondary" onclick="goHome()">← Back to Home</button>
   </section>
 
   <!-- PLAYER SCREEN -->
@@ -1095,6 +1172,7 @@ main{gap:16px}
       <h2>Well done!</h2>
       <p class="muted" id="doneSummary">You completed today's routine.</p>
       <button class="btn" onclick="goHome()">Back to Home</button>
+      <button type="button" class="btn secondary" style="margin-top:10px;" onclick="openHistory()">📅 See my exercise history</button>
     </div>
   </section>
 
@@ -1123,6 +1201,24 @@ main{gap:16px}
         without skipping any exercise. Choosing a level yourself keeps every routine at that level, no matter
         how many times you play.
       </p>
+    </div>
+
+    <div class="card">
+      <h2>⏱️ Rest Between Exercises</h2>
+      <div class="settings-row">
+        <span>Rest time</span>
+        <div class="seg" id="restSeg" role="group" aria-label="Rest between exercises">
+          <button type="button" data-rest="auto" class="active" aria-pressed="true">Automatic</button>
+          <button type="button" data-rest="5" aria-pressed="false">5s</button>
+          <button type="button" data-rest="10" aria-pressed="false">10s</button>
+          <button type="button" data-rest="15" aria-pressed="false">15s</button>
+          <button type="button" data-rest="20" aria-pressed="false">20s</button>
+          <button type="button" data-rest="30" aria-pressed="false">30s</button>
+          <button type="button" data-rest="45" aria-pressed="false">45s</button>
+          <button type="button" data-rest="60" aria-pressed="false">60s</button>
+        </div>
+      </div>
+      <p class="muted" id="restNote" style="margin-top:10px;"></p>
     </div>
 
     <div class="card">
@@ -6495,6 +6591,12 @@ function propModeFor(name) {
 const LEVELS = ["easy", "medium", "hard", "advanced"];
 const LEVEL_LABEL = { easy: "Easy", medium: "Medium", hard: "Hard", advanced: "Advanced" };
 const REST_SECONDS = { easy: 12, medium: 8, hard: 6, advanced: 4 };
+/* Rest between exercises: "auto" follows the level above; otherwise a fixed number of seconds chosen in Settings */
+const REST_CHOICES = ["auto", "5", "10", "15", "20", "30", "45", "60"];
+const REST_KEY = "osc_exercise_rest";
+function loadRestChoice() { try { const v = localStorage.getItem(REST_KEY); return REST_CHOICES.indexOf(v) >= 0 ? v : "auto"; } catch (e) { return "auto"; } }
+let restChoice = loadRestChoice();
+function restBetweenSeconds() { return restChoice === "auto" ? REST_SECONDS[effectiveLevel()] : parseInt(restChoice, 10); }
 /* Exercises done on one limb at a time: each side gets the full time */
 const TWO_SIDED = new Set([
   "Ankle Circles", "Simple Toe Taps", "Toe Taps with Counting",
@@ -6588,7 +6690,7 @@ function recordCompletion(noSkips) {
 }
 
 function showScreen(name) {
-  ["home", "player", "done", "settings"].forEach(s => {
+  ["home", "player", "done", "settings", "history"].forEach(s => {
     document.getElementById("screen-" + s).classList.toggle("hidden", s !== name);
   });
 }
@@ -6598,6 +6700,7 @@ function goHome() {
   stopPlayerFigure();
   renderRoutineList();
   refreshLevelUI();
+  refreshResumeCard();
   showScreen("home");
 }
 
@@ -6622,7 +6725,7 @@ function filteredExercises() {
 function buildQueue() {
   const lvl = effectiveLevel();
   const list = filteredExercises() || [];
-  const restSecs = REST_SECONDS[lvl];
+  const restSecs = restBetweenSeconds();
   const steps = [];
   list.forEach((ex, i) => {
     if (ex.sides === 2) {
@@ -6643,7 +6746,7 @@ const EX_THUMBS = {"march|seated":"data:image/webp;base64,UklGRngEAABXRUJQVlA4IG
 
 function renderRoutineList() {
   const list = filteredExercises();
-  const restSecs = REST_SECONDS[effectiveLevel()];
+  const restSecs = restBetweenSeconds();
   const ul = document.getElementById("routineList");
   const emptyNote = document.getElementById("emptyCategoryNote");
   const promptNote = document.getElementById("chooseCategoryPrompt");
@@ -6667,7 +6770,7 @@ function renderRoutineList() {
       ? `<span class="demo-thumb"><img src="${thumb}" alt="" width="64" height="64"><span class="demo-play" aria-hidden="true">▶</span></span>`
       : `<span class="demo-thumb demo-thumb-emoji" aria-hidden="true">${ex.icon}</span>`;
     const dur = ex.seconds + "s" + (ex.sides === 2 ? " each side" : "");
-    li.innerHTML = `<button type="button" class="demo-link demo-btn" onclick="openDemoByName('${safeName}')" aria-label="Watch demo: ${ex.name}, ${dur}">${pic}<span class="demo-text"><span class="demo-name">${ex.name}</span><span class="tag">${dur}</span></span><span class="demo-go" aria-hidden="true">›</span></button>`;
+    li.innerHTML = `<button type="button" class="demo-link demo-btn" onclick="openDemoByName('${safeName}')" aria-label="Watch demo: ${ex.name}, ${dur}">${pic}<span class="demo-text"><span class="demo-name">${ex.name}</span><span class="tag">${dur}</span></span><span class="demo-go" aria-hidden="true">›</span></button><button type="button" class="ex-play" onclick="playSingleExercise('${safeName}')" aria-label="Start only ${ex.name}, ${dur}">▶</button>`;
     ul.appendChild(li);
   });
   const total = buildQueue().reduce((sum, st) => sum + st.seconds, 0);
@@ -6860,7 +6963,7 @@ function kneeTapMove(t) {
   const legSeg = (mesh, x, az, ay, bz, by) => { mesh.position.set(x, (ay + by) / 2, (az + bz) / 2); mesh.rotation.set(Math.atan2(bz - az, by - ay), 0, 0); };
   [0, 1].forEach(i => {
     const a = (i === legIdx) ? amt : 0;
-    const phi = -0.12 + a * 0.74, psi = -Math.PI / 2 - a * 0.55;
+    const phi = -0.12 + a * 0.64, psi = -Math.PI / 2 + a * 0.5;   /* shin swings slightly forward, so it clears the seat edge instead of going through the seat */
     const Kz = TH * Math.cos(phi), Ky = TH * Math.sin(phi);
     const Fz = Kz + SH * Math.cos(psi), Fy = Ky + SH * Math.sin(psi);
     const pt = kneeLegParts3d[i];
@@ -7205,20 +7308,30 @@ function kneeToChestMove(t, seq, hold) {
   else setPhase3d("Get ready for the next one");
 }
 
+/* Seated arm swing. Positive rotation.x swings a hanging arm BACKWARD, negative swings it forward.
+   The chair back is right behind the shoulders, so the back-swing is kept small and the forward swing carries the motion;
+   a symmetric swing pushed the arm through the chair back and only a stub showed above it. */
+function seatedArmSwing(u, fwd, back) { return u >= 0 ? u * back : u * fwd; }
+
 const MOVE3D = {
   march(t) {
     const s = Math.sin(t * 3), seated = currentPropMode === "seated";
-    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? 0.5 : 0.4);
+    /* seated: the lifted shin swings slightly FORWARD (negative fold) so the foot stays in front of the chair seat;
+       folding it backward pushed the shin through the seat and the foot under the chair */
+    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? -0.5 : 0.4);
   },
   marcharm(t) {
     const s = Math.sin(t * 3), seated = currentPropMode === "seated";
-    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? 0.5 : 0.4);
-    leftShoulder3d.rotation.x = s * 0.45; rightShoulder3d.rotation.x = -s * 0.45; /* opposite-arm swing */
+    /* seated: the lifted shin swings slightly FORWARD (negative fold) so the foot stays in front of the chair seat;
+       folding it backward pushed the shin through the seat and the foot under the chair */
+    marchKneeLegs(t, 3, seated ? -0.12 : -Math.PI / 2 + 0.05, seated ? 0.4 : 0.2, -Math.PI / 2, seated ? -0.5 : 0.4);
+    if (seated) { leftShoulder3d.rotation.x = seatedArmSwing(s, 0.6, 0.1); rightShoulder3d.rotation.x = seatedArmSwing(-s, 0.6, 0.1); }
+    else { leftShoulder3d.rotation.x = s * 0.45; rightShoulder3d.rotation.x = -s * 0.45; } /* opposite-arm swing */
   },
   marchpump(t) {
     const s = Math.sin(t * 3.4);
-    marchKneeLegs(t, 3.4, -0.12, 0.55, -Math.PI / 2, 0.55);           /* seated: thigh rests forward, lifts to a visible bent knee */
-    leftShoulder3d.rotation.x = s * 0.9; rightShoulder3d.rotation.x = -s * 0.9; /* vigorous arm pump */
+    marchKneeLegs(t, 3.4, -0.12, 0.5, -Math.PI / 2, -0.55);           /* seated: thigh rests forward, lifts to a visible bent knee, shin stays in front of the seat */
+    leftShoulder3d.rotation.x = seatedArmSwing(s, 0.95, 0.1); rightShoulder3d.rotation.x = seatedArmSwing(-s, 0.95, 0.1); /* vigorous arm pump, mostly forward so the arms stay in front of the chair back */
   },
   marchhighknee(t) {
     const s = Math.sin(t * 3.0);
@@ -7916,7 +8029,37 @@ function stopPlayerFigure() {
   document.getElementById("playerPhase").classList.add("hidden");
 }
 
+/* Play just one exercise (both sides if it has them), without the rest of the routine */
+function playSingleExercise(name) {
+  const list = filteredExercises() || [];
+  const ex = list.find(e => e.name === name);
+  if (!ex) return;
+  resumeState = null;
+  refreshResumeCard();
+  singleMode = true;
+  skippedAny = false;
+  /* Played on its own: log it in history as soon as it starts, even if it is stopped or left before the end (one entry per exercise per date) */
+  hxRecord(ex.name, ex.category, effectiveLevel());
+  const steps = [];
+  if (ex.sides === 2) {
+    steps.push({ type: "exercise", ...ex, exIndex: 1, sideLabel: "Left side" });
+    steps.push({ type: "rest", seconds: SWITCH_SECONDS, switchSides: true, nextName: ex.name + " (Right side)", nextIcon: ex.icon });
+    steps.push({ type: "exercise", ...ex, exIndex: 1, sideLabel: "Right side" });
+  } else {
+    steps.push({ type: "exercise", ...ex, exIndex: 1, sideLabel: "" });
+  }
+  queue = steps;
+  stepIndex = 0;
+  currentExerciseNumber = 1;
+  totalExercisesInRoutine = 1;
+  showScreen("player");
+  runStep();
+}
+
 function startRoutine() {
+  singleMode = false;
+  resumeState = null;
+  refreshResumeCard();
   queue = buildQueue();
   stepIndex = 0;
   skippedAny = false;
@@ -7927,19 +8070,29 @@ function startRoutine() {
   runStep();
 }
 
+let exSpeakToken = 0;
 function exSpeak(text) {
   if (voiceEnabled && "speechSynthesis" in window) {
     try {
+      const myToken = ++exSpeakToken;
       window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.rate = exSpeedFactor < 1 ? 0.8 : 0.95;
-      if (preferredVoice) u.voice = preferredVoice;
-      window.speechSynthesis.speak(u);
+      /* Browsers often drop a speak() that comes straight after cancel(), so wait a moment first.
+         If anything stops or replaces this announcement in the meantime, the token no longer matches. */
+      setTimeout(() => {
+        if (myToken !== exSpeakToken || !voiceEnabled) return;
+        try {
+          const u = new SpeechSynthesisUtterance(text);
+          u.rate = exSpeedFactor < 1 ? 0.8 : 0.95;
+          if (preferredVoice) u.voice = preferredVoice;
+          window.speechSynthesis.speak(u);
+        } catch (e) {}
+      }, 120);
     } catch (e) {}
   }
 }
 
 function runStep() {
+  stopTimer();   /* clear the old timer first: stopTimer() also cancels speech, so it must not run after exSpeak() */
   paused = false;
   document.getElementById("pauseBtn").textContent = "⏸ Pause";
   const step = queue[stepIndex];
@@ -7972,9 +8125,9 @@ function runStep() {
     exSpeak(`${step.switchSides ? "Switch sides" : "Short rest"}. Next: ${step.nextName}`);
   }
 
+  if (resumeSecondsOverride !== null) { secondsLeft = Math.min(resumeSecondsOverride, totalSeconds); resumeSecondsOverride = null; }
   document.getElementById("exTimer").textContent = secondsLeft;
-  document.getElementById("exProgress").style.width = "0%";
-  stopTimer();
+  document.getElementById("exProgress").style.width = (((totalSeconds - secondsLeft) / totalSeconds) * 100) + "%";
   timerHandle = setInterval(tick, 1000);
 }
 
@@ -7986,6 +8139,8 @@ function tick() {
   document.getElementById("exProgress").style.width = pct + "%";
   if (secondsLeft <= 0) {
     stopTimer();
+    const doneStep = queue[stepIndex];
+    if (doneStep && doneStep.type === "exercise") hxRecord(doneStep.name, doneStep.category, effectiveLevel());
     nextStep();
   }
 }
@@ -8020,20 +8175,89 @@ function togglePause() {
 
 function stopTimer() {
   if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+  exSpeakToken++;   /* drop any announcement that is still waiting to start */
   if ("speechSynthesis" in window) window.speechSynthesis.cancel();
 }
 
+let resumeState = null;
+let singleMode = false;
+let resumeSecondsOverride = null;
+
+function refreshResumeCard() {
+  const card = document.getElementById("resumeCard");
+  if (!card) return;
+  if (!resumeState) { card.classList.add("hidden"); return; }
+  const st = resumeState.queue[resumeState.stepIndex];
+  const isEx = st.type === "exercise";
+  const label = isEx ? st.name + (st.sideLabel ? " (" + st.sideLabel + ")" : "") : "Break before " + st.nextName;
+  document.getElementById("resumeText").textContent = label + " \u00b7 " + resumeState.secondsLeft + " sec left";
+  const doneBtn = document.getElementById("resumeDoneBtn");
+  doneBtn.textContent = isEx ? "I did " + st.name + " \u2014 mark as done" : "Skip this break";
+  card.classList.remove("hidden");
+}
+
+/* keepTime = true: carry on with the seconds that were left; false: restart this step */
+function resumeRoutine(keepTime) {
+  if (!resumeState) return;
+  const left = resumeState.secondsLeft;
+  queue = resumeState.queue;
+  singleMode = !!resumeState.single;
+  stepIndex = resumeState.stepIndex;
+  skippedAny = resumeState.skippedAny;
+  totalExercisesInRoutine = resumeState.total;
+  currentExerciseNumber = resumeState.exNum;
+  resumeState = null;
+  refreshResumeCard();
+  resumeSecondsOverride = keepTime ? left : null;
+  showScreen("player");
+  runStep();
+}
+
+/* count the stopped exercise as done and carry on with the next step */
+function resumeMarkDone() {
+  if (!resumeState) return;
+  const st = resumeState.queue[resumeState.stepIndex];
+  queue = resumeState.queue;
+  singleMode = !!resumeState.single;
+  stepIndex = resumeState.stepIndex;
+  skippedAny = resumeState.skippedAny;
+  totalExercisesInRoutine = resumeState.total;
+  currentExerciseNumber = resumeState.exNum;
+  resumeState = null;
+  refreshResumeCard();
+  if (st.type === "exercise") hxRecord(st.name, st.category, effectiveLevel());
+  showScreen("player");
+  nextStep();
+}
+
+function discardResume() {
+  resumeState = null;
+  refreshResumeCard();
+}
+
 function endRoutine(completed) {
+  /* Stop pressed in the middle of an exercise: still log it in history (one entry per exercise per date).
+     On a rest/switch-sides step nothing extra is logged, the exercise before it was already recorded. */
+  if (!completed && queue && queue[stepIndex] && queue[stepIndex].type === "exercise") {
+    hxRecord(queue[stepIndex].name, queue[stepIndex].category, effectiveLevel());
+  }
+  if (!completed && queue && queue.length && queue[stepIndex]) {
+    /* remember where the person stopped so they can resume */
+    resumeState = { single: singleMode, secondsLeft: Math.max(1, secondsLeft), queue: queue, stepIndex: stepIndex, skippedAny: skippedAny, total: totalExercisesInRoutine, exNum: currentExerciseNumber, category: currentCategory };
+  } else {
+    resumeState = null;
+  }
   stopTimer();
   closeDemo();
   stopPlayerFigure();
   if (completed) {
-    recordCompletion(!skippedAny);
+    if (!singleMode) recordCompletion(!skippedAny);
     const lvl = LEVEL_LABEL[effectiveLevel()];
     const catLabel = currentCategory === "all" ? "All (balanced sampler)" : currentCategory;
-    document.getElementById("doneSummary").textContent =
-      `You completed today's ${catLabel} routine at ${lvl} level — ${totalExercisesInRoutine} exercises.`;
-    exSpeak("Great job! You completed today's routine.");
+    document.getElementById("doneSummary").textContent = singleMode
+      ? `You completed ${queue[0].name} at ${lvl} level.`
+      : `You completed today's ${catLabel} routine at ${lvl} level — ${totalExercisesInRoutine} exercises.`;
+    exSpeak(singleMode ? "Great job! You completed the exercise." : "Great job! You completed today's routine.");
     showScreen("done");
   } else {
     goHome();
@@ -8088,6 +8312,225 @@ document.getElementById("voiceSeg").addEventListener("click", (e) => {
   [...document.getElementById("voiceSeg").children].forEach(b => b.classList.toggle("active", b === btn));
 });
 
+/* ===================== Exercise history (by date) =====================
+   Same idea as the Exercise Studio history: every exercise you finish is saved with today's date
+   (one entry per exercise per day). It stays on this device until you delete it, and you can
+   add or remove records, delete by date, and back up / restore by date. */
+const HX_KEY = "osc_ex_history_v1";
+const HX_LEVELS = ["easy", "medium", "hard", "advanced"];
+const hxStorageOK = (function () {
+  try { const k = "__osc_hx_test"; localStorage.setItem(k, "1"); const ok = localStorage.getItem(k) === "1"; localStorage.removeItem(k); return ok; }
+  catch (e) { return false; }
+})();
+
+/* every exercise the app knows: name -> first category and level it appears in (used to check backups and to build the "add a record" list) */
+const HX_KNOWN = {};
+const HX_BY_CAT = {};
+Object.keys(EXERCISES_BY_CATEGORY).forEach(cat => {
+  HX_BY_CAT[cat] = [];
+  Object.keys(EXERCISES_BY_CATEGORY[cat]).forEach(lv => {
+    EXERCISES_BY_CATEGORY[cat][lv].forEach(ex => {
+      if (!HX_KNOWN[ex.name]) HX_KNOWN[ex.name] = { c: cat, l: lv };
+      if (HX_BY_CAT[cat].indexOf(ex.name) < 0) HX_BY_CAT[cat].push(ex.name);
+    });
+  });
+});
+
+let hxData = {};                /* { "YYYY-MM-DD": { "Exercise name": { c: "Category", l: "easy" } } } */
+let hxEdit = false, hxOpen = {}, hxSel = {}, hxArmed = "", hxArmTimer = null, hxBackupOpen = false, hxPending = null, hxPendSel = {};
+
+function hxEsc(t) { return String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function hxToday() { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function hxNiceDate(k) { const p = k.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" }); }
+function hxValidDate(k) { if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return false; const p = k.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2]); return d.getFullYear() === +p[0] && d.getMonth() === +p[1] - 1 && d.getDate() === +p[2]; }
+function hxLevelLabel(l) { return LEVEL_LABEL[l] || ""; }
+
+/* add one record (ignores anything invalid). Returns true if something new was added. */
+function hxAdd(target, date, name, meta) {
+  if (!hxValidDate(date) || !HX_KNOWN[name]) return false;
+  const day = target[date] || (target[date] = {});
+  if (day[name]) return false;                         /* same exercise twice in a day counts once */
+  const c = meta && HX_BY_CAT[meta.c] ? meta.c : HX_KNOWN[name].c;
+  const l = meta && HX_LEVELS.indexOf(meta.l) > -1 ? meta.l : HX_KNOWN[name].l;
+  day[name] = { c: c, l: l };
+  return true;
+}
+function hxMerge(target, hist, onlyDates) {
+  let added = 0; const dates = {};
+  if (!hist || typeof hist !== "object") return { added: 0, dates: 0 };
+  Object.keys(hist).forEach(d => {
+    if (onlyDates && !onlyDates[d]) return;
+    const day = hist[d]; if (!day || typeof day !== "object") return;
+    (Array.isArray(day) ? day.map(n => [n, null]) : Object.keys(day).map(n => [n, day[n]])).forEach(pair => {
+      if (hxAdd(target, d, pair[0], pair[1])) { added++; dates[d] = true; }
+    });
+  });
+  return { added: added, dates: Object.keys(dates).length };
+}
+function hxLoad() {
+  try { const raw = localStorage.getItem(HX_KEY); if (raw) { const o = JSON.parse(raw); hxMerge(hxData, o && o.h); } } catch (e) {}
+}
+function hxSave() { try { localStorage.setItem(HX_KEY, JSON.stringify({ v: 1, h: hxData })); } catch (e) {} }
+function hxDates() { return Object.keys(hxData).filter(k => Object.keys(hxData[k]).length).sort().reverse(); }
+
+/* called when an exercise timer runs to the end (not when it is skipped) */
+function hxRecord(name, category, level) {
+  if (hxAdd(hxData, hxToday(), name, { c: category, l: level })) {
+    hxSave();
+    if (!document.getElementById("screen-history").classList.contains("hidden")) hxRender();
+  }
+}
+
+function hxRender() {
+  const dates = hxDates(), today = hxToday();
+  const nameCount = d => Object.keys(hxData[d]).length;
+  let html = '<div class="hx-head"><h2>Exercise history</h2><button type="button" class="btn hx-edit" id="hxEdit">' + (hxEdit ? "Done" : "Edit") + "</button></div>" +
+    '<p class="muted hx-keep">Kept on this device until you delete it.</p>';
+  if (!hxStorageOK) html += '<div class="hx-warn" role="alert">This viewer is not saving data. Open this page in your normal web browser to keep your history.</div>';
+
+  if (hxEdit && dates.length) {
+    const nsel = dates.filter(k => hxSel[k]).length;
+    html += '<div class="hx-tools"><p class="muted" style="margin:0 0 4px;">Tick one or more dates to delete them, or delete everything.</p>' +
+      '<div class="hx-trow"><button type="button" class="btn secondary" id="hxSelAll">Select all</button><button type="button" class="btn secondary" id="hxSelNone">Clear selection</button></div>' +
+      '<button type="button" class="btn danger' + (hxArmed === "sel" ? " armed" : "") + '" id="hxDelSel"' + (nsel ? "" : " disabled") + ">" +
+        (hxArmed === "sel" ? "Tap again to delete " + nsel + (nsel === 1 ? " date" : " dates") : "Delete selected (" + nsel + ")") + "</button>" +
+      '<button type="button" class="btn danger' + (hxArmed === "all" ? " armed" : "") + '" id="hxDelAll">' + (hxArmed === "all" ? "Tap again to delete ALL history" : "Delete all history") + "</button></div>";
+  }
+  if (hxEdit) {
+    html += '<div class="hx-add"><h3>Add a record</h3><p class="muted" style="margin:0;">Use this to fix a wrong date or add something you did. To move a record, remove it and add it on the right date.</p>' +
+      '<label for="hxDate">Date</label><input type="date" id="hxDate" value="' + today + '" max="' + today + '">' +
+      '<label for="hxEx">Exercise</label><select id="hxEx">' +
+      Object.keys(HX_BY_CAT).map(cat => '<optgroup label="' + hxEsc(cat) + '">' + HX_BY_CAT[cat].map(n => '<option value="' + hxEsc(cat + "||" + n) + '">' + hxEsc(n) + "</option>").join("") + "</optgroup>").join("") +
+      '</select><button type="button" class="btn" id="hxAdd">Add to history</button><p class="muted hx-msg" id="hxMsg" role="status"></p></div>';
+  }
+  if (!dates.length) {
+    html += '<p class="hx-empty">Nothing recorded yet. When you finish an exercise in a routine it is saved here with the date. Doing the same exercise more than once in a day counts as one.</p>';
+  } else {
+    html += '<ul class="hx-list">';
+    dates.forEach(k => {
+      const open = hxEdit || !!hxOpen[k];
+      const names = Object.keys(hxData[k]);
+      html += '<li class="hx-item">' + (hxEdit
+        ? '<label class="hx-check"><input type="checkbox" data-hsel="' + k + '"' + (hxSel[k] ? " checked" : "") + '><span class="hx-date">' + (k === today ? "Today · " : "") + hxEsc(hxNiceDate(k)) + "</span></label>"
+        : '<button type="button" class="hx-row" data-htoggle="' + k + '" aria-expanded="' + (open ? "true" : "false") + '"><span class="hx-date">' + (k === today ? "Today · " : "") + hxEsc(hxNiceDate(k)) + '</span><span class="hx-count">' + names.length + (names.length === 1 ? " exercise" : " exercises") + '</span><span class="hx-plus" aria-hidden="true">' + (open ? "−" : "+") + "</span></button>") +
+        (open ? '<ul class="hx-ex">' + names.map(n => {
+          const m = hxData[k][n];
+          return "<li><span>✓ " + hxEsc(n) + '<span class="hx-meta">' + hxEsc(m.c) + (m.l ? " · " + hxLevelLabel(m.l) : "") + "</span></span>" +
+            (hxEdit ? '<button type="button" class="btn hx-rm" data-hrm="' + hxEsc(k + "|" + n) + '" aria-label="Remove ' + hxEsc(n) + ' from this day">Remove</button>' : "") + "</li>";
+        }).join("") + "</ul>" : "") + "</li>";
+    });
+    html += "</ul>";
+  }
+
+  const backup = JSON.stringify({ app: "OneStopCompanion", kind: "home-exercise-history", version: 1, history: hxPlain() });
+  html += '<details class="hx-backup"' + (hxBackupOpen ? " open" : "") + "><summary>Back up or restore history</summary>" +
+    '<p class="muted">Copy this text and keep it somewhere safe. To restore, paste it in the box below and tap Restore. You can then choose which dates to bring back. Restoring adds to what is already here.</p>' +
+    '<textarea id="hxBackup" readonly rows="3" aria-label="Your history backup">' + hxEsc(backup) + '</textarea>' +
+    '<button type="button" class="btn secondary" id="hxCopy">Copy backup</button>' +
+    '<textarea id="hxPaste" rows="3" placeholder="Paste a backup here" aria-label="Paste a backup here"></textarea>' +
+    '<button type="button" class="btn" id="hxRestore">Restore</button>';
+  if (hxPending) {
+    const pd = Object.keys(hxPending).sort().reverse(), nsel = pd.filter(d => hxPendSel[d]).length;
+    html += '<div class="hx-pick" role="group" aria-label="Choose dates to restore"><p class="muted" style="margin:0;">This backup has ' + pd.length + (pd.length === 1 ? " date" : " dates") + ". Tick the dates to restore.</p>" +
+      '<div class="hx-trow"><button type="button" class="btn secondary" id="hxPickAll">Select all</button><button type="button" class="btn secondary" id="hxPickNone">Clear selection</button></div><ul>' +
+      pd.map(d => {
+        const names = Object.keys(hxPending[d]), fresh = names.filter(n => !(hxData[d] && hxData[d][n])).length;
+        return '<li><label class="hx-prow"><input type="checkbox" data-hpick="' + d + '"' + (hxPendSel[d] ? " checked" : "") + '><span>' + hxEsc(hxNiceDate(d)) + "<small>" + names.length + (names.length === 1 ? " exercise" : " exercises") + " · " + (fresh ? fresh + " new" : "already here") + "</small></span></label></li>";
+      }).join("") + '</ul><button type="button" class="btn" id="hxRestoreSel"' + (nsel ? "" : " disabled") + ">Restore selected (" + nsel + ')</button><button type="button" class="btn secondary" id="hxRestoreCancel">Cancel</button></div>';
+  }
+  html += '<p class="muted hx-msg" id="hxBMsg" role="status"></p></details>';
+  document.getElementById("hxCard").innerHTML = html;
+}
+function hxPlain() { const o = {}; hxDates().forEach(d => { o[d] = {}; Object.keys(hxData[d]).forEach(n => { o[d][n] = { c: hxData[d][n].c, l: hxData[d][n].l }; }); }); return o; }
+
+function openHistory() {
+  hxEdit = false; hxArmed = ""; hxSel = {}; hxPending = null; hxPendSel = {};
+  stopTimer(); stopPlayerFigure();
+  hxRender(); showScreen("history"); window.scrollTo(0, 0);
+}
+function hxArm(which, run) {
+  if (hxArmed !== which) {
+    hxArmed = which; hxRender();
+    clearTimeout(hxArmTimer);
+    hxArmTimer = setTimeout(() => { if (hxArmed) { hxArmed = ""; hxRender(); } }, 4000);
+    return;
+  }
+  clearTimeout(hxArmTimer); hxArmed = ""; run(); hxSel = {}; hxRender();
+}
+function hxMsg(id, text) { const el = document.getElementById(id); if (el) el.textContent = text; }
+
+document.getElementById("hxCard").addEventListener("click", (ev) => {
+  const t = ev.target;
+  const keepScroll = (fn) => { const y = window.scrollY; fn(); window.scrollTo(0, y); };
+  const tg = t.closest("[data-htoggle]");
+  if (tg) { keepScroll(() => { hxOpen[tg.dataset.htoggle] = !hxOpen[tg.dataset.htoggle]; hxRender(); }); return; }
+  if (t.closest("#hxEdit")) { hxEdit = !hxEdit; hxArmed = ""; hxSel = {}; hxRender(); return; }
+  const sel = t.closest("[data-hsel]");
+  if (sel) { keepScroll(() => { hxSel[sel.dataset.hsel] = sel.checked; hxArmed = ""; hxRender(); }); return; }
+  const rm = t.closest("[data-hrm]");
+  if (rm) {
+    const i = rm.dataset.hrm.indexOf("|"), d = rm.dataset.hrm.slice(0, i), n = rm.dataset.hrm.slice(i + 1);
+    if (hxData[d]) { delete hxData[d][n]; if (!Object.keys(hxData[d]).length) delete hxData[d]; hxSave(); keepScroll(hxRender); }
+    return;
+  }
+  if (t.closest("#hxAdd")) {
+    const date = document.getElementById("hxDate").value, v = document.getElementById("hxEx").value.split("||");
+    if (!hxValidDate(date)) { hxMsg("hxMsg", "Please pick a date."); return; }
+    if (date > hxToday()) { hxMsg("hxMsg", "That date is in the future."); return; }
+    const cat = v[0], name = v.slice(1).join("||");
+    if (!HX_KNOWN[name]) { hxMsg("hxMsg", "Please pick an exercise."); return; }
+    if (hxData[date] && hxData[date][name]) { hxMsg("hxMsg", name + " is already recorded on that day."); return; }
+    const lv = (() => { const L = HX_LEVELS.find(l => (EXERCISES_BY_CATEGORY[cat][l] || []).some(e => e.name === name)); return L || HX_KNOWN[name].l; })();
+    hxAdd(hxData, date, name, { c: cat, l: lv }); hxSave(); keepScroll(hxRender); hxMsg("hxMsg", "Added.");
+    return;
+  }
+  if (t.closest("#hxSelAll")) { hxDates().forEach(k => { hxSel[k] = true; }); hxArmed = ""; keepScroll(hxRender); return; }
+  if (t.closest("#hxSelNone")) { hxSel = {}; hxArmed = ""; keepScroll(hxRender); return; }
+  if (t.closest("#hxDelSel")) {
+    const chosen = Object.keys(hxSel).filter(k => hxSel[k] && hxData[k]); if (!chosen.length) return;
+    hxArm("sel", () => { chosen.forEach(k => { delete hxData[k]; }); hxSave(); });
+    return;
+  }
+  if (t.closest("#hxDelAll")) { hxArm("all", () => { hxData = {}; hxSave(); }); return; }
+  if (t.closest("#hxCopy")) {
+    hxBackupOpen = true;
+    const box = document.getElementById("hxBackup"), text = box.value;
+    const done = ok => hxMsg("hxBMsg", ok ? "Copied." : "Select the text above and copy it.");
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => done(true), () => { box.select(); done(false); });
+      else { box.select(); done(document.execCommand && document.execCommand("copy")); }
+    } catch (e) { box.select(); done(false); }
+    return;
+  }
+  if (t.closest("#hxRestore")) {
+    hxBackupOpen = true;
+    let obj = null; const raw = document.getElementById("hxPaste").value;
+    try { obj = JSON.parse(raw); } catch (e) {}
+    const src = obj && typeof obj === "object" ? (obj.history || obj.h) : null;
+    if (!src || typeof src !== "object") { hxPending = null; hxRender(); hxMsg("hxBMsg", "That does not look like a backup."); return; }
+    const clean = {}; hxMerge(clean, src);                  /* keep only valid dates and known exercises */
+    if (!Object.keys(clean).length) { hxPending = null; hxRender(); hxMsg("hxBMsg", "That backup has no history to restore."); return; }
+    hxPending = clean; hxPendSel = {}; Object.keys(clean).forEach(d => { hxPendSel[d] = true; });
+    hxRender();
+    return;
+  }
+  const pk = t.closest("[data-hpick]");
+  if (pk) { hxBackupOpen = true; hxPendSel[pk.dataset.hpick] = pk.checked; keepScroll(hxRender); return; }
+  if (t.closest("#hxPickAll")) { hxBackupOpen = true; Object.keys(hxPending || {}).forEach(d => { hxPendSel[d] = true; }); keepScroll(hxRender); return; }
+  if (t.closest("#hxPickNone")) { hxBackupOpen = true; hxPendSel = {}; keepScroll(hxRender); return; }
+  if (t.closest("#hxRestoreCancel")) { hxBackupOpen = true; hxPending = null; hxPendSel = {}; keepScroll(hxRender); return; }
+  if (t.closest("#hxRestoreSel")) {
+    hxBackupOpen = true;
+    const only = {}; Object.keys(hxPending || {}).forEach(d => { if (hxPendSel[d]) only[d] = true; });
+    const r = hxMerge(hxData, hxPending, only); hxSave();
+    hxPending = null; hxPendSel = {}; hxRender();
+    hxMsg("hxBMsg", r.added ? "Restored " + r.added + (r.added === 1 ? " exercise" : " exercises") + " on " + r.dates + (r.dates === 1 ? " date." : " dates.") : "Nothing new to restore. Those records are already here.");
+    return;
+  }
+});
+hxLoad();
+window.openHistory = openHistory;
+
 /* Exercise speed: "normal" or "slow". Slow runs the demo clock at 60% and speaks a little slower. */
 const SLOW_FACTOR = 0.6;
 const SPEED_KEY = "osc_exercise_speed";
@@ -8109,6 +8552,26 @@ document.getElementById("speedSeg").addEventListener("click", (e) => {
 });
 applyExerciseSpeed(loadExerciseSpeed(), false);
 
+/* Rest between exercises: Automatic (set by level) or a fixed 5-60 seconds. */
+function applyRestChoice(choice, save) {
+  restChoice = REST_CHOICES.indexOf(choice) >= 0 ? choice : "auto";
+  [...document.getElementById("restSeg").children].forEach(b => {
+    const on = b.dataset.rest === restChoice;
+    b.classList.toggle("active", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  document.getElementById("restNote").textContent = restChoice === "auto"
+    ? "Automatic uses the rest time for your level: Easy 12s, Medium 8s, Hard 6s, Advanced 4s. Switching sides on one-sided exercises stays a short 5s."
+    : "Every break between exercises will be " + restChoice + " seconds, whatever your level. Switching sides on one-sided exercises stays a short 5s.";
+  if (save) { try { localStorage.setItem(REST_KEY, restChoice); } catch (e) {} renderRoutineList(); }
+}
+document.getElementById("restSeg").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+  applyRestChoice(btn.dataset.rest, true);
+});
+applyRestChoice(restChoice, false);
+
 renderRoutineList();
 refreshProgressUI();
 refreshLevelUI();
@@ -8128,6 +8591,10 @@ function exercisesHeaderBack() {
   window.togglePause = togglePause;
   window.skipExercise = skipExercise;
   window.endRoutine = endRoutine;
+  window.playSingleExercise = playSingleExercise;
+  window.resumeRoutine = resumeRoutine;
+  window.discardResume = discardResume;
+  window.resumeMarkDone = resumeMarkDone;
   window.goHome = goHome;
   window.openCurrentStepDemo = openCurrentStepDemo;
   window.openDemoByName = openDemoByName;
@@ -8138,6 +8605,29 @@ function exercisesHeaderBack() {
 </script>
 
 <script>(function(){
+if(window.top===window.self)return;
+var WRAPPER_ORIGIN="https://sharable.link";
+function retarget(raw,isDownload){
+var here,url;
+try{here=new URL(location.href);url=new URL(raw,location.href)}catch(e){return null}
+if(url.protocol!=="http:"&&url.protocol!=="https:")return null;
+if(url.origin!==here.origin)return url.href;
+if(isDownload||url.pathname===here.pathname)return null;
+return WRAPPER_ORIGIN+url.pathname+url.search+url.hash}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+if(document.querySelector("base[target]"))return;
+var a=e.target&&e.target.closest?e.target.closest("a[href]"):null;
+if(!a||(a.target&&a.target!=="_self"))return;
+var href=retarget(a.getAttribute("href"),a.hasAttribute("download"));
+if(!href)return;
+a.href=href;a.target="_top"});
+document.addEventListener("submit",function(e){
+var form=e.target;
+if(e.defaultPrevented||!form||form.target)return;
+var href=retarget(form.getAttribute("action"),false);
+if(!href)return;
+form.action=href;form.target="_top"})})();</script><script>(function(){
 if(window.top===window.self)return;
 var WRAPPER_ORIGIN="https://sharable.link";
 function retarget(raw,isDownload){
